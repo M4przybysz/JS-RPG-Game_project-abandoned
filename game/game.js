@@ -1,14 +1,31 @@
 var x = true
 var game_grid = document.getElementById('game_grid')
 
+const CODE_TO_KEY = {
+    27 : 'escape',
+    65 : 'left',
+    68 : 'right',
+    83 : 'down',
+    87 : 'up'
+}
+
 function movement(event) {
     let player_node = document.getElementById('player_node')
 
-    if(event.keyCode == 87) player_node.textContent = 'up'      // pressed W
-    if(event.keyCode == 83) player_node.textContent = 'down'    // pressed S
-    if(event.keyCode == 65) player_node.textContent = 'left'    // pressed A
-    if(event.keyCode == 68) player_node.textContent = 'right'   // pressed D
-    if(event.keyCode == 27) x = false                           // pressed Escape
+    if(event.keyCode == 87) {               // pressed W
+        player_node.innerHTML = `<img src="assets/test_arrows/arrow_${CODE_TO_KEY[event.keyCode]}.png" alt="Sorry. There is no arrow.">` 
+    }
+    if(event.keyCode == 83) {               // pressed S
+        player_node.innerHTML = `<img src="assets/test_arrows/arrow_${CODE_TO_KEY[event.keyCode]}.png" alt="Sorry. There is no arrow.">`
+    }   
+    if(event.keyCode == 65) {               // pressed A
+        player_node.innerHTML = `<img src="assets/test_arrows/arrow_${CODE_TO_KEY[event.keyCode]}.png" alt="Sorry. There is no arrow.">`
+    }   
+    if(event.keyCode == 68) {               // pressed D
+        player_node.innerHTML = `<img src="assets/test_arrows/arrow_${CODE_TO_KEY[event.keyCode]}.png" alt="Sorry. There is no arrow.">`
+    }   
+    if(event.keyCode == 27) x = false       // pressed Escape
+
     console.log(event.keyCode, player_node.textContent)
 
     //event.preventDefault()
