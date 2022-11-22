@@ -1,0 +1,9 @@
+#menu {
+    position: absolute;
+    box-sizing: border-box;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1330px;
+    height: 30px;
+    background-color: gray;
+}
