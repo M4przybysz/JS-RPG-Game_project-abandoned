@@ -10,7 +10,7 @@
     left: 50%;
     transform: translateX(-50%);
     margin: auto;
-    border: 5px solid blue;
+    border: 5px solid rgb(68, 68, 153);
     text-align: center;
 }
 
