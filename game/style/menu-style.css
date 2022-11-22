@@ -3,7 +3,7 @@
     box-sizing: border-box;
     left: 50%;
     transform: translateX(-50%);
-    width: 1330px;
+    width: 1500px;
     height: 30px;
     background-color: gray;
 }
