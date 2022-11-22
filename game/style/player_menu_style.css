@@ -1,0 +1,9 @@
+#player_menu {
+    position: absolute;
+    box-sizing: border-box;
+    top: 40px;
+    left: 1035px;
+    width: 490px;
+    height: 700px;
+    background-color: gray;
+}

@@ -1,24 +1,25 @@
 :root {
-    --node_size: 65px;
+    --node_width: 53px;
+    --node_height: 53px;
 }
 
 #game_grid {
     position: absolute;
+    box-sizing: border-box;
     display: grid;
-    grid-template-columns: repeat(19, var(--node_size));
+    grid-template-columns: repeat(19, var(--node_width));
     top: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 16px;
     margin: auto;
-    border: 5px solid rgb(68, 68, 153);
+    /* border: 5px solid blue; */
     text-align: center;
 }
 
 .node {
     box-sizing: border-box;
     display: inline-block;
-    width: var(--node_size);
-    height: var(--node_size);
+    width: var(--node_width);
+    height: var(--node_height);
     border: 2px solid black;
 }
 
@@ -26,8 +27,8 @@
     background-color: red;
 }
 
-/*! ================== Delete later ================== !*/
+/*TODO: Change when textures are ready */
 #player_node img {
-    width: calc(var(--node_size) - 5px);
-    height: calc(var(--node_size) - 5px);
+    width: calc(var(--node_width) - 5px);
+    height: calc(var(--node_height) - 5px);
 }

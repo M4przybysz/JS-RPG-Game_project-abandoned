@@ -24,11 +24,13 @@ function movement(event) {
     if(event.keyCode == 68) {               // pressed D
         player_node.innerHTML = `<img src="assets/test_arrows/arrow_${CODE_TO_KEY[event.keyCode]}.png" alt="Sorry. There is no arrow.">`
     }   
-    if(event.keyCode == 27) x = false       // pressed Escape
+    if(event.keyCode == 27) {               // pressed Escape
+        x = false  
+    }     
 
     console.log(event.keyCode, player_node.textContent)
 
-    //event.preventDefault()
+    event.preventDefault()
 }
 
 
