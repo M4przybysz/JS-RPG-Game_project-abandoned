@@ -1,0 +1,26 @@
+:root {
+    --node_size: 70px;
+}
+
+#game_grid {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(19, var(--node_size));
+    left: 50%;
+    transform: translateX(-50%);
+    margin: auto;
+    border: 5px solid blue;
+    text-align: center;
+}
+
+.node {
+    box-sizing: border-box;
+    display: inline-block;
+    width: var(--node_size);
+    height: var(--node_size);
+    border: 2px solid black;
+}
+
+.player_node {
+    background-color: red;
+}
