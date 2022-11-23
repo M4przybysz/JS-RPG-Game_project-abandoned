@@ -1,38 +1,30 @@
 var x = true
 var game_grid = document.getElementById('game_grid')
 
-const CODE_TO_KEY = {
-    27 : 'ESCAPE',
-    65 : 'A',
-    68 : 'D',
-    83 : 'S',
-    87 : 'W'
-}
-
 const KEY_TO_ACTION = {
-    'A' : 'left',
-    'D' : 'right',
-    'S' : 'down',
-    'W' : 'up'
+    'a' : 'left',
+    'd' : 'right',
+    's' : 'down',
+    'w' : 'up'
 }
 
 function movement(event) {
     let player_node = document.getElementById('player_node')
-    let key = event.key.toUpperCase()
+    let key = event.key
 
-    if(key == 'W') {               // pressed W
+    if(key == 'w') {               // pressed W
         player_node.innerHTML = `<img src="assets/test_arrows/arrow_${KEY_TO_ACTION[key]}.png" alt="Sorry. There is no arrow.">` 
     }
-    if(key == 'S') {               // pressed S
+    if(key == 's') {               // pressed S
         player_node.innerHTML = `<img src="assets/test_arrows/arrow_${KEY_TO_ACTION[key]}.png" alt="Sorry. There is no arrow.">`
     }   
-    if(key == 'A') {               // pressed A
+    if(key == 'a') {               // pressed A
         player_node.innerHTML = `<img src="assets/test_arrows/arrow_${KEY_TO_ACTION[key]}.png" alt="Sorry. There is no arrow.">`
     }   
-    if(key == 'D') {               // pressed D
+    if(key == 'd') {               // pressed D
         player_node.innerHTML = `<img src="assets/test_arrows/arrow_${KEY_TO_ACTION[key]}.png" alt="Sorry. There is no arrow.">`
     }   
-    if(key == 'ESCAPE') {          // pressed Escape
+    if(key == 'escape') {          // pressed Escape
         x = false  
     }     
 
