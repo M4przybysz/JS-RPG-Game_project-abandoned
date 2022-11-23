@@ -5,4 +5,13 @@
     --node_height: 55px;
 }
 
-
+#game_stop {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    width: 1536px;
+    height: 723px;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.4);
+}
