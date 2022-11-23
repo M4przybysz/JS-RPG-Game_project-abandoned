@@ -1,9 +1,9 @@
 #player_main_stats {
     position: absolute;
     box-sizing: border-box;
-    top: 582px;
-    left: 16px;
+    top: 600px;
+    left: 10px;
     width: calc(var(--node_width) * 19);
-    height: 157px;
+    height: 140px;
     background-color: gray;
 }

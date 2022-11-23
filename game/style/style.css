@@ -1,0 +1,8 @@
+/** This CSS file is onlu for general purposes style formating and creating variables */
+
+:root {
+    --node_width: 55px;
+    --node_height: 55px;
+}
+
+

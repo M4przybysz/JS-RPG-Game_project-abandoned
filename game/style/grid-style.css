@@ -1,15 +1,10 @@
-:root {
-    --node_width: 53px;
-    --node_height: 53px;
-}
-
 #game_grid {
     position: absolute;
     box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(19, var(--node_width));
     top: 40px;
-    left: 16px;
+    left: 10px;
     margin: auto;
     /* border: 5px solid blue; */
     text-align: center;

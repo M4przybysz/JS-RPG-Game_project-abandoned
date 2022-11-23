@@ -2,7 +2,8 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <!--! CSS is defined for screen size 1920px x 1080px as default (browser without bookmarks bar) -->
+    <!--! CSS is defined for screen size 1535px x 750px as default (browser without bookmarks bar and left bar, windows 1920x1080 * 125%) -->
+    <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/grid-style.css">
     <link rel="stylesheet" href="style/menu-style.css">
     <link rel="stylesheet" href="style/player_menu_style.css">
@@ -19,30 +20,35 @@
     </header>
     <main>
         <!-- Game screen -->
-        <div id="game_grid">
-            <!-- Game screen grid of width=X and height=Y -->
-            <!-- X=18, Y=11 -->
-            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
-            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
-            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
-            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
-            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
-            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
-            <div id="player_node" class="node">
-                <!--TODO: Change to player assets when they are ready -->
-                <img src="assets/test_arrows/arrow_down.png" alt="Sorry. There is no arrow.">
+        <div id="game_grid_container">
+            <div id="game_grid">
+                <!-- Game screen grid of width=X and height=Y -->
+                <!-- X=18, Y=11 -->
+                <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+                <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+                <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+                <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+                <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+                <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+                <div id="player_node" class="node">
+                    <!--TODO: Change to player assets when they are ready -->
+                    <img src="assets/test_arrows/arrow_down.png" alt="Sorry. There is no arrow.">
+                </div>
+                <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+                <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+                <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+                <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+                <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
             </div>
-            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
-            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
-            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
-            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
-            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
         </div>
         <div id="player_menu">
 
         </div>
         <div id="player_main_stats">
 
+        </div>
+        <div id="game_stop">
+            
         </div>
     </main>
 
