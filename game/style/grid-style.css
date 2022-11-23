@@ -20,7 +20,7 @@
     display: inline-block;
     width: var(--node_width);
     height: var(--node_height);
-    border: 2px solid green;
+    border: 2px solid black;
 }
 
 #player_node {
