@@ -24,6 +24,6 @@
 
 /*TODO: Change when textures are ready */
 #player_node img {
-    width: calc(var(--node_width) - 5px);
-    height: calc(var(--node_height) - 5px);
+    width: calc(var(--node_width) - 4px);
+    height: calc(var(--node_height) - 4px);
 }

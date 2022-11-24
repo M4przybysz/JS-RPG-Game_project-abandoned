@@ -2,10 +2,10 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <!--! CSS is defined for screen size 1536px x 753px as default (browser without bookmarks bar and left bar, windows 1920x1080 * 125%) -->
-    <!--                                      ^   -->
-    <!--                                      |   -->
-    <!-- Idk how but you can round this to 1535x750 until it touches edges of the browser -->
+    <!--! CSS is defined for web browser screen size 1536px x 753px as default (browser without bookmarks bar and left bar, windows 1920x1080 * 125%) -->
+    <!--                                                ^   -->
+    <!--                                                |   -->
+    <!-- Idk how this works but you can round this to 1535x750 (difference is not visible until element touches edges of the browser) -->
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/grid-style.css">
     <link rel="stylesheet" href="style/menu-style.css">
@@ -55,7 +55,10 @@
         </div>
     </main>
 
-
-    <script src="game.js"></script><!--! game.js needs to be at the end -->
+    <script src="js/grid.js"></script>
+    <script src="js/creatures.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/keyboard.js"></script>
+    <script src="js/game.js"></script><!--! game.js must be at the end -->
 </body>
 </html>
