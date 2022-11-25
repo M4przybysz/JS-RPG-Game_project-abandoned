@@ -10,19 +10,19 @@ function keyAction(event) {
     let stop = document.getElementById('game_stop')
     let key = event.key.toUpperCase()
 
-    if(key == 'w') {                // pressed W
+    if(key == 'W') {                // pressed W
         player_node.innerHTML = `<img src="assets/test_arrows/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">` 
     }
-    if(key == 's') {                // pressed S
+    if(key == 'S') {                // pressed S
         player_node.innerHTML = `<img src="assets/test_arrows/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">`
     }   
-    if(key == 'a') {                // pressed A
+    if(key == 'A') {                // pressed A
         player_node.innerHTML = `<img src="assets/test_arrows/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">`
     }   
-    if(key == 'd') {                // pressed D
+    if(key == 'D') {                // pressed D
         player_node.innerHTML = `<img src="assets/test_arrows/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">`
     }   
-    if(key == 'Escape') {           // pressed Escape
+    if(key == 'ESCAPE') {           // pressed Escape
         if(stop.style.display == 'none') {
             stop.style.display = 'block'  
         }
