@@ -18,17 +18,18 @@ class Node {
 var Grid = {
     grid_width : 19,
     grid_height : 10,
-    player_node_x : 9,
-    player_node_y : 5,
+    player_node_x : 9, // x position of player_node in grid
+    player_node_y : 5, // y position of player_node in grid
 
+    // layered maps of the game
     bg_map : null,
     l0_map : null,
     l1_map : null,
     l2_map : null,
     nodes : [],
 
-    player_x : 20,
-    player_y : 20,
+    player_x : 20, // player starting position x
+    player_y : 20, // player starting position y
 
     container : document.getElementById('game_grid_container'),
     grid : document.getElementById('game_grid'),
@@ -59,20 +60,22 @@ var Grid = {
     },
 
     moveGrid : function(key) {
-        let x = 0
-        let y = 0
+        const XY = { // Return [x, y] valuses used to change all nodes positions
+            'W' : () => {return [0, -1]},
+            'S' : () => {return [0, 1]},
+            'A' : () => {return [-1, 0]},
+            'D' : () => {return [1, 0]}
+        }
 
-        if(key == 'W') {x = 0; y = -1}
-        if(key == 'S') {x = 0; y = 1}
-        if(key == 'A') {x = -1; y = 0}
-        if(key == 'D') {x = 1; y = 0}
-
+        // Udate position of nodes in grid
         this.nodes.map(row => {
             row.map(node => {
-                node.position_x = node.position_x + x
-                node.position_y = node.position_y + y
+                node.position_x = node.position_x + XY[key]()[0]
+                node.position_y = node.position_y + XY[key]()[1]
                 node.div.textContent = `${node.position_x} : ${node.position_y}`
             })
         })
+
+        return 1
     }
 }
