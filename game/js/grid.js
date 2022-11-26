@@ -17,7 +17,7 @@ class Node {
 
 var Grid = {
     grid_width : 19,
-    grid_height : 9,
+    grid_height : 10,
     player_node_x : 9,
     player_node_y : 5,
 
@@ -27,8 +27,8 @@ var Grid = {
     l2_map : null,
     nodes : [],
 
-    player_x : 0,
-    player_y : 0,
+    player_x : 20,
+    player_y : 20,
 
     container : document.getElementById('game_grid_container'),
     grid : document.getElementById('game_grid'),
@@ -36,33 +36,15 @@ var Grid = {
     loadGrid : function() {
         this.grid.innerHTML = ""
 
-        // Create nodes before central player node
-        for(let y = 0, py = this.player_y - this.player_node_y; y <= this.player_node_y; y++, py++) {
-            let halt = (y == this.player_node_y) ? this.player_node_x : this.grid_width
-            let px_start = (y == this.player_node_y) ? this.player_x : halt - this.player_node_x + this.player_x
+        // Create nodes
+        for(let y = 0, py = this.player_y-this.player_node_y; y < this.grid_height; y++, py++) {
             this.nodes.push([])
-
-            for(let x = 0, px = px_start - halt; x < halt; x++, px++) {
+            for(let x = 0, px = this.player_x-this.player_node_x; x < this.grid_width; x++, px++) {
                 this.nodes[y].push(new Node(px, py))
-            }
-        }
-        console.log(this.nodes)
-
-        // Create player node
-        this.nodes[this.player_node_y].push(new Node(this.player_x, this.player_y))
-        this.nodes[this.player_node_y][this.player_node_x].div.id = 'player_node'
-        this.nodes[this.player_node_y][this.player_node_x].div.innerHTML = '<img src="assets/test_arrows/arrow_down.png" alt="Sorry. There is no arrow."></img>'
-
-        // Create nodes after player node
-        for(let y = this.player_node_y, py = this.player_y; y <= this.grid_height; y++, py++) {
-            let halt = (y == this.player_node_y) ? this.player_node_x-1 : this.grid_width - 1
-            let px_start = (y == this.player_node_y) ? this.player_x + 1 : this.player_node_x - halt + this.player_x
-            if(y != this.player_node_y) {
-                this.nodes.push([])
-            }
-
-            for(let x = 0, px = px_start; x <= halt; x++, px++) {
-                this.nodes[y].push(new Node(px, py))
+                if(y == this.player_node_y && x == this.player_node_x) { // Create player node
+                    this.nodes[y][x].div.id = 'player_node'
+                    this.nodes[y][x].div.innerHTML = '<img src="assets/test_arrows/arrow_down.png" alt="Sorry. There is no arrow."></img>'
+                }
             }
         }
 
