@@ -1,10 +1,20 @@
+#game_grid_container {
+    position: absolute;
+    overflow: hidden;
+    left: 10px;
+    top: 40px;
+    width: calc(19 * var(--node_width));
+    height: calc(10 * var(--node_height));
+    border: 1px solid green;
+}
+
 #game_grid {
     position: absolute;
     box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(19, var(--node_width));
-    top: 40px;
-    left: 10px;
+    /* left: 10px;
+    top: 40px; */
     margin: auto;
     /* border: 5px solid blue; */
     text-align: center;
@@ -20,6 +30,7 @@
 
 #player_node {
     background-color: red;
+    color: white;
 }
 
 /*TODO: Change when textures are ready */
