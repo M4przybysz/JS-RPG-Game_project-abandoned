@@ -31,4 +31,6 @@ setInterval(()=>{ // Actions in game ticks
             active_wsad_key = null
         }
     }
+
+    czasomierz()
 },1)

@@ -1,4 +1,4 @@
-czas = document.getElementById('czas')
+var czas = document.getElementById('czas')
 
 function czasomierz ()
 {
@@ -7,9 +7,5 @@ function czasomierz ()
     minuty = czas_pomocniczy.getMinutes()
     sekundy = czas_pomocniczy.getSeconds()
 
-    czas.innerHTML = `${godziny}:${minuty}:${sekundy}`
-}
-
-window.onload = () => {
-    setInterval (czasomierz, 1000)
+    czas.textContent = `${godziny}:${minuty}:${sekundy}`
 }

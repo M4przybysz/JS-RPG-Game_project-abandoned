@@ -1,10 +1,25 @@
 #menu {
     position: absolute;
     box-sizing: border-box;
+    z-index: 50;
     left: 50%;
     top: 0px;
     transform: translateX(-50%);
     width: 1536px;
     height: 30px;
     background-color: gray;
+}
+
+#czas {
+    position: absolute;
+    display: inline-block;
+    z-index: 51;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    line-height: 30px;
+    color: hotpink;
 }

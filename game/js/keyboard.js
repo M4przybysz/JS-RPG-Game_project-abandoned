@@ -28,5 +28,5 @@ function keydownActions(event) {
 
     console.log(key)
 
-    event.preventDefault()
+    //event.preventDefault()
 }
