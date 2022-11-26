@@ -1,36 +1,44 @@
 //* This file runs is a game loop
 
-//TODO: Put game actions to do on load ===============================================================
+//TODO: Put game actions to do on load ==========================================================================================
 window.onload = () => {
     Grid.loadGrid()
 }
 
-//TODO: Put game actions during playthrough ==========================================================
-let start_time = Date.now()
+//TODO: Define html game components =============================================================================================
+var game_grid = Grid.grid
+var player_node = null
+if(game_grid.innerHTML != '') { 
+    player_node = document.getElementById('player_node')
+}
 
+//TODO: Put game actions during playthrough =====================================================================================
 document.addEventListener('keydown', keydownActions)
 
 //? First Esc press does not activate its action when game_stop display is set to 'none' so I force Esc press
 // document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}))
 
-//TODO: Change this shitty interval
-setInterval(()=>{ // Actions in game ticks
-    let game_grid = document.getElementById('game_grid')
-    let player_node = null
-    if(game_grid.innerHTML != '') { 
-        player_node = document.getElementById('player_node')
+//* Game ticks handler
+var interval = 250; // Interval in milliseconds
+var expected_time_diff = Date.now() + interval; // Expected time difference between interval and now in milliseconds
+
+function gameTicks() {
+    var time_diff = Date.now() - expected_time_diff; // Get actual time difference
+
+    if (time_diff > interval) { // Error handler
+        console.error('Time difference error: ', time_diff, '>', interval)
     }
 
-    let current_time = Date.now()
+    //TODO: Put game events that need to run in intervals here ==================================================================
+    Grid.moveGrid(active_wsad_key)
+    timer()
 
-    if((current_time - start_time) % 200 == 0) {
-        if(player_node != null && active_wsad_key != null) {
-            Grid.moveGrid(active_wsad_key)
-            player_node.innerHTML = `<img src="assets/test_arrows/arrow_${KEY_MAP[active_wsad_key]}.png" alt="Sorry. There is no arrow.">`
+    // Start next loop
+    expected_time_diff += interval;
+    setTimeout(gameTicks, interval - time_diff);
 
-            active_wsad_key = null
-        }
-    }
+    return 1
+}
 
-    czasomierz()
-},1)
+//* Start game loop
+gameTicks()

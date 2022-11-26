@@ -10,7 +10,7 @@
     background-color: gray;
 }
 
-#czas {
+#clock {
     position: absolute;
     display: inline-block;
     z-index: 51;

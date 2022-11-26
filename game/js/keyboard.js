@@ -20,11 +20,11 @@ function keydownActions(event) {
         }
     }
 
-    if(stop.style.display == 'none') {
-        if((key == 'W' || key == 'S' || key == 'A' || key == 'D')) {     // pressed WSAD
-            active_wsad_key = key
-        }
-    }    
+    // pressed WSAD
+    if((key == 'W' || key == 'S' || key == 'A' || key == 'D') && stop.style.display == 'none') { 
+        active_wsad_key = key
+    }
+  
 
     console.log(key)
 

@@ -1,11 +1,11 @@
-var czas = document.getElementById('czas')
+var clock = document.getElementById('clock')
 
-function czasomierz ()
+function timer()
 {
-    czas_pomocniczy = new Date()
-    godziny = czas_pomocniczy.getHours()
-    minuty = czas_pomocniczy.getMinutes()
-    sekundy = czas_pomocniczy.getSeconds()
+    current_time = new Date()
+    hours = current_time.getHours()
+    minutes = current_time.getMinutes()
+    seconds = current_time.getSeconds()
 
-    czas.textContent = `${godziny}:${minuty}:${sekundy}`
+    clock.textContent = `${hours}:${minutes}:${seconds}`
 }

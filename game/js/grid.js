@@ -60,6 +60,8 @@ var Grid = {
     },
 
     moveGrid : function(key) {
+        if(key === null) return -1
+
         const XY = { // Return [x, y] valuses used to change all nodes positions
             'W' : () => {return [0, -1]},
             'S' : () => {return [0, 1]},
@@ -75,6 +77,11 @@ var Grid = {
                 node.div.textContent = `${node.position_x} : ${node.position_y}`
             })
         })
+
+        // Set player node image
+        document.getElementById('player_node').innerHTML = `<img src="assets/test_arrows/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">`
+        
+        active_wsad_key = null
 
         return 1
     }
