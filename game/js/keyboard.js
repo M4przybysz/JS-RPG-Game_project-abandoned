@@ -32,5 +32,5 @@ function keyAction(event) {
 
     console.log(key)
 
-    event.preventDefault()
+    //event.preventDefault()
 }
