@@ -1,0 +1,8 @@
+#czas {
+    position: absolute;
+    display: inline-block;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: gray;
+}
