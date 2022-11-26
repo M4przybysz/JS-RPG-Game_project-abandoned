@@ -32,7 +32,7 @@ var Grid = {
     container : document.getElementById('game_grid_container'),
     grid : document.getElementById('game_grid'),
 
-    loadGrid() {
+    loadGrid : function() {
         this.grid.innerHTML = ""
 
         // Create nodes before central player node

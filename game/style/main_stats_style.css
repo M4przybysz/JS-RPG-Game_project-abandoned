@@ -1,8 +1,8 @@
 #player_main_stats {
     position: absolute;
     box-sizing: border-box;
-    top: 600px;
     left: 10px;
+    top: 600px;
     width: calc(var(--node_width) * 19);
     height: 140px;
     background-color: gray;

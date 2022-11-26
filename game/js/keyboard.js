@@ -1,3 +1,5 @@
+var active_wsad_key = null
+
 const KEY_MAP = {
     'A' : 'left',
     'D' : 'right',
@@ -5,15 +7,9 @@ const KEY_MAP = {
     'W' : 'up'
 }
 
-function keyAction(event) {
-    let game_grid = document.getElementById('game_grid')
-    let player_node = null
+function keydownActions(event) {
     let stop = document.getElementById('game_stop')
     let key = event.key.toUpperCase()
-
-    if(game_grid.innerHTML != '') { 
-        player_node = document.getElementById('player_node')
-    }
 
     if(key == 'ESCAPE') {           // pressed Escape
         if(stop.style.display == 'none') {
@@ -25,12 +21,12 @@ function keyAction(event) {
     }
 
     if(stop.style.display == 'none') {
-        if((key == 'W' || key == 'S' || key == 'A' || key == 'D')&&(player_node != null)) {                // pressed WSAD
-            player_node.innerHTML = `<img src="assets/test_arrows/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">` 
+        if((key == 'W' || key == 'S' || key == 'A' || key == 'D')) {     // pressed WSAD
+            active_wsad_key = key
         }
     }    
 
     console.log(key)
 
-    //event.preventDefault()
+    event.preventDefault()
 }
