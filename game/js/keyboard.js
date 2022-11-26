@@ -24,9 +24,8 @@ function keydownActions(event) {
     if((key == 'W' || key == 'S' || key == 'A' || key == 'D') && stop.style.display == 'none') { 
         active_wsad_key = key
     }
-  
 
-    console.log(key)
+    //console.log(key)
 
     //event.preventDefault()
 }

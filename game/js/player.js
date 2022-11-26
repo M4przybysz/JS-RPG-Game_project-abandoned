@@ -1,5 +1,3 @@
-class Player /*extends Creature*/ {
-    constructor() {
-        
-    }
+var Player = {
+    
 }

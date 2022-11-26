@@ -19,7 +19,7 @@ document.addEventListener('keydown', keydownActions)
 // document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}))
 
 //* Game ticks handler
-var interval = 250; // Interval in milliseconds
+var interval = 300; // Interval in milliseconds
 var expected_time_diff = Date.now() + interval; // Expected time difference between interval and now in milliseconds
 
 function gameTicks() {
