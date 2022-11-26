@@ -13,7 +13,7 @@ document.addEventListener('keydown', keydownActions)
 //? First Esc press does not activate its action when game_stop display is set to 'none' so I force Esc press
 // document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}))
 
-setInterval(()=>{
+setInterval(()=>{ // Actions in game ticks
     let game_grid = document.getElementById('game_grid')
     let player_node = null
     if(game_grid.innerHTML != '') { 
@@ -24,7 +24,9 @@ setInterval(()=>{
 
     if((current_time - start_time) % 200 == 0) {
         if(player_node != null && active_wsad_key != null) {
+            Grid.moveGrid(active_wsad_key)
             player_node.innerHTML = `<img src="assets/test_arrows/arrow_${KEY_MAP[active_wsad_key]}.png" alt="Sorry. There is no arrow.">`
+
             active_wsad_key = null
         }
     }

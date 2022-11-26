@@ -2,9 +2,10 @@ class Node {
     constructor(position_x, position_y, bg_texture=null, l0_texture=null, l1_texture=null, l2_texture=null) {
         this.div = document.createElement('div')
 
-        this.div.setAttribute('position_x', position_x)
-        this.div.setAttribute('position_y', position_y)
-        this.div.textContent = `${position_x}:${position_y}`
+        this.position_x = position_x
+        this.position_y = position_y
+
+        this.div.textContent = `${position_x} : ${position_y}`
         this.div.classList.add('node')
 
         this.bg_texture = bg_texture
@@ -73,5 +74,23 @@ var Grid = {
         console.log(this.nodes)
 
         return 1
+    },
+
+    moveGrid : function(key) {
+        let x = 0
+        let y = 0
+
+        if(key == 'W') {x = 0; y = -1}
+        if(key == 'S') {x = 0; y = 1}
+        if(key == 'A') {x = -1; y = 0}
+        if(key == 'D') {x = 1; y = 0}
+
+        this.nodes.map(row => {
+            row.map(node => {
+                node.position_x = node.position_x + x
+                node.position_y = node.position_y + y
+                node.div.textContent = `${node.position_x} : ${node.position_y}`
+            })
+        })
     }
 }
