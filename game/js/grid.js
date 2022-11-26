@@ -70,7 +70,8 @@ var Grid = {
             row.map(node => this.grid.appendChild(node.div))
         })
 
-
         console.log(this.nodes)
+
+        return 1
     }
 }
