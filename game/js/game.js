@@ -1,6 +1,6 @@
 //* This file runs is a game loop
 
-//TODO: Define html game components =============================================================================================
+//TODO: Define global html game components =============================================================================================
 var game_grid = Grid.grid
 var player_node = null
 if(game_grid.innerHTML != '') { 
@@ -9,39 +9,53 @@ if(game_grid.innerHTML != '') {
 
 //TODO: Put game actions to do on load ==========================================================================================
 window.onload = () => {
-    console.log(save)
 
     Grid.loadGrid()
 }
 
-//TODO: Put game actions during playthrough =====================================================================================
-document.addEventListener('keydown', keydownActions)
+//TODO: Put game functions during playthrough ===================================================================================
+function pauseOrUnpauseGame() {
+    let game_pause = document.getElementById('game_pause')
+    if(game_pause.style.display === 'none') {
+        game_pause.style.display = 'block'  
+    }
+    else {
+        game_pause.style.display = 'none'
+    }
+}
 
-//? First Esc press does not activate its action when game_stop display is set to 'none' so I force Esc press
-// document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}))
-
-//* Game ticks handler
+// Game ticks handler 
 var interval = 300; // Interval in milliseconds
 var expected_time_diff = Date.now() + interval; // Expected time difference between interval and now in milliseconds
+var time_diff
 
 function gameTicks() {
-    var time_diff = Date.now() - expected_time_diff; // Get actual time difference
+    time_diff = Date.now() - expected_time_diff; // Get actual time difference
 
-    if (time_diff > interval) { // Error handler
-        console.clear()
-        console.warn('Time difference error: ', time_diff, '>', interval)
-    }
+    if(time_diff > interval) {return -1} // Time error handling. Errors occur when game tab is not visible to the user
 
     //TODO: Put game events that need to run in intervals here ==================================================================
     Grid.moveGrid(active_wsad_key)
     timer()
 
-    // Start next loop
+    // Start next loop ==================================
     expected_time_diff += interval;
     setTimeout(gameTicks, interval - time_diff);
 
     return 1
 }
 
-//* Start game loop
-gameTicks()
+//TODO: Put game loops and event listeners here =================================================================================
+document.addEventListener('keydown', keydownActions)
+
+
+document.onvisibilitychange = () => {
+    if(document.visibilityState === 'visible') {
+        expected_time_diff = Date.now() + interval // Restart gameTicks() every time user is back on the site
+        gameTicks()
+    }
+    if(document.visibilityState === 'hidden') { // Puse game when user is not on the site
+        pauseOrUnpauseGame()
+    }
+}
+gameTicks() // First game ticks loop start

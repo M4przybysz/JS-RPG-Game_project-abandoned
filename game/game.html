@@ -5,7 +5,7 @@
     <!--! CSS is defined for chrome browser screen size 1536px x 753px as default (browser without bookmarks bar and left bar, windows 1920x1080 * 125%) -->
     <!--                                                    ^   -->
     <!--                                                    |   -->
-    <!--                                                    v -->
+    <!--                                                    v   -->
     <!-- Idk how this works but you can round this to 1535px x 750px (difference is not visible until element touches edges of the browser) -->
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/grid-style.css">
@@ -35,12 +35,12 @@
         <div id="player_main_stats">
             <!-- Block at the botto of the screen with hp, mana, exp, abilities -->
         </div>
-        <div id="game_stop">
-            <!-- shadow that appears when the game is stopped -->
+        <div id="game_pause">
+            <!-- shadow that appears when the game is pause -->
         </div>
     </main>
 
-    <script src="saves/default_save.js"></script>
+    <script src="saves.js"></script>
     <script src="js/clock.js"></script> <!-- Menu clock -->
     <script src="js/creatures.js"></script> <!-- Living beeings classes and objects -->
     <script src="js/player.js"></script> <!-- Player object -->
