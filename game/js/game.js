@@ -1,15 +1,17 @@
 //* This file runs is a game loop
 
-//TODO: Put game actions to do on load ==========================================================================================
-window.onload = () => {
-    Grid.loadGrid()
-}
-
 //TODO: Define html game components =============================================================================================
 var game_grid = Grid.grid
 var player_node = null
 if(game_grid.innerHTML != '') { 
     player_node = document.getElementById('player_node')
+}
+
+//TODO: Put game actions to do on load ==========================================================================================
+window.onload = () => {
+    console.log(save)
+
+    Grid.loadGrid()
 }
 
 //TODO: Put game actions during playthrough =====================================================================================
@@ -26,7 +28,8 @@ function gameTicks() {
     var time_diff = Date.now() - expected_time_diff; // Get actual time difference
 
     if (time_diff > interval) { // Error handler
-        console.error('Time difference error: ', time_diff, '>', interval)
+        console.clear()
+        console.warn('Time difference error: ', time_diff, '>', interval)
     }
 
     //TODO: Put game events that need to run in intervals here ==================================================================

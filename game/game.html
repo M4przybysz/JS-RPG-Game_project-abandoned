@@ -2,10 +2,11 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <!--! CSS is defined for web browser screen size 1536px x 753px as default (browser without bookmarks bar and left bar, windows 1920x1080 * 125%) -->
-    <!--                                                ^   -->
-    <!--                                                |   -->
-    <!-- Idk how this works but you can round this to 1535x750 (difference is not visible until element touches edges of the browser) -->
+    <!--! CSS is defined for chrome browser screen size 1536px x 753px as default (browser without bookmarks bar and left bar, windows 1920x1080 * 125%) -->
+    <!--                                                    ^   -->
+    <!--                                                    |   -->
+    <!--                                                    v -->
+    <!-- Idk how this works but you can round this to 1535px x 750px (difference is not visible until element touches edges of the browser) -->
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/grid-style.css">
     <link rel="stylesheet" href="style/menu-style.css">
@@ -39,11 +40,12 @@
         </div>
     </main>
 
-    <script src="js/clock.js"></script>
-    <script src="js/creatures.js"></script>
-    <script src="js/player.js"></script>
-    <script src="js/grid.js"></script>
-    <script src="js/keyboard.js"></script>
-    <script src="js/game.js"></script><!--! game.js must be at the end -->
+    <script src="js/saves/default_save.js"></script>
+    <script src="js/clock.js"></script> <!-- Menu clock -->
+    <script src="js/creatures.js"></script> <!-- Living beeings classes and objects -->
+    <script src="js/player.js"></script> <!-- Player object -->
+    <script src="js/grid.js"></script> <!-- Grid and nodes objects -->
+    <script src="js/keyboard.js"></script> <!-- -->
+    <script src="js/game.js"></script>  <!--! Game loop -->
 </body>
 </html>
