@@ -1,3 +1,3 @@
-var Player = {
+const Player = {
     
 }

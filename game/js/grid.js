@@ -15,7 +15,7 @@ class Node {
     }
 }
 
-var Grid = {
+const Grid = {
     grid_width : 19,
     grid_height : 10,
     player_node_x : 9, // x position of player_node in grid
