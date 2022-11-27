@@ -14,9 +14,9 @@ window.onload = () => {
 }
 
 //TODO: Put game functions during playthrough ===================================================================================
-function pauseOrUnpauseGame() {
+function pauseOrUnpauseGame(hardpause) {
     let game_pause = document.getElementById('game_pause')
-    if(game_pause.style.display === 'none') {
+    if(game_pause.style.display === 'none' || hardpause === true) {
         game_pause.style.display = 'block'  
     }
     else {
@@ -32,7 +32,7 @@ var time_diff
 function gameTicks() {
     time_diff = Date.now() - expected_time_diff; // Get actual time difference
 
-    if(time_diff > interval) {return -1} // Time error handling. Errors occur when game tab is not visible to the user
+    if(time_diff > interval || document.visibilityState === 'hidden') {return -1} // Time error handling. Errors occur when game tab is not visible to the user
 
     //TODO: Put game events that need to run in intervals here ==================================================================
     Grid.moveGrid(active_wsad_key)
@@ -55,7 +55,7 @@ document.onvisibilitychange = () => {
         gameTicks()
     }
     if(document.visibilityState === 'hidden') { // Puse game when user is not on the site
-        pauseOrUnpauseGame()
+        pauseOrUnpauseGame(true)
     }
 }
 gameTicks() // First game ticks loop start
