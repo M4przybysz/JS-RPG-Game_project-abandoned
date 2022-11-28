@@ -1,9 +1,76 @@
 #player_main_stats {
     position: absolute;
     box-sizing: border-box;
+    z-index: 5;
     left: 10px;
     top: 600px;
-    width: calc(var(--node_width) * 19);
+    width: calc(var(--node_width) * var(--grid-columns));
     height: 140px;
     background-color: gray;
+}
+
+#stats_container {
+    position: absolute;
+    z-index: 6;
+    overflow: hidden;
+    left: 5px;
+    top: 5px;
+    width: 130px;
+    height: 130px;
+    background-color: lightgrey;
+}
+
+#exp_circle {
+    position: absolute;
+    z-index: 7;
+    left: 10px;
+    top: 10px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: conic-gradient(green 270deg, lightslategrey 0deg);
+    
+}
+
+#hp_circle {
+    position: absolute;
+    z-index: 8;
+    overflow: hidden;
+    left: 20px;
+    top: 20px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    padding: 0px;
+    background-color: lightgrey;
+}
+
+#hp_rect {
+    position: absolute;
+    z-index: 9;
+    left: 0px;
+    bottom: 0px;
+    width: 100px;
+    height: 70px;
+    background-color: red;
+}
+
+#ap_container {
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+    left: 5px;
+    top: 85px;
+    height: 12px;
+    width: 120px;
+    background-color: lightslategrey;
+}
+
+#ap_rect {
+    position: absolute;
+    z-index: 11;
+    left: 0px;
+    height: 12px;
+    width: 80px;
+    background-color: blue;
 }
