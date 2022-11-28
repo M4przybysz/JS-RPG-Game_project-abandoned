@@ -44,8 +44,9 @@
 #player_equipment {
     position: absolute;
     z-index: 6;
+    left: 5px;
     top: 400px;
-    width: 460px;
-    height: 300px;
+    width: 450px;
+    height: 295px;
     background-color: lightgrey;
 }
