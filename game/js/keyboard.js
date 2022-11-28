@@ -8,20 +8,14 @@ const KEY_MAP = {
 }
 
 function keydownActions(event) {
-    let stop = document.getElementById('game_stop')
     let key = event.key.toUpperCase()
 
-    if(key == 'ESCAPE') {           // pressed Escape
-        if(stop.style.display == 'none') {
-            stop.style.display = 'block'  
-        }
-        else {
-            stop.style.display = 'none'
-        }
+    if(key == 'ESCAPE') { // pressed Escape
+        pauseOrUnpauseGame()
     }
 
     // pressed WSAD
-    if((key == 'W' || key == 'S' || key == 'A' || key == 'D') && stop.style.display == 'none') { 
+    if((key == 'W' || key == 'S' || key == 'A' || key == 'D') && game_pause.style.display == 'none') { 
         active_wsad_key = key
     }
 

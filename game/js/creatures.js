@@ -1,5 +1,5 @@
 class Creature {
-    constructor(id, name, hp, ) {
+    constructor(id, name, health, ) {
         
     }
 }

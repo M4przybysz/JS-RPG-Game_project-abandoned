@@ -18,8 +18,8 @@ class Node {
 const Grid = {
     grid_width : 19,
     grid_height : 10,
-    player_node_x : 9, // x position of player_node in grid
-    player_node_y : 5, // y position of player_node in grid
+    player_node_x : 9, // position x of player_node in grid
+    player_node_y : 5, // position y of player_node in grid
 
     // layered maps of the game
     bg_map : null,

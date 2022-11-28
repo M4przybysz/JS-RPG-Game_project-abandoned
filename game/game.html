@@ -5,7 +5,7 @@
     <!--! CSS is defined for chrome browser screen size 1536px x 753px as default (browser without bookmarks bar and left bar, windows 1920x1080 * 125%) -->
     <!--                                                    ^   -->
     <!--                                                    |   -->
-    <!--                                                    v -->
+    <!--                                                    v   -->
     <!-- Idk how this works but you can round this to 1535px x 750px (difference is not visible until element touches edges of the browser) -->
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/grid-style.css">
@@ -29,18 +29,46 @@
                 <!-- Grid that will change based on ongoing game -->
             </div>
         </div>
-        <div id="player_menu">
-            <!-- Menu on the right side of the screen with equipment, map, stats, etc. -->
+        <div id="player_menu"> <!-- Menu on the right side of the screen with equipment, map, stats, etc. -->
+            <div id="tabs_icons_container">
+                <div class="tab_icon">I1</div>
+                <div class="tab_icon">i2</div>
+                <div class="tab_icon">i3</div>
+                <div class="tab_icon">i4</div>
+            </div>
+            <div id="tabs_container">
+                <div class="tab"></div>
+                <div class="tab"></div>
+                <div class="tab"></div>
+                <div class="tab"></div>
+            </div>
+            <div id="player_equipment">
+                
+            </div>
         </div>
-        <div id="player_main_stats">
-            <!-- Block at the botto of the screen with hp, mana, exp, abilities -->
+        <div id="player_main_stats"> <!-- Block at the botto of the screen with hp, mana, exp, abilities -->
+            <div id="stats_container">
+                <div id="lvl_container"></div>
+                <div id="exp_circle"></div>
+                <div id="hp_circle">
+                    <div id="hp_rect"></div>
+                </div>
+                <div id="ap_container">
+                    <div id="ap_rect"></div>
+                </div>
+            </div>
+            <div id="abilities_container">
+                <div id="ability1" class="ability">A1</div>
+                <div id="ability2" class="ability">A2</div>
+                <div id="ability3" class="ability">A3</div>
+            </div>
         </div>
-        <div id="game_stop">
-            <!-- shadow that appears when the game is stopped -->
+        <div id="game_pause">
+            <!-- shadow that appears when the game is pause -->
         </div>
     </main>
 
-    <script src="saves/default_save.js"></script>
+    <script src="saves.js"></script>
     <script src="js/clock.js"></script> <!-- Menu clock -->
     <script src="js/creatures.js"></script> <!-- Living beeings classes and objects -->
     <script src="js/player.js"></script> <!-- Player object -->
