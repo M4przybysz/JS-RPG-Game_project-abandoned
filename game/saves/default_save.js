@@ -1,5 +1,0 @@
-var save = {
-    Player: {
-        name : ""
-    }
-}
