@@ -74,3 +74,27 @@
     width: 80px;
     background-color: blue;
 }
+
+#abilities_container {
+    position: absolute;
+    z-index: 6;
+    top: 15px;
+    left: 150px;
+    height: 110px;
+    width: 460px;
+    line-height: 110px;
+    vertical-align: middle;
+    background-color: lightgrey;
+}
+
+.ability {
+    display: inline-block;
+    z-index: 7;
+    margin-left: 50px;
+    height: 70px;
+    width: 70px;
+    border: 5px solid black;
+    text-align: center;
+    line-height: 70px;
+    background-color: lightslategrey;
+}
