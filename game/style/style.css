@@ -5,6 +5,9 @@
     --grid-columns: 19;
     --node_width: 55px;
     --node_height: 55px;
+    --exp_percent: 75;
+    --hp_percent: 70;
+    --ap_percent: 60;
 }
 
 main {

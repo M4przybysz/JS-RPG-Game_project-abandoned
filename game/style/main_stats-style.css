@@ -28,7 +28,7 @@
     width: 110px;
     height: 110px;
     border-radius: 50%;
-    background: conic-gradient(green 270deg, lightslategrey 0deg);
+    background: conic-gradient(green calc(3.6deg * var(--exp_percent)), lightslategrey 0deg);
     
 }
 
@@ -51,7 +51,7 @@
     left: 0px;
     bottom: 0px;
     width: 100px;
-    height: 70px;
+    height: calc(90px * var(--hp_percent) / 100);
     background-color: red;
 }
 
@@ -71,7 +71,7 @@
     z-index: 11;
     left: 0px;
     height: 12px;
-    width: 80px;
+    width: calc(120px * var(--ap_percent) / 100);
     background-color: blue;
 }
 
