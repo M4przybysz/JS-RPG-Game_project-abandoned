@@ -1,5 +1,5 @@
 class Node {
-    constructor(position_x, position_y, collision = '.', item=null, creature=null) {
+    constructor(position_x, position_y, item=null, creature=null) {
         this.div = document.createElement('div')
 
         this.position_x = position_x
@@ -10,8 +10,6 @@ class Node {
 
         this.item = item
         this.creature = creature
-
-        this.collision = '.'
     }
 
     addCollision(id) {
@@ -48,56 +46,35 @@ const Grid = {
     container : document.getElementById('game_grid_container'),
     grid : document.getElementById('game_grid'),
 
-    importLocation : function(location_name) {
-        let location = Start_save.Locations[location_name]
-
+    importLayer : function(location, layer) {
         let multiplication_regex = new RegExp(/[x]\d+\/[a-zA-Z\.]{1,3}/)
         let multiplier = 0
         let id = ''
-        
-        location.background_map.map((row, y) => { // 
-            this.background_map.push([])
 
+        location[layer].map((row, y) => {
+            this[layer].push([])
             row.map((node, x) => {
-                if(multiplication_regex.test(node)) {
-                    multiplier = parseInt(node.split('/')[0].replace('x', ''))
-                    id = node.split('/')[1]
+                if(multiplication_regex.test(node)) { // Check for multinode notation 
+                    multiplier = parseInt(node.split('/')[0].replace('x', '')) // Extract multiplier from notation
+                    id = node.split('/')[1] // Extract texture id from notation
 
-                    for(let i = 0; i < multiplier; i++) { this.background_map[y].push(id) }
+                    for(let i = 0; i < multiplier; i++) { this[layer][y].push(id) } // Push multiple ids
                 }
-                else this.background_map[y].push(location.background_map[y][x])
+                else this[layer][y].push(location[layer][y][x]) // Push single id
             })
         })
+    },
+
+    importLocation : function(location_name) {
+        let location = Start_save.Locations[location_name]
+        
+        this.importLayer(location, 'background_map')
         console.log(this.background_map)
 
-        location.walls_map.map((row, y) => {
-            this.walls_map.push([])
-
-            row.map((node, x) => {
-                if(multiplication_regex.test(node)) {
-                    multiplier = parseInt(node.split('/')[0].replace('x', ''))
-                    id = node.split('/')[1]
-
-                    for(let i = 0; i < multiplier; i++) { this.walls_map[y].push(id) }
-                }
-                else this.walls_map[y].push(location.walls_map[y][x])
-            })
-        })
+        this.importLayer(location, 'walls_map')
         console.log(this.walls_map)
 
-        location.collision_map.map((row, y) => {
-            this.collision_map.push([])
-
-            row.map((node, x) => {
-                if(multiplication_regex.test(node)) {
-                    multiplier = parseInt(node.split('/')[0].replace('x', ''))
-                    id = node.split('/')[1]
-
-                    for(let i = 0; i < multiplier; i++) { this.collision_map[y].push(id) }
-                }
-                else this.collision_map[y].push(location.collision_map[y][x])
-            })
-        })
+        this.importLayer(location, 'collision_map')
         console.log(this.collision_map)
     },
 
@@ -125,7 +102,7 @@ const Grid = {
                 // Create player node
                 if(y == this.player_node_y && x == this.player_node_x) {
                     this.nodes[y][x].div.id = 'player_node'
-                    this.nodes[y][x].div.innerHTML = '<img src="assets/test_textures/arrow_down.png" alt="Sorry. There is no arrow."></img>'
+                    this.nodes[y][x].div.innerHTML = '<img src="./assets/test_textures/arrow_down.png" alt="Sorry. There is no arrow."></img>'
                 }
             }
         }
@@ -189,10 +166,11 @@ const Grid = {
             this.player_y += XY[key][1]
         }
 
+        //TODO: Change this to real player assets when they are done
         // Set player node image
         document.getElementById('player_node').innerHTML = `<img src="assets/test_textures/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">`
 
-        active_wsad_key = null
+        active_wsad_key = null // Clear last pressed key
 
         return 1
     }
