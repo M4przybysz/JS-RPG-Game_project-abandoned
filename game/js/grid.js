@@ -40,9 +40,6 @@ const Grid = {
         'w' : './assets/test_textures/wall.png',
     },
 
-    player_x : Start_save.Player.position_x, // player starting position x
-    player_y : Start_save.Player.position_y, // player starting position y
-
     container : document.getElementById('game_grid_container'),
     grid : document.getElementById('game_grid'),
 
@@ -78,26 +75,31 @@ const Grid = {
         console.log(this.collision_map)
     },
 
+    nodeInLayer : function(x, y, layer) {
+        if(x < 0 || y < 0 || y > this[layer].length-1 || x > this[layer][y].length-1) return false
+        return true
+    },
+
     loadGrid : function() {
         this.grid.innerHTML = ""
 
         // Create nodes
-        for(let y = 0, py = this.player_y-this.player_node_y; y < this.grid_height; y++, py++) {
+        for(let y = 0, py = Player.position_y-this.player_node_y; y < this.grid_height; y++, py++) {
             this.nodes.push([])
-            for(let x = 0, px = this.player_x-this.player_node_x; x < this.grid_width; x++, px++) {
+            for(let x = 0, px = Player.position_x-this.player_node_x; x < this.grid_width; x++, px++) {
                 this.nodes[y].push(new Node(px, py))
 
-                // Import background
-                if(px < 0 || py < 0 || py > this.background_map.length-1 || px > this.background_map[py].length-1) this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict['.']})`
-                else this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict[this.background_map[py][px]]})`
+                // Create background
+                if(this.nodeInLayer(px, py, 'background_map')) this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict[this.background_map[py][px]]})`
+                else this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict['.']})`
 
-                // Import "walls"
-                if(px < 0 || py < 0 || py > this.walls_map.length-1 || px > this.walls_map[py].length-1) this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict['n']}">`
-                else this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict[this.walls_map[py][px]]}">`
+                // Create "walls"
+                if(this.nodeInLayer(px, py, 'walls_map')) this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict[this.walls_map[py][px]]}">`
+                else this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict['n']}">`
 
-                // Import collision
-                if(px < 0 || py < 0 || py > this.collision_map.length-1 || px > this.collision_map[py].length-1) this.nodes[y][x].addCollision('.')
-                else this.nodes[y][x].addCollision(this.collision_map[py][px])
+                // Apply collision
+                if(this.nodeInLayer(px, py, 'collision_map')) this.nodes[y][x].addCollision(this.collision_map[py][px])
+                else this.nodes[y][x].addCollision('.')
 
                 // Create player node
                 if(y == this.player_node_y && x == this.player_node_x) {
@@ -143,27 +145,22 @@ const Grid = {
                     node.position_y += XY[key][1]
                     //node.div.textContent = `${node.position_x} : ${node.position_y}`
 
-                    if(node.position_x < 0 || node.position_y < 0 || node.position_y >= this.background_map.length || node.position_x >= this.background_map[node.position_y].length) {
-                        this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict['.']})`
-                    }
-                    else this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict[this.background_map[node.position_y][node.position_x]]})`
+                    // Draw background
+                    if(this.nodeInLayer(node.position_x, node.position_y, 'background_map')) this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict[this.background_map[node.position_y][node.position_x]]})`
+                    else this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict['.']})`
 
-                    if(node.position_x < 0 || node.position_y < 0 || node.position_y >= this.walls_map.length || node.position_x >= this.walls_map[node.position_y].length) {
-                        this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict['n']}">`
-                    }
-                    else this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict[this.walls_map[node.position_y][node.position_x]]}">`
+                    // Draw 'walls'
+                    if(this.nodeInLayer(node.position_x, node.position_y, 'walls_map')) this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict[this.walls_map[node.position_y][node.position_x]]}">`
+                    else this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict['n']}">`
 
-                    if(node.position_x < 0 || node.position_y < 0 || node.position_y >= this.collision_map.length || node.position_x >= this.collision_map[node.position_y].length) {
-                        this.nodes[y][x].addCollision('.')
-                    }
-                    else this.nodes[y][x].addCollision(this.collision_map[node.position_y][node.position_x])
+                    // Apply collision
+                    if(this.nodeInLayer(node.position_x, node.position_y, 'collision_map')) this.nodes[y][x].addCollision(this.collision_map[node.position_y][node.position_x])
+                    else this.nodes[y][x].addCollision('.')
                 })
             })
 
             Player.position_x += XY[key][0]
             Player.position_y += XY[key][1]
-            this.player_x += XY[key][0]
-            this.player_y += XY[key][1]
         }
 
         //TODO: Change this to real player assets when they are done
