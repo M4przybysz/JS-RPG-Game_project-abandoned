@@ -1,4 +1,8 @@
-const Deafult_save = {
+
+
+const Imported_save = {}
+
+const Start_save = {
     Player : {
         name : null,
         class : null,
@@ -7,45 +11,77 @@ const Deafult_save = {
         hp : 100,
         ap : 100,
         location : 'Test1',
-        position_x : 20,
-        position_y : 20,
+        position_x : 3,
+        position_y : 3,
     },
     Locations : {
         Test1 : {
-            background_map : [  [],
-                                []
+            background_map : [  ['.', 'x10/f', '.'],
+                                ['x12/f'],
+                                ['x12/f'],
+                                ['x12/f'],
+                                ['x12/f'],
+                                ['.', 'x10/f', '.'],
             ],
-            walls_map : [       [],
-                                []  
+            walls_map : [       ['n', 'x10/w', 'n'],
+                                ['w', 'x10/n', 'w'],
+                                ['w', 'x10/n', 'w'],
+                                ['w', 'x10/n', 'w'],
+                                ['w', 'x10/n', 'w'],
+                                ['n', 'x10/w', 'n'],
             ],
-            items_map : [       [],
-                                []
+            collision_map : [   ['.', 'x10/a', '.'],
+                                ['a', 'x10/.', 'a'],
+                                ['a', 'x10/.', 'a'],
+                                ['a', 'x10/.', 'a'],
+                                ['a', 'x10/.', 'a'],
+                                ['.', 'x10/a', '.'],
             ],
-            creatures_map : [   [],
-                                []  
-            ],
-            blockade_map : [    [],
-                                [] 
-            ]
+            items : null,
+            creatures : null,
         },
         Test2 : {
             background_map : [  [],
-                                []
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
             ],
             walls_map : [       [],
-                                []
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
             ],
-            items_map : [       [],
-                                []
+            collision_map : [   [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
             ],
-            creatures_map : [   [],
-                                []
-            ],
-            blockade_map : [    [],
-                                [] 
-            ]
+            items : null,
+            creatures : null,
         }
     }
 }
-
-const Imported_save = {}

@@ -10,6 +10,7 @@ if(game_grid.innerHTML != '') {
 //TODO: Put game actions to do on load ==========================================================================================
 window.onload = () => {
 
+    Grid.importLocation(Player.location)
     Grid.loadGrid()
 }
 
