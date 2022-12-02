@@ -5,7 +5,7 @@ class Node {
         this.position_x = position_x
         this.position_y = position_y
 
-        this.div.textContent = `${position_x} : ${position_y}`
+        // this.div.textContent = `${position_x} : ${position_y}`
         this.div.classList.add('node')
 
         this.item = item
@@ -34,16 +34,17 @@ const Grid = {
     creatures_map : null,
 
     texture_dict : { // dictionary containing texture corresponding to its id
-        'n' : './assets/null.png',
-        '.' : './assets/void.png',
-        'f' : './assets/test_textures/floor.png',
-        'w' : './assets/test_textures/wall.png',
+        'n' :   './assets/null.png',
+        '.' :   './assets/void.png',
+        'f' :   './assets/test_textures/floor.png',
+        'w' :   './assets/test_textures/wall.png',
+        'ls' :  './assets/test_textures/location_switch.png'
     },
 
     container : document.getElementById('game_grid_container'),
     grid : document.getElementById('game_grid'),
 
-    importLayer : function(location, layer) {
+    importLayer : function(location, layer) { //TODO: Add extended (y axis) multinode notation 
         let multiplication_regex = new RegExp(/[x]\d+\/[a-zA-Z\.]{1,3}/)
         let multiplier = 0
         let id = ''
@@ -62,7 +63,7 @@ const Grid = {
         })
     },
 
-    importLocation : function(location_name) {
+    importLocation : function(location_name) { // Import every layer of location map
         let location = Start_save.Locations[location_name]
         
         this.importLayer(location, 'background_map')
@@ -73,11 +74,17 @@ const Grid = {
 
         this.importLayer(location, 'collision_map')
         console.log(this.collision_map)
+
+        //TODO: Add items and creatures import
     },
 
-    nodeInLayer : function(x, y, layer) {
-        if(x < 0 || y < 0 || y > this[layer].length-1 || x > this[layer][y].length-1) return false
-        return true
+    // Simplify [x, y] of node belongs to map layer condition and action baseds of it
+    nodeInLayerAction : function(x, y, layer, action_if_true, action_if_false) { 
+        if(x < 0 || y < 0 || y > this[layer].length-1 || x > this[layer][y].length-1) {
+            action_if_false()
+            return
+        }
+        action_if_true()
     },
 
     loadGrid : function() {
@@ -90,16 +97,23 @@ const Grid = {
                 this.nodes[y].push(new Node(px, py))
 
                 // Create background
-                if(this.nodeInLayer(px, py, 'background_map')) this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict[this.background_map[py][px]]})`
-                else this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict['.']})`
+                this.nodeInLayerAction(px, py, 'background_map', 
+                    () => {this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict[this.background_map[py][px]]})`}, 
+                    () => {this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict['.']})`}) 
+                
 
                 // Create "walls"
-                if(this.nodeInLayer(px, py, 'walls_map')) this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict[this.walls_map[py][px]]}">`
-                else this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict['n']}">`
+                this.nodeInLayerAction(px, py, 'walls_map', 
+                    () => {this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict[this.walls_map[py][px]]}">`},
+                    () => {this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict['n']}">`}) 
+                
 
                 // Apply collision
-                if(this.nodeInLayer(px, py, 'collision_map')) this.nodes[y][x].addCollision(this.collision_map[py][px])
-                else this.nodes[y][x].addCollision('.')
+                this.nodeInLayerAction(px, py, 'collision_map',
+                    () => {this.nodes[y][x].addCollision(this.collision_map[py][px])},
+                    () => {this.nodes[y][x].addCollision('.')}) 
+
+                //TODO: Add cration of items and creatures
 
                 // Create player node
                 if(y == this.player_node_y && x == this.player_node_x) {
@@ -115,8 +129,6 @@ const Grid = {
         })
 
         console.log(this.nodes)
-
-        return 1
     },
 
     moveGrid : function(key) {
@@ -146,29 +158,32 @@ const Grid = {
                     //node.div.textContent = `${node.position_x} : ${node.position_y}`
 
                     // Draw background
-                    if(this.nodeInLayer(node.position_x, node.position_y, 'background_map')) this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict[this.background_map[node.position_y][node.position_x]]})`
-                    else this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict['.']})`
+                    this.nodeInLayerAction(node.position_x, node.position_y, 'background_map', 
+                        () => {this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict[this.background_map[node.position_y][node.position_x]]})`}, 
+                        () => {this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict['.']})`})
 
                     // Draw 'walls'
-                    if(this.nodeInLayer(node.position_x, node.position_y, 'walls_map')) this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict[this.walls_map[node.position_y][node.position_x]]}">`
-                    else this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict['n']}">`
+                    this.nodeInLayerAction(node.position_x, node.position_y, 'walls_map', 
+                        () => {this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict[this.walls_map[node.position_y][node.position_x]]}">`}, 
+                        () => {this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict['n']}">`}) 
 
                     // Apply collision
-                    if(this.nodeInLayer(node.position_x, node.position_y, 'collision_map')) this.nodes[y][x].addCollision(this.collision_map[node.position_y][node.position_x])
-                    else this.nodes[y][x].addCollision('.')
+                    this.nodeInLayerAction(node.position_x, node.position_y, 'collision_map', 
+                        () => {this.nodes[y][x].addCollision(this.collision_map[node.position_y][node.position_x])},
+                        () => {this.nodes[y][x].addCollision('.')}) 
                 })
             })
 
+            // Change Player position in the location 
             Player.position_x += XY[key][0]
             Player.position_y += XY[key][1]
         }
 
         //TODO: Change this to real player assets when they are done
         // Set player node image
-        document.getElementById('player_node').innerHTML = `<img src="assets/test_textures/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">`
+        document.getElementById('player_node').innerHTML = `<img src="${this.texture_dict[this.walls_map[Player.position_y][Player.position_x]]}">
+                                                            <img src="assets/test_textures/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">`
 
         active_wsad_key = null // Clear last pressed key
-
-        return 1
     }
 }

@@ -41,9 +41,7 @@ function gameGridTicks() {
 
     // Start next loop ==================================
     expected_time_diff += interval;
-    setTimeout(gameGridTicks, interval - time_diff);
-
-    return 1
+    setTimeout(gameGridTicks, interval - time_diff)
 }
 
 //TODO: Put game loops and event listeners here =================================================================================

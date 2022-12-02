@@ -25,7 +25,7 @@
     display: inline-block;
     width: var(--node_width);
     height: var(--node_height);
-    border: 0.5px solid black;
+    /* border: 0.5px solid black; */
 }
 
 .node img {
@@ -34,12 +34,16 @@
 }
 
 #player_node {
+    position: relative;
     background-color: red;
     color: white;
 }
 
 /*TODO: Change when textures are ready */
 #player_node img {
-    width: calc(var(--node_width) - 2px);
-    height: calc(var(--node_height) - 2px);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: var(--node_width);
+    height: var(--node_height);
 }
