@@ -33,7 +33,7 @@ const Start_save = {
             collision_map : [   ['.', 'x10/a', '.'],
                                 ['a', 'x10/.', 'a'],
                                 ['a', 'x5/.', 'url', 'x4/.', 'a'],
-                                ['a', 'x10/.', '.-ls:5:3:Test2'],
+                                ['a', 'x10/.', '.-s:1:3:Test2'],
                                 ['a', 'x10/.', 'a'],
                                 ['.', 'x10/a', '.'],
             ],
@@ -41,7 +41,7 @@ const Start_save = {
             creatures : null,
         },
         Test2 : {
-            background_map : [  ['y10/x10/f'], //? y Extended multinode notation
+            background_map : [  ['y12/x12/f'], //? y Extended multinode notation
                                 [],
                                 [],
                                 [],

@@ -11,7 +11,7 @@ if(game_grid.innerHTML != '') {
 window.onload = () => {
 
     Grid.importLocation(Player.location)
-    Grid.loadGrid()
+    gameGridTicks() // First game ticks loop start
 }
 
 //TODO: Put game functions during playthrough ===================================================================================
@@ -57,4 +57,3 @@ document.onvisibilitychange = () => {
         pauseOrUnpauseGame(true)
     }
 }
-gameGridTicks() // First game ticks loop start

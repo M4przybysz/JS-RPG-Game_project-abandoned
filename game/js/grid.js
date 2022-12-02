@@ -34,6 +34,7 @@ const Grid = {
     creatures_map : null,
 
     texture_dict : { // dictionary containing texture corresponding to its id
+        undefined : './assets/null.png',
         'n' :   './assets/null.png',
         '.' :   './assets/void.png',
         'f' :   './assets/test_textures/floor.png',
@@ -45,9 +46,11 @@ const Grid = {
     grid : document.getElementById('game_grid'),
 
     importLayer : function(location, layer) { //TODO: Add extended (y axis) multinode notation 
-        let multiplication_regex = new RegExp(/[x]\d+\/[a-zA-Z\.]{1,3}/)
+        let multiplication_regex = new RegExp(/[x]\d+\/[a-zA-Z\.]+/)
         let multiplier = 0
         let id = ''
+
+        this[layer] = []
 
         location[layer].map((row, y) => {
             this[layer].push([])
@@ -65,6 +68,8 @@ const Grid = {
 
     importLocation : function(location_name) { // Import every layer of location map
         let location = Start_save.Locations[location_name]
+
+        this.nodes = [] // Clear nodes before renderring new location
         
         this.importLayer(location, 'background_map')
         console.log(this.background_map)
@@ -76,6 +81,8 @@ const Grid = {
         console.log(this.collision_map)
 
         //TODO: Add items and creatures import
+
+        this.loadGrid() // Load Grid for new location
     },
 
     // Simplify [x, y] of node belongs to map layer condition and action baseds of it
@@ -132,7 +139,23 @@ const Grid = {
     },
 
     moveGrid : function(key) {
-        if(key === null) return -1
+        // Check if Player is accessing a new location
+        let switch_location = new RegExp(/^[a-zA-Z\.]{1,4}-s:\d+:\d+:[a-zA-Z0-9=+<>()\[\]{}_\-]+$/)
+        if(switch_location.test(this.nodes[this.player_node_y][this.player_node_x].collision)) {
+            let str = this.nodes[this.player_node_y][this.player_node_x].collision
+            str = str.replace(/^[a-zA-Z\.]{1,4}-s:/, '').split(':')
+
+            Player.position_x = parseInt(str[0])
+            Player.position_y = parseInt(str[1])
+            let new_location = str[2]
+
+            Player.location = new_location
+            Grid.importLocation(new_location)
+
+            return
+        }
+
+        if(key === null) return 
 
         const XY = { // Return [x, y] valuses used to change all nodes positions
             'W' : [0, -1],
@@ -144,7 +167,7 @@ const Grid = {
         if( (key == 'W' && this.nodes[this.player_node_y-1][this.player_node_x].collision.includes('d')) ||
             (key == 'S' && this.nodes[this.player_node_y+1][this.player_node_x].collision.includes('u')) ||
             (key == 'A' && this.nodes[this.player_node_y][this.player_node_x-1].collision.includes('r')) ||
-            (key == 'D' && this.nodes[this.player_node_y][this.player_node_x+1].collision.includes('l'))) 
+            (key == 'D' && this.nodes[this.player_node_y][this.player_node_x+1].collision.includes('l')))
         {
             console.log('path is blocked')
         }
