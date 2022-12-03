@@ -13,10 +13,9 @@ class Node {
     }
 
     addCollision(id) {
-        if(id == 'a') this.collision = 'udlr'
+        if(id == 'a') this.collision = 'udlr' // 
         else this.collision = id
     }
-
 }
 
 const Grid = {
@@ -35,31 +34,31 @@ const Grid = {
 
     texture_dict : { // dictionary containing texture corresponding to its id
         undefined : './assets/null.png',
-        'n' :   './assets/null.png',
-        '.' :   './assets/void.png',
-        'f' :   './assets/test_textures/floor.png',
-        'w' :   './assets/test_textures/wall.png',
-        'ls' :  './assets/test_textures/location_switch.png'
+        'n' :       './assets/null.png',
+        '.' :       './assets/void.png',
+        'f' :       './assets/test_textures/floor.png',
+        'w' :       './assets/test_textures/wall.png',
+        'ls' :      './assets/test_textures/location_switch.png',
     },
 
     container : document.getElementById('game_grid_container'),
     grid : document.getElementById('game_grid'),
 
-    importLayer : function(location, layer) { //TODO: Add extended (y axis) multinode notation 
-        let multiplication_regex = new RegExp(/[x]\d+\/[a-zA-Z\.]+/)
-        let multiplier = 0
-        let id = ''
-
+    importLayer : function(location, layer) {
         this[layer] = []
+
+        let multinode_regex = new RegExp(/^[x]\d+\/[a-zA-Z\.]+(-s:\d+:\d+:[a-zA-Z\.]+)?$/) // Base multinode notation - x axis
+        let x_multiplier = 0
+        let id = ''
 
         location[layer].map((row, y) => {
             this[layer].push([])
             row.map((node, x) => {
-                if(multiplication_regex.test(node)) { // Check for multinode notation 
-                    multiplier = parseInt(node.split('/')[0].replace('x', '')) // Extract multiplier from notation
+                if(multinode_regex.test(node)) { // Check for multinode notation 
+                    x_multiplier = parseInt(node.split('/')[0].replace('x', '')) // Extract multiplier from notation
                     id = node.split('/')[1] // Extract texture id from notation
 
-                    for(let i = 0; i < multiplier; i++) { this[layer][y].push(id) } // Push multiple ids
+                    for(let i = 0; i < x_multiplier; i++) { this[layer][y].push(id) } // Push multiple ids
                 }
                 else this[layer][y].push(location[layer][y][x]) // Push single id
             })
@@ -107,13 +106,11 @@ const Grid = {
                 this.nodeInLayerAction(px, py, 'background_map', 
                     () => {this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict[this.background_map[py][px]]})`}, 
                     () => {this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict['.']})`}) 
-                
 
                 // Create "walls"
                 this.nodeInLayerAction(px, py, 'walls_map', 
                     () => {this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict[this.walls_map[py][px]]}">`},
                     () => {this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict['n']}">`}) 
-                
 
                 // Apply collision
                 this.nodeInLayerAction(px, py, 'collision_map',
@@ -140,7 +137,7 @@ const Grid = {
 
     moveGrid : function(key) {
         // Check if Player is accessing a new location
-        let switch_location = new RegExp(/^[a-zA-Z\.]{1,4}-s:\d+:\d+:[a-zA-Z0-9=+<>()\[\]{}_\-]+$/)
+        let switch_location = new RegExp(/^[a-zA-Z\.]+-s:\d+:\d+:[a-zA-Z0-9=+<>()\[\]{}_\-]+$/)
         if(switch_location.test(this.nodes[this.player_node_y][this.player_node_x].collision)) {
             let str = this.nodes[this.player_node_y][this.player_node_x].collision
             str = str.replace(/^[a-zA-Z\.]{1,4}-s:/, '').split(':')
@@ -204,7 +201,7 @@ const Grid = {
 
         //TODO: Change this to real player assets when they are done
         // Set player node image
-        document.getElementById('player_node').innerHTML = `<img src="${this.texture_dict[this.walls_map[Player.position_y][Player.position_x]]}">
+        document.getElementById('player_node').innerHTML = `<img src="${this.texture_dict[(Player.position_y < this.walls_map.length && Player.position_x < this.walls_map[Player.position_y].length) ? this.walls_map[Player.position_y][Player.position_x] : 'n']}">
                                                             <img src="assets/test_textures/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">`
 
         active_wsad_key = null // Clear last pressed key
