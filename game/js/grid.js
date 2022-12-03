@@ -47,7 +47,7 @@ const Grid = {
     importLayer : function(location, layer) {
         this[layer] = []
 
-        let multinode_regex = new RegExp(/^[x]\d+\/[a-zA-Z\.]+(-s:\d+:\d+:[a-zA-Z\.]+)?$/) // Base multinode notation - x axis
+        let multinode_regex = new RegExp(/^[x]\d+\/[a-zA-Z\.]+(-s:\d+:\d+:[a-zA-Z0-9=+<>()\[\]{}_\-]+)?$/) // Base multinode notation - x axis
         let x_multiplier = 0
         let id = ''
 
@@ -60,7 +60,7 @@ const Grid = {
 
                     for(let i = 0; i < x_multiplier; i++) { this[layer][y].push(id) } // Push multiple ids
                 }
-                else this[layer][y].push(location[layer][y][x]) // Push single id
+                else this[layer][y].push(location[layer][y][x].replace(/ /g, '')) // Push single id
             })
         })
     },
@@ -71,13 +71,8 @@ const Grid = {
         this.nodes = [] // Clear nodes before renderring new location
         
         this.importLayer(location, 'background_map')
-        console.log(this.background_map)
-
         this.importLayer(location, 'walls_map')
-        console.log(this.walls_map)
-
         this.importLayer(location, 'collision_map')
-        console.log(this.collision_map)
 
         //TODO: Add items and creatures import
 
@@ -201,7 +196,7 @@ const Grid = {
 
         //TODO: Change this to real player assets when they are done
         // Set player node image
-        document.getElementById('player_node').innerHTML = `<img src="${this.texture_dict[(Player.position_y < this.walls_map.length && Player.position_x < this.walls_map[Player.position_y].length) ? this.walls_map[Player.position_y][Player.position_x] : 'n']}">
+        document.getElementById('player_node').innerHTML = `<img src="${this.texture_dict[(Player.position_y >= 0 && Player.position_y < this.walls_map.length && Player.position_x >= 0 && Player.position_x < this.walls_map[Player.position_y].length) ? this.walls_map[Player.position_y][Player.position_x] : 'n']}">
                                                             <img src="assets/test_textures/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">`
 
         active_wsad_key = null // Clear last pressed key

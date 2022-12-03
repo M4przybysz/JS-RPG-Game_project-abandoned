@@ -5,7 +5,7 @@ const Player = {
     exp : 0,
     hp : 100,
     ap : 100,
-    location : 'Test1',
+    location : Start_save.Player.location,
     position_x : Start_save.Player.position_x,
     position_y : Start_save.Player.position_y,
 }
