@@ -13,7 +13,7 @@ class Node {
     }
 
     addCollision(id) {
-        if(id == 'a') this.collision = 'udlr' // 
+        if(id == 'a') this.collision = 'udlr' // a means 'all' while setting collision
         else this.collision = id
     }
 }
@@ -79,19 +79,19 @@ const Grid = {
         this.loadGrid() // Load Grid for new location
     },
 
-    // Simplify [x, y] of node belongs to map layer condition and action baseds of it
+    // Simplify checking of Grid node's position in relation to entire location layer
     nodeInLayerAction : function(x, y, layer, action_if_true, action_if_false) { 
         if(x < 0 || y < 0 || y > this[layer].length-1 || x > this[layer][y].length-1) {
-            action_if_false()
+            action_if_false() // Action if node position is outside the layer map
             return
         }
-        action_if_true()
+        action_if_true() // Action if node position is inside the layer map
     },
 
     loadGrid : function() {
         this.grid.innerHTML = ""
 
-        // Create nodes
+        // Create Grid nodes
         for(let y = 0, py = Player.position_y-this.player_node_y; y < this.grid_height; y++, py++) {
             this.nodes.push([])
             for(let x = 0, px = Player.position_x-this.player_node_x; x < this.grid_width; x++, px++) {
@@ -147,7 +147,7 @@ const Grid = {
             return
         }
 
-        if(key === null) return 
+        if(key === null) return // Check if any of WSAD keys is pressed
 
         const XY = { // Return [x, y] valuses used to change all nodes positions
             'W' : [0, -1],
@@ -156,6 +156,7 @@ const Grid = {
             'D' : [1, 0],
         }
 
+        // Check collision
         if( (key == 'W' && this.nodes[this.player_node_y-1][this.player_node_x].collision.includes('d')) ||
             (key == 'S' && this.nodes[this.player_node_y+1][this.player_node_x].collision.includes('u')) ||
             (key == 'A' && this.nodes[this.player_node_y][this.player_node_x-1].collision.includes('r')) ||
