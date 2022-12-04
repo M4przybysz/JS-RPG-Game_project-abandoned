@@ -10,7 +10,8 @@ if(game_grid.innerHTML != '') {
 //TODO: Put game actions to do on load ==========================================================================================
 window.onload = () => {
 
-    Grid.loadGrid()
+    Grid.importLocation(Player.location)
+    gameGridTicks() // First game ticks loop start
 }
 
 //TODO: Put game functions during playthrough ===================================================================================
@@ -40,9 +41,7 @@ function gameGridTicks() {
 
     // Start next loop ==================================
     expected_time_diff += interval;
-    setTimeout(gameGridTicks, interval - time_diff);
-
-    return 1
+    setTimeout(gameGridTicks, interval - time_diff)
 }
 
 //TODO: Put game loops and event listeners here =================================================================================
@@ -58,4 +57,3 @@ document.onvisibilitychange = () => {
         pauseOrUnpauseGame(true)
     }
 }
-gameGridTicks() // First game ticks loop start
