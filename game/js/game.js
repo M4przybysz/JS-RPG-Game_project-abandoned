@@ -9,20 +9,20 @@ if(game_grid.innerHTML != '') {
 
 //TODO: Put game actions to do on load ==========================================================================================
 window.onload = () => {
-
+    settings()
     Grid.loadGrid()
 }
 
 //TODO: Put game functions during playthrough ===================================================================================
-function pauseOrUnpauseGame(hardpause) {
-    let game_pause = document.getElementById('game_pause')
-    if(game_pause.style.display === 'none' || hardpause === true) {
-        game_pause.style.display = 'block'  
-    }
-    else {
-        game_pause.style.display = 'none'
-    }
-}
+//function pauseOrUnpauseGame(hardpause) {
+//    let game_pause = document.getElementById('game_pause')
+//   if(game_pause.style.display === 'none' || hardpause === true) {
+//        settings() 
+//    }
+//    else {
+//        settings()
+//    }
+//}
 
 // Game ticks handler 
 var interval = 250; // Interval in milliseconds
@@ -54,8 +54,9 @@ document.onvisibilitychange = () => {
         expected_time_diff = Date.now() + interval 
         gameGridTicks()
     }
-    if(document.visibilityState === 'hidden') { // Puse game when user is not on the site
-        pauseOrUnpauseGame(true)
+    if(document.visibilityState === 'hidden') { // Pause game when user is not on the site
+        settings()
+        //pauseOrUnpauseGame(true)
     }
 }
 gameGridTicks() // First game ticks loop start
