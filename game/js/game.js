@@ -39,9 +39,6 @@ function gameGridTicks() {
     Grid.moveGrid(active_wsad_key)
     timer()
 
-    
-    
-
     // Start next loop ==================================
     expected_time_diff += interval;
     setTimeout(gameGridTicks, interval - time_diff)
