@@ -40,6 +40,7 @@ function gameGridTicks() {
     timer()
 
     
+    
 
     // Start next loop ==================================
     expected_time_diff += interval;
