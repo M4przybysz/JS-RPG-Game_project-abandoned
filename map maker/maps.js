@@ -1,5 +1,7 @@
 const Maps = {
     Empty : {
+        Name : "",
+
         Background : [
             ['x10/null'], 
             ['x10/null'], 
@@ -44,22 +46,24 @@ const Maps = {
     Deafault : this.Empty,
 }
 
-const ActiveMap = {
-    Background : [],
+class ActiveMap {
+    name = ""
 
-    Walls : [],
+    Background = []
 
-    Collision : [],
+    Walls = []
 
-    Items : [],
+    Collision = []
 
-    Creatures : [],
+    Items = []
 
-    addColumn : function() {
+    Creatures = []
 
-    },
+    addColumn() {
 
-    addRow : function() {
+    }
+
+    addRow() {
 
     }
 }

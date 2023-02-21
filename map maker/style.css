@@ -2,3 +2,64 @@
     
 }
 
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+}
+
+#settings {
+    width: 100vw;
+    height: 8vh;
+    background-color: grey;
+}
+
+#tabs_container {
+    width: 100vw;
+    height: 4vh;
+    background-color: black;
+}
+
+.tab {
+    width: 10vw;
+    height: 3vh;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-top: 3px;
+    background-color: darkgrey;
+    border: 2px solid whitesmoke;
+    border-radius: 0 15px 0 15px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    transition: 300ms;
+}
+
+.tab:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+#add_tab {
+    width: 4vh;
+    padding-top: 1px;
+    padding-bottom: 2px;
+}
+
+#tabs_container img {
+    width: 3vh;
+    height: 3vh;
+}
+
+#map_container {
+    width: 100vw;
+    height: 88vh;
+    clear: both;
+    background-color: rgb(58, 58, 58);
+}
