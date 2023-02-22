@@ -14,24 +14,33 @@ body {
 }
 
 #settings {
+    box-sizing: border-box;
     width: 100vw;
     height: 8vh;
-    background-color: grey;
+    padding: 5px;
+    background-color: rgb(70, 70, 70);
+    color: white;
 }
 
 #tabs_container {
+    display: flex;
     width: 100vw;
-    height: 4vh;
-    background-color: black;
+    height: calc(4vh + 3px);
+    background-color: rgb(26, 26, 26);
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .tab {
-    width: 10vw;
-    height: 3vh;
+    width: 15vh;
+    height: calc(3vh - 3px);
+    overflow: hidden;
     float: left;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding-top: 3px;
+    margin-left: 3px;
+    margin-right: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
     background-color: darkgrey;
     border: 2px solid whitesmoke;
     border-radius: 0 15px 0 15px;
@@ -39,27 +48,50 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     transition: 300ms;
+    white-space: nowrap;
 }
 
-.tab:hover {
+.tab:hover{
     cursor: pointer;
     background-color: lightgrey;
 }
 
+.tab_textContent {
+    float: left;
+    transform: translateY(10%);
+}
+
+.delete_tab {
+    border: none;
+    float: right;
+    transform: translateY(10%);
+    transition: 300ms;
+}
+
+.delete_tab:hover {
+    border: 1px solid black;
+    border-radius: 5px;
+    filter: invert(0.3);
+}
+
 #add_tab {
     width: 4vh;
-    padding-top: 1px;
-    padding-bottom: 2px;
+    padding: 0px;
+}
+
+#add_tab img {
+    margin: auto;
+    transform: translateY(10%);
 }
 
 #tabs_container img {
-    width: 3vh;
-    height: 3vh;
+    width: 2vh;
+    height: 2vh;
 }
 
 #map_container {
     width: 100vw;
-    height: 88vh;
+    height: calc(88vh - 3px);
     clear: both;
     background-color: rgb(58, 58, 58);
 }

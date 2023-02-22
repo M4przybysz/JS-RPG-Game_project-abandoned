@@ -15,10 +15,15 @@
         </form>
         
         <div id="tabs_container">
-            <div class="tab">
-                Empty tab 1
+            <div id="map_tabs">
+                <div class="tab" id="tab0">
+                    <div class="tab_textContent">
+                        Empty tab 0
+                    </div>
+                    <img src="./textures/UI/delete_tab.png" alt="delete tab" class="delete_tab" onclick="deleteTab(this)">
+                </div>
             </div>
-            <div class="tab" id="add_tab">
+            <div class="tab" id="add_tab" onclick="addTab()">
                 <img src="textures/UI/add_tab.png" alt="add tab">
             </div>
         </div>
