@@ -1,7 +1,3 @@
-:root {
-    
-}
-
 html {
     width: 100vw;
     height: 100vh;
@@ -28,12 +24,11 @@ body {
     height: calc(4vh + 3px);
     background-color: rgb(26, 26, 26);
     align-items: center;
-    white-space: nowrap;
     overflow: hidden;
 }
 
 .tab {
-    width: 15vh;
+    width: 9vw;
     height: calc(3vh - 3px);
     overflow: hidden;
     float: left;
@@ -48,12 +43,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     transition: 300ms;
-    white-space: nowrap;
 }
 
 .tab:hover{
     cursor: pointer;
-    background-color: lightgrey;
+    background-color: rgb(126, 167, 183);
 }
 
 .tab_textContent {
@@ -69,9 +63,8 @@ body {
 }
 
 .delete_tab:hover {
-    border: 1px solid black;
     border-radius: 5px;
-    filter: invert(0.3);
+    filter: invert(1);
 }
 
 #add_tab {
@@ -82,6 +75,11 @@ body {
 #add_tab img {
     margin: auto;
     transform: translateY(10%);
+    transition: 300ms;
+}
+
+#add_tab img:hover {
+    filter: invert(1);
 }
 
 #tabs_container img {
@@ -90,8 +88,24 @@ body {
 }
 
 #map_container {
+    box-sizing: border-box;
     width: 100vw;
     height: calc(88vh - 3px);
     clear: both;
+    padding: 10px;
     background-color: rgb(58, 58, 58);
+}
+
+#map_container fieldset{
+    box-sizing: border-box;
+    height: calc(88vh - 23px);
+    padding: 0px;
+    margin: 0px;
+    overflow: scroll;
+    scrollbar-width: none;
+
+}
+
+#map_container fieldset::-webkit-scrollbar {
+    display: none;
 }
