@@ -35,5 +35,6 @@ function addTab() {
         container.appendChild(new_tab)
     
         tab_counter += 1
+        new_tab_number += 1
     }
 }
