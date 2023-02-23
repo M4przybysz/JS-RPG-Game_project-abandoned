@@ -54,7 +54,7 @@ function addTab() {
         let new_tab = document.createElement('div')
         new_tab.setAttribute('class', 'tab')
         new_tab.setAttribute('id', `tab${new_tab_number}`)
-        new_tab.innerHTML = `   <div class="tab_textContent"> Empty map ${new_tab_number} </div>
+        new_tab.innerHTML = `   <div class="tab_textContent">Empty map ${new_tab_number}</div>
                                 <img src="./textures/UI/delete_tab.png" alt="delete tab" class="delete_tab" onclick="deleteTab(this)">`
     
         container.appendChild(new_tab)

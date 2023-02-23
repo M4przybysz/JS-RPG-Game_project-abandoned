@@ -1,32 +1,8 @@
 const DefaultMaps = {
     Empty : {
-        Name : "Empty map",
+        name : "Empty map",
 
-        Background : [
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'],
-        ],
-        Walls : [
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'], 
-            ['x10/null'],
-        ],
-        Collision : [
+        background : [
             ['x10/.'], 
             ['x10/.'], 
             ['x10/.'], 
@@ -38,8 +14,33 @@ const DefaultMaps = {
             ['x10/.'], 
             ['x10/.'],
         ],
-        Items : null,
-        Creatures : null,
+        walls : [
+            ['x10/n'], 
+            ['x10/n'], 
+            ['x10/n'], 
+            ['x10/n'], 
+            ['x10/n'], 
+            ['x10/n'], 
+            ['x10/n'], 
+            ['x10/n'], 
+            ['x10/n'], 
+            ['x10/n'],
+        ],
+        collision : [
+            ['x10/.'], 
+            ['x10/.'], 
+            ['x10/.'], 
+            ['x10/.'], 
+            ['x10/.'], 
+            ['x10/.'], 
+            ['x10/.'], 
+            ['x10/.'], 
+            ['x10/.'], 
+            ['x10/.'],
+        ],
+        objects : null,
+        items : null,
+        creatures : null,
     },
 }
 
@@ -59,7 +60,12 @@ const DefaultMaps = {
 
 class ActiveMap {
     name = ""
-    background
+    background = []
+    walls = []
+    collision = []
+    objects = []
+    items = []
+    creatures = []
 
     breakMap(location) {
         let multinode_regex = new RegExp(/^[x]\d+\/[a-zA-Z\.]+(-s:\d+:\d+:[a-zA-Z0-9=+<>()\[\]{}_\-]+)?$/)
@@ -67,29 +73,75 @@ class ActiveMap {
         let id = ''
 
         let bg_rows = []
-        location["Background"].map((row, y) => {
+        location["background"].map((row, y) => {
             bg_rows.push(0)
-            row.map((node) => {
-                if(multinode_regex.test(node)) bg_rows[y] += parseInt(node.split('/')[0].replace('x', ''))
-                else bg_rows[y] += 1
+            this.background.push([])
+            row.map((node, x) => {
+                if(multinode_regex.test(node)) {
+                    bg_rows[y] += parseInt(node.split('/')[0].replace('x', ''))
+                    
+                    x_multiplier = parseInt(node.split('/')[0].replace('x', ''))
+                    id = node.split('/')[1]
+                    for(let i = 0; i < x_multiplier; i++) { this.background[y].push(id) }
+                }
+                else {
+                    bg_rows[y] += 1 
+
+                    this.background[y].push(location['background'][y][x].replace(/ /g, ''))
+                }
             })
         })
+        console.log(this.background)
 
+        x_multiplier = 0
+        id = ''
+        location["walls"].map((row, y) => {
+            this.walls.push([])
+            row.map((node, x) => {
+                if(multinode_regex.test(node)) {
+                    x_multiplier = parseInt(node.split('/')[0].replace('x', ''))
+                    id = node.split('/')[1]
+                    for(let i = 0; i < x_multiplier; i++) { this.walls[y].push(id) }
+                }
+                else {
+                    this.walls[y].push(location['walls'][y][x].replace(/ /g, ''))
+                }
+            })
+        })
+        console.log(this.walls)
 
+        x_multiplier = 0
+        id = ''
+        location["collision"].map((row, y) => {
+            this.collision.push([])
+            row.map((node, x) => {
+                if(multinode_regex.test(node)) {
+                    x_multiplier = parseInt(node.split('/')[0].replace('x', ''))
+                    id = node.split('/')[1]
+                    for(let i = 0; i < x_multiplier; i++) { this.collision[y].push(id) }
+                }
+                else {
+                    this.collision[y].push(location['collision'][y][x].replace(/ /g, ''))
+                }
+            })
+        })
+        console.log(this.collision)
 
         // for(let y = 0; y < bg_rows.length; y++) {
         //     for(let x = 0; x < bg_rows[y]; x++) {
         //         this.nodes[y].push(new MapNode(x, y))
         //     }
         // }
-
-        console.log(this.nodes)
     }
 
-    constructor(name, Location) {
+    constructor(name, location) {
         this.name = name
 
-        this.breakMap(Location)
+        this.objects = location.objects
+        this.items = location.items
+        this.creatures = location.items
+
+        this.breakMap(location)
     }
 
     showMap() {

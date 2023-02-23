@@ -37,6 +37,7 @@ const Start_save = {
                                 ['a', 'x10/.', 'a'],
                                 ['.', 'x10/a', '.'],
             ],
+            objects : null,
             items : null,
             creatures : null,
         },
@@ -104,6 +105,7 @@ const Start_save = {
                                 ['x2/a', 'x3/.', 'a', 'x4/.', 'a', '.', 'x2/a', 'x5/.', 'a'],
                                 ['x20/a'],
             ],
+            objects : null,
             items : null,
             creatures : null,
         }
