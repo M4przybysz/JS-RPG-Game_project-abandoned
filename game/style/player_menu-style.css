@@ -1,19 +1,19 @@
 #player_menu {
     position: absolute;
+    float: left;
     box-sizing: border-box;
+    top: 5vh;
+    left: calc(var(--node_width) * var(--grid-columns) + 1vh);
     z-index: 5;
-    left: 1065px;
-    top: 40px;
-    width: 460px;
-    height: 700px;
+    width: var(--player_menu_width);
+    height: 95vh;
     background-color: gray;
 }
 
 #tabs_icons_container {
-    position: absolute;
     z-index: 6;
-    width: 460px;
-    height: 30px;
+    width: var(--player_menu_width);
+    height: 4vh;
     background-color: lightgrey;
 }
 
@@ -21,8 +21,8 @@
     display: inline-block;
     box-sizing: border-box;
     z-index: 7;
-    width: 30px;
-    height: 30px;
+    width: 4vh;
+    height: 4vh;
     border: 5px solid black;
     line-height: 20px;
     text-align: center;
@@ -34,19 +34,14 @@
 }
 
 #tabs_container {
-    position: absolute;
     z-index: 6;
-    top: 30px;
-    width: 460px;
-    height: 370px;
+    width: var(--player_menu_width);
+    height: 60vh;
 }
 
 #player_equipment {
-    position: absolute;
     z-index: 6;
-    left: 5px;
-    top: 400px;
-    width: 450px;
-    height: 295px;
+    width: var(--player_menu_width);
+    height: 31vh;
     background-color: lightgrey;
 }

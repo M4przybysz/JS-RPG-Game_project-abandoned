@@ -92,6 +92,21 @@ class ActiveMap {
         })
         console.log(background)
 
+        let walls = []
+        location["Walls"].map((row, y) => {
+            walls.push([])
+            row.map((node) => {
+                if(multinode_regex.test(node)) {
+                    x_multiplier = parseInt(node.split('/')[0].replace('x', '')) // Extract multiplier from notation
+                    id = node.split('/')[1] // Extract texture id from notation
+
+                    for(let i = 0; i < x_multiplier; i++) { walls[y].push(id) }
+                }
+                else walls[y].push(location["Walls"][y][x].replace(/ /g, ''))
+            })
+        })
+        console.log(walls)
+
         for(let y = 0; y < bg_rows.length; y++) {
             for(let x = 0; x < bg_rows[y]; x++) {
                 this.nodes[y].push(new MapNode(x, y))

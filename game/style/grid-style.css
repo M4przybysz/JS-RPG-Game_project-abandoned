@@ -1,22 +1,18 @@
 #game_grid_container {
     position: absolute;
-    overflow: hidden;
-    left: 10px;
-    top: 40px;
-    width: calc(19 * var(--node_width));
-    height: calc(10 * var(--node_height));
-    border: 1px solid green;
+    box-sizing: border-box;
+    top: 5vh;
+    left: 0px;
+    width: calc(var(--grid_columns) * var(--node_width));
+    height: calc(var(--grid-rows) * var(--node_height));
+    /* border: 1px solid green; */
 }
 
 #game_grid {
-    position: absolute;
     box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(19, var(--node_width));
-    /* left: 10px;
-    top: 40px; */
     margin: auto;
-    /* border: 5px solid blue; */
     text-align: center;
 }
 
@@ -35,15 +31,17 @@
 
 #player_node {
     position: relative;
-    background-color: red;
-    color: white;
+    width: var(--node_width);
+    height: var(--node_height);
+    /* background-color: red;
+    color: white; */
 }
 
 /*TODO: Change when textures are ready */
 #player_node img {
     position: absolute;
-    left: 0px;
     top: 0px;
+    left: 0px;
     width: var(--node_width);
     height: var(--node_height);
 }

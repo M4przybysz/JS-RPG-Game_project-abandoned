@@ -3,30 +3,32 @@
 :root {
     --grid-rows: 10;
     --grid-columns: 19;
-    --node_width: 55px;
-    --node_height: 55px;
+    --node_width: calc(8vh - 3px);
+    --node_height: calc(8vh - 3px);
     --exp_percent: 75;
     --hp_percent: 70;
     --ap_percent: 60;
+
+    --player_menu_width: calc(100vw - (var(--grid-columns) * var(--node_width)) - 1vh);
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
 }
 
 main {
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: 0px;
-    transform: translateX(-50%);
-    width: 1536px;
-    height: 753px;
+    width: 100vw;
+    height: 95vh;
 }
 
 #game_pause {
     display: block;
     position: absolute;
     z-index: 100;
-    top: 30px;
-    left: 0px;
-    width: 100%;
-    height: calc(100% - 30px);
+    top: 4vh;
+    width: 100vw;
+    height: 96vh;
     background-color: rgba(0, 0, 0, 0.4);
 }

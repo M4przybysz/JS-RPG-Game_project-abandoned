@@ -1,25 +1,16 @@
 #menu {
-    position: absolute;
     box-sizing: border-box;
     z-index: 50;
-    left: 50%;
-    top: 0px;
-    transform: translateX(-50%);
-    width: 1536px;
-    height: 30px;
+    width: 100vw;
+    height: 4vh;
     background-color: gray;
 }
 
 #clock {
-    position: absolute;
-    display: inline-block;
     z-index: 51;
-    top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 30px;
+    margin: auto;
     width: 100px;
     text-align: center;
-    line-height: 30px;
+    line-height: 4vh;
     color: hotpink;
 }
