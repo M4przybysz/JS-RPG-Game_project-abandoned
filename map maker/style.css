@@ -3,6 +3,8 @@
     --grid_rows: 10;
     --node_width: 7vh;
     --node_height: 7vh;
+
+    --grid_lines: "";
 }
 
 html {
@@ -131,13 +133,15 @@ body {
     text-align: center;
 }
 
+.node_border {
+    border: 1px white solid;
+}
+
 .node {
     box-sizing: border-box;
     display: inline-block;
     width: var(--node_width);
     height: var(--node_height);
-
-    border: 1px white solid;
 }
 
 .node img {

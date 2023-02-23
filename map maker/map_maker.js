@@ -16,7 +16,7 @@ class Node {
         this.collision = IDs.collision[coll_id]
         
         this.div.setAttribute('id', `node_x${node_x}_y${node_y}`)
-        this.div.setAttribute('class', 'node')
+        this.div.setAttribute('class', 'node node_border')
         this.div.style.backgroundImage = `url(${this.background})`
     }
 
@@ -52,6 +52,23 @@ window.onload = () => {
 
     addTab()
     MapContainer.showMap(active_maps[0])
+}
+
+function showGridLines(checkbox) {
+    if(checkbox.checked) {
+        MapContainer.nodes.map((row, y) => {
+            row.map((node, x) => {
+                node.div.classList.add('node_border')
+            })
+        })
+    }
+    else {
+        MapContainer.nodes.map((row, y) => {
+            row.map((node, x) => {
+                node.div.classList.remove('node_border')
+            })
+        })
+    }
 }
 
 function deleteTab(element) {
