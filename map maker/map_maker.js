@@ -31,10 +31,16 @@ const MapContainer = {
     showMap : function(AMap) {
         this.nodes = []
 
+        let root = document.documentElement
+        root.style.setProperty('--grid_rows', AMap.bg_rows.length)
+        root.style.setProperty('--grid_columns', AMap.bg_rows[0])
+
         AMap.bg_rows.map((row, y) => {
             this.nodes.push([])
             for(let x = 0; x < AMap.bg_rows[y]; x++) {
                 this.nodes[y].push(new Node(x, y, AMap.background[y][x], AMap.walls[y][x], AMap.collision[y][x]))
+
+                document.getElementById('map_view').appendChild(this.nodes[y][x].div)
             }
         })
         console.log(this.nodes)

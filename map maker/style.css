@@ -1,3 +1,10 @@
+:root {
+    --grid_columns: 10;
+    --grid_rows: 10;
+    --node_width: 7vh;
+    --node_height: 7vh;
+}
+
 html {
     width: 100vw;
     height: 100vh;
@@ -100,7 +107,10 @@ body {
 
 #map_container fieldset{
     box-sizing: border-box;
-    height: calc(88vh - 23px);
+    width: 95vw;
+    max-width: 95vw;
+    height: calc(80vh - 23px);
+    max-height: calc(80vh - 23px);
     padding: 0px;
     margin: 0px;
     overflow: scroll;
@@ -110,4 +120,27 @@ body {
 
 #map_container fieldset::-webkit-scrollbar {
     display: none;
+}
+
+#map_view {
+    box-sizing: border-box;
+    display: grid;
+    max-width: 95vw;
+    grid-template-columns: repeat(var(--grid_columns), var(--node_width));
+    margin: auto;
+    text-align: center;
+}
+
+.node {
+    box-sizing: border-box;
+    display: inline-block;
+    width: var(--node_width);
+    height: var(--node_height);
+
+    border: 1px white solid;
+}
+
+.node img {
+    width: var(--node_width);
+    height: var(--node_height);
 }

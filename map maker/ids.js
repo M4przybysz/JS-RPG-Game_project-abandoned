@@ -15,7 +15,7 @@ const IDs = {
         // "all" : "udlr",
     },
     textures : {
-        "." : "./map_textures/void.png",
-        "n" : "./map_textures/null.png"
+        "." : "./textures/map_textures/void.png",
+        "n" : "./textures/map_textures/null.png"
     }
 }
