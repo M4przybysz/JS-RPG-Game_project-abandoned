@@ -1,28 +1,51 @@
 tab_counter = 0
 new_tab_number = 0
-max_tab_count = 10
+max_tab_count = 7
 
 active_maps = []
-nodes = []
 
 class Node {
-    constructor(node_x, node_y, bg_id, w_id, coll_id, item, creature) {
+    div = document.createElement('div')
+
+    constructor(node_x, node_y, bg_id, w_id, coll_id) {
         this.x = node_x
         this.y = node_y
-
+        
         this.background = IDs.textures[bg_id]
         this.wall = IDs.textures[w_id]
         this.collision = IDs.collision[coll_id]
-
-        this.item = item
-        this.creature = creature
+        
+        this.div.setAttribute('id', `node_x${node_x}_y${node_y}`)
+        this.div.setAttribute('class', 'node')
+        this.div.style.backgroundImage = `url(${this.background})`
     }
+
+    object = null
+    item = null
+    creature = null
+}
+
+const MapContainer = {
+    nodes : [],
+
+    showMap : function(AMap) {
+        this.nodes = []
+
+        AMap.bg_rows.map((row, y) => {
+            this.nodes.push([])
+            for(let x = 0; x < AMap.bg_rows[y]; x++) {
+                this.nodes[y].push(new Node(x, y, AMap.background[y][x], AMap.walls[y][x], AMap.collision[y][x]))
+            }
+        })
+        console.log(this.nodes)
+    },
 }
 
 window.onload = () => {
     let map_container = document.getElementById('map_container')
 
     addTab()
+    MapContainer.showMap(active_maps[0])
 }
 
 function deleteTab(element) {

@@ -34,6 +34,7 @@ const Grid = {
 
     texture_dict : { // dictionary containing texture corresponding to its id
         undefined : './assets/null.png',
+        null :      './assets/null.png',
         'n' :       './assets/null.png',
         '.' :       './assets/void.png',
         'f' :       './assets/test_textures/floor.png',

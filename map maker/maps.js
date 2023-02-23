@@ -44,22 +44,9 @@ const DefaultMaps = {
     },
 }
 
-// class MapNode {
-//     constructor(node_x, node_y, bg_id, w_id, coll_id, item, creature) {
-//         this.x = node_x
-//         this.y = node_y
-
-//         this.background = IDs.textures[bg_id]
-//         this.wall = IDs.textures[w_id]
-//         this.collision = IDs.collision[coll_id]
-
-//         this.item = item
-//         this.creature = creature
-//     }
-// }
-
 class ActiveMap {
     name = ""
+
     background = []
     walls = []
     collision = []
@@ -67,30 +54,32 @@ class ActiveMap {
     items = []
     creatures = []
 
+    bg_rows = []
     breakMap(location) {
         let multinode_regex = new RegExp(/^[x]\d+\/[a-zA-Z\.]+(-s:\d+:\d+:[a-zA-Z0-9=+<>()\[\]{}_\-]+)?$/)
         let x_multiplier = 0
         let id = ''
 
-        let bg_rows = []
+        this.bg_rows = []
         location["background"].map((row, y) => {
-            bg_rows.push(0)
+            this.bg_rows.push(0)
             this.background.push([])
             row.map((node, x) => {
                 if(multinode_regex.test(node)) {
-                    bg_rows[y] += parseInt(node.split('/')[0].replace('x', ''))
+                    this.bg_rows[y] += parseInt(node.split('/')[0].replace('x', ''))
                     
                     x_multiplier = parseInt(node.split('/')[0].replace('x', ''))
                     id = node.split('/')[1]
                     for(let i = 0; i < x_multiplier; i++) { this.background[y].push(id) }
                 }
                 else {
-                    bg_rows[y] += 1 
+                    this.bg_rows[y] += 1 
 
                     this.background[y].push(location['background'][y][x].replace(/ /g, ''))
                 }
             })
         })
+        console.log(this.bg_rows)
         console.log(this.background)
 
         x_multiplier = 0
@@ -127,11 +116,6 @@ class ActiveMap {
         })
         console.log(this.collision)
 
-        // for(let y = 0; y < bg_rows.length; y++) {
-        //     for(let x = 0; x < bg_rows[y]; x++) {
-        //         this.nodes[y].push(new MapNode(x, y))
-        //     }
-        // }
     }
 
     constructor(name, location) {
@@ -142,10 +126,6 @@ class ActiveMap {
         this.creatures = location.items
 
         this.breakMap(location)
-    }
-
-    showMap() {
-
     }
 
     addColumn() {
