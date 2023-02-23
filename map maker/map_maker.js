@@ -3,9 +3,20 @@ new_tab_number = 0
 max_tab_count = 10
 
 active_maps = []
+nodes = []
 
 class Node {
+    constructor(node_x, node_y, bg_id, w_id, coll_id, item, creature) {
+        this.x = node_x
+        this.y = node_y
 
+        this.background = IDs.textures[bg_id]
+        this.wall = IDs.textures[w_id]
+        this.collision = IDs.collision[coll_id]
+
+        this.item = item
+        this.creature = creature
+    }
 }
 
 window.onload = () => {
@@ -13,8 +24,6 @@ window.onload = () => {
 
     addTab()
 }
-
-document.get
 
 function deleteTab(element) {
     let parent_name = element.parentElement.getElementsByClassName('tab_textContent')[0].textContent.trim()

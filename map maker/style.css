@@ -19,9 +19,11 @@ body {
 }
 
 #tabs_container {
+    box-sizing: border-box;
     display: flex;
     width: 100vw;
     height: calc(4vh + 3px);
+    padding-left: 5px;
     background-color: rgb(26, 26, 26);
     align-items: center;
     overflow: hidden;
