@@ -1,7 +1,7 @@
 const IDs = {
     collision : {
         "." : "none",
-        "uldr" : "all",
+        "udlr" : "all",
         "u" : "up",
         "d" : "down",
         "l" : "left",
@@ -16,6 +16,14 @@ const IDs = {
     },
     textures : {
         "." : "./textures/map_textures/void.png",
-        "n" : "./textures/map_textures/null.png"
+        "n" : "./textures/map_textures/null.png",
+        "f" : "./textures/map_textures/floor.png",
+    },
+
+    collisionReverse : {
+        'up' : "u",
+        'down' : "d",
+        'left' : "l",
+        'right' : "r",
     }
 }

@@ -11,7 +11,7 @@
 #game_grid {
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: repeat(var(--grid_columns), var(--node_width));
+    grid-template-columns: repeat(var(--grid-columns), var(--node_width));
     margin: auto;
     text-align: center;
 }

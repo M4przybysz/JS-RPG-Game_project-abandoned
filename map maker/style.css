@@ -18,6 +18,11 @@ body {
     margin: 0px;
 }
 
+label {
+    cursor: pointer;
+    user-select: none;
+}
+
 #settings {
     box-sizing: border-box;
     width: 100vw;
@@ -142,9 +147,35 @@ body {
     display: inline-block;
     width: var(--node_width);
     height: var(--node_height);
+    text-align: center;
 }
 
 .node img {
     width: var(--node_width);
     height: var(--node_height);
+}
+
+.collision {
+    box-sizing: border-box;
+    text-align: center;
+    width: calc(var(--node_width) - 2px);
+    height: calc(var(--node_height) - 2px);
+    line-height: calc(var(--node_height) - 2px);;
+    margin: auto;
+}
+
+.collision-r {
+    border-right: 4px dashed red;
+}
+
+.collision-l {
+    border-left: 4px dashed red;
+}
+
+.collision-u {
+    border-top: 4px dashed red;
+}
+
+.collision-d {
+    border-bottom: 4px dashed red;
 }

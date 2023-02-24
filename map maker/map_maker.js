@@ -18,6 +18,14 @@ class Node {
         this.div.setAttribute('id', `node_x${node_x}_y${node_y}`)
         this.div.setAttribute('class', 'node node_border')
         this.div.style.backgroundImage = `url(${this.background})`
+
+        this.div.innerHTML = `  <div class="collision ${(this.collision == 'none') ? "" : 
+                                                        (this.collision == 'all') ? 'collision-r collision-l collision-u collision-d' : 
+                                                        (this.collision == 'up') ? 'collision-u' : 
+                                                        (this.collision == 'down') ? 'collision-d' :
+                                                        (this.collision == 'right') ? 'collision-r' : 'collision-l'}">
+                                    ${this.collision}
+                                </div>`
     }
 
     object = null
@@ -71,6 +79,23 @@ function showGridLines(checkbox) {
     }
 }
 
+function showCollision(checkbox) {
+    if(checkbox.checked) {
+        MapContainer.nodes.map((row, y) => {
+            row.map((node, x) => {
+                node.div.querySelector('.collision').style.display = 'block'
+            })
+        })
+    }
+    else {
+        MapContainer.nodes.map((row, y) => {
+            row.map((node, x) => {
+                node.div.querySelector('.collision').style.display = 'none'
+            })
+        })
+    }
+}
+
 function deleteTab(element) {
     let parent_name = element.parentElement.getElementsByClassName('tab_textContent')[0].textContent.trim()
     let confirm_msg = `Do you want to delete "${parent_name}"? \nAll unsaved progres will be LOST!!!`
@@ -105,7 +130,7 @@ function addTab() {
     
         container.appendChild(new_tab)
 
-        active_maps.push(new ActiveMap(`Empty map ${new_tab_number}`, DefaultMaps.Empty))
+        active_maps.push(new ActiveMap(`Empty map ${new_tab_number}`, DefaultMaps.Empty2))
         console.log(active_maps)
 
         tab_counter += 1
