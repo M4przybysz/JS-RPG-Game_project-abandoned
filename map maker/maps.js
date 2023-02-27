@@ -153,8 +153,6 @@ class ActiveMap {
                 }
             })
         })
-        console.log(this.bg_rows)
-        console.log(this.background)
 
         x_multiplier = 0
         id = ''
@@ -171,7 +169,6 @@ class ActiveMap {
                 }
             })
         })
-        console.log(this.walls)
 
         x_multiplier = 0
         id = ''
@@ -188,7 +185,6 @@ class ActiveMap {
                 }
             })
         })
-        console.log(this.collision)
 
     }
 

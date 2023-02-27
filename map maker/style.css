@@ -3,8 +3,6 @@
     --grid_rows: 10;
     --node_width: 7vh;
     --node_height: 7vh;
-
-    --grid_lines: "";
 }
 
 html {
@@ -26,98 +24,25 @@ label {
 #settings {
     box-sizing: border-box;
     width: 100vw;
-    height: 8vh;
+    height: 10vh;
     padding: 5px;
-    background-color: rgb(70, 70, 70);
+    background-color: rgb(34, 34, 34);
     color: white;
-}
-
-#tabs_container {
-    box-sizing: border-box;
-    display: flex;
-    width: 100vw;
-    height: calc(4vh + 3px);
-    padding-left: 5px;
-    background-color: rgb(26, 26, 26);
-    align-items: center;
-    overflow: hidden;
-}
-
-.tab {
-    width: 9vw;
-    height: calc(3vh - 3px);
-    overflow: hidden;
-    float: left;
-    margin-left: 3px;
-    margin-right: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: darkgrey;
-    border: 2px solid whitesmoke;
-    border-radius: 0 15px 0 15px;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    transition: 300ms;
-}
-
-.tab:hover{
-    cursor: pointer;
-    background-color: rgb(126, 167, 183);
-}
-
-.tab_textContent {
-    float: left;
-    transform: translateY(10%);
-}
-
-.delete_tab {
-    border: none;
-    float: right;
-    transform: translateY(10%);
-    transition: 300ms;
-}
-
-.delete_tab:hover {
-    border-radius: 5px;
-    filter: invert(1);
-}
-
-#add_tab {
-    width: 4vh;
-    padding: 0px;
-}
-
-#add_tab img {
-    margin: auto;
-    transform: translateY(10%);
-    transition: 300ms;
-}
-
-#add_tab img:hover {
-    filter: invert(1);
-}
-
-#tabs_container img {
-    width: 2vh;
-    height: 2vh;
 }
 
 #map_container {
     box-sizing: border-box;
     width: 100vw;
-    height: calc(88vh - 3px);
+    height: 90vh;
     clear: both;
     padding: 10px;
-    background-color: rgb(58, 58, 58);
+    background-color: rgb(70, 70, 70);
 }
 
 #map_container fieldset{
     box-sizing: border-box;
-    width: 95vw;
-    max-width: 95vw;
-    height: calc(80vh - 23px);
-    max-height: calc(80vh - 23px);
+    width: calc(99vw - 3px);
+    height: calc(90vh - 23px);
     padding: 0px;
     margin: 0px;
     overflow: scroll;
@@ -132,7 +57,7 @@ label {
 #map_view {
     box-sizing: border-box;
     display: grid;
-    max-width: 95vw;
+    max-width: calc(99vw - 3px);
     grid-template-columns: repeat(var(--grid_columns), var(--node_width));
     margin: auto;
     text-align: center;
