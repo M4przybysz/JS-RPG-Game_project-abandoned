@@ -24,16 +24,45 @@ label {
 #settings {
     box-sizing: border-box;
     width: 100vw;
-    height: 10vh;
+    height: 15vh;
     padding: 5px;
     background-color: rgb(34, 34, 34);
     color: white;
 }
 
+#settings fieldset {
+    float: left;
+    height: 11vh;
+    padding-top: 1px;
+    padding-bottom: 15px;
+}
+
+#map_name_fieldset {
+    width: 11vw;
+}
+
+#show_elements_fieldset {
+    width: 11vw;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+#tools_fieldset {
+    width: 40vw;
+}
+
+#tools_fieldset div {
+    float: left;
+}
+
+#select_collision_label {
+    display: none;
+}
+
 #map_container {
     box-sizing: border-box;
     width: 100vw;
-    height: 90vh;
+    height: 85vh;
     clear: both;
     padding: 10px;
     background-color: rgb(70, 70, 70);
@@ -42,7 +71,7 @@ label {
 #map_container fieldset{
     box-sizing: border-box;
     width: calc(99vw - 3px);
-    height: calc(90vh - 23px);
+    height: calc(85vh - 23px);
     padding: 0px;
     margin: 0px;
     overflow: scroll;
@@ -70,12 +99,14 @@ label {
 .node {
     box-sizing: border-box;
     display: inline-block;
+    position: relative;
     width: var(--node_width);
     height: var(--node_height);
     text-align: center;
 }
 
 .node img {
+    position: absolute;
     width: var(--node_width);
     height: var(--node_height);
 }
@@ -83,10 +114,14 @@ label {
 .collision {
     box-sizing: border-box;
     text-align: center;
+    position: absolute;
     width: calc(var(--node_width) - 2px);
     height: calc(var(--node_height) - 2px);
     line-height: calc(var(--node_height) - 2px);;
     margin: auto;
+    background-color: none;
+    background-image: none;
+    color: red;
 }
 
 .collision-r {
@@ -103,4 +138,8 @@ label {
 
 .collision-d {
     border-bottom: 4px dashed red;
+}
+
+.wall {
+    left: 0px;
 }

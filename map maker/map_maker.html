@@ -8,17 +8,94 @@
 <body>
     <header id="header">
         <form id="settings">
-            <label id="grid_lines_label">
-                <input type="checkbox" id="grid_lines_checkbox" onclick="showGridLines(this)" checked>
-                Show grid lines
-            </label>
+            <fieldset id="map_name_fieldset">
+                <label id="map_name_label">
+                    Map name <br><br>
+                    <input type="text" id="map_name">
+                </label>
+            </fieldset>
 
-            &nbsp;
+            <fieldset id="show_elements_fieldset">
+                <label id="grid_lines_label">
+                    <input type="checkbox" id="grid_lines_checkbox" onclick="showGridLines(this)" checked>
+                    Show grid lines
+                </label>
+                <br>
+                <label id="show_walls_label">
+                    <input type="checkbox" id="show_walls_checkbox" onclick="showWalls(this)" checked>
+                    Show walls
+                </label>
+                <br>
+                <label id="show_collision_label">
+                    <input type="checkbox" id="show_collision_checkbox" onclick="showCollision(this)" checked>
+                    Show collision
+                </label>
+                <br>
+                <label id="show_objects_and_items_label">
+                    <input type="checkbox" id="show_objects_and_items" onclick="showObjectsAndItems(this)" checked>
+                    Show objects and iems
+                </label>
+                <br>
+                <label id="show_creatures_label">
+                    <input type="checkbox" id="show_creatures" onclick="showCreatures(this)" checked>
+                    Show creatures
+                </label>
+            </fieldset>
 
-            <label id="show_collision_label">
-                <input type="checkbox" id="show_collision_checkbox" onclick="showCollision(this)" checked>
-                Show collision
-            </label>
+            <fieldset id="tools_fieldset">
+                <div>
+                    Textures and collision: <br><br>
+                    <label id="select_layer_label">
+                        Select layer
+                        <select id="select_layer" oninput="selectLayer(this)">
+                            <option value="background" selected>background</option>
+                            <option value="walls">walls</option>
+                            <option value="collision">collision</option>
+                        </select>
+                        <br>
+                    </label>
+                    <label id="select_texture_label">
+                        Select texture
+                        <select id="select_texture"></select>
+                        <br>
+                    </label>
+                    <label id="select_collision_label">
+                        Select collision
+                        <select id="select_collision">
+                            <option value="r">right</option>
+                            <option value="l">left</option>
+                            <option value="u">up</option>
+                            <option value="d">down</option>
+                            <option value="udlr" selected>all</option>
+                        </select>
+                    </label>
+                    <label id="draw_textures_label">
+                        <input type="radio" name="draw_or_add" id="draw_textures_radio" checked>
+                        Draw textures/collision
+                    </label>
+                </div>
+                <div style="margin-left: 20px;">
+                    Add item/object/creature: <br><br>
+                    <label id="ioc_name_label">
+                        New I/O/C name 
+                        <input type="text" id="ioc_name">
+                        <br>
+                    </label>
+                    <label id="ioc_type_label">
+                        Select type
+                        <select id="ioc_type">
+                            <option value="item">item</option>
+                            <option value="object">object</option>
+                            <option value="creature">creature</option>
+                        </select>
+                        <br>
+                    </label>
+                    <label id="add_ioc_radio_label">
+                        <input type="radio" name="draw_or_add" id="add_ioc_radio">
+                        Add item/object/creature
+                    </label>
+                </div>
+            </fieldset>
         </form>
     </header>
     <main>
