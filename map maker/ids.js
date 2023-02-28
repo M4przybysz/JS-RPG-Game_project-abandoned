@@ -20,11 +20,4 @@ const IDs = {
         "f" : "./textures/map_textures/floor.png",
         "w" : "./textures/map_textures/wall.png",
     },
-
-    collisionReverse : {
-        'up' : "u",
-        'down' : "d",
-        'left' : "l",
-        'right' : "r",
-    }
 }

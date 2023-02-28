@@ -32,19 +32,19 @@
                 </label>
                 <br>
                 <label id="show_objects_and_items_label">
-                    <input type="checkbox" id="show_objects_and_items" onclick="showObjectsAndItems(this)" checked>
-                    Show objects and iems
+                    <input type="checkbox" id="show_objects_and_items_checkbox" onclick="showObjectsAndItems(this)" checked>
+                    Show objects and items
                 </label>
                 <br>
                 <label id="show_creatures_label">
-                    <input type="checkbox" id="show_creatures" onclick="showCreatures(this)" checked>
+                    <input type="checkbox" id="show_creatures_checkbox" onclick="showCreatures(this)" checked>
                     Show creatures
                 </label>
             </fieldset>
 
             <fieldset id="tools_fieldset">
                 <div>
-                    Textures and collision: <br><br>
+                    <b>Textures and collision:</b> <br><br>
                     <label id="select_layer_label">
                         Select layer
                         <select id="select_layer" oninput="selectLayer(this)">
@@ -70,12 +70,12 @@
                         </select>
                     </label>
                     <label id="draw_textures_label">
-                        <input type="radio" name="draw_or_add" id="draw_textures_radio" checked>
+                        <input type="checkbox" id="draw_textures_checkbox">
                         Draw textures/collision
                     </label>
                 </div>
                 <div style="margin-left: 20px;">
-                    Add item/object/creature: <br><br>
+                    <b>Add item/object/creature:</b> <br><br>
                     <label id="ioc_name_label">
                         New I/O/C name 
                         <input type="text" id="ioc_name">
@@ -91,10 +91,39 @@
                         <br>
                     </label>
                     <label id="add_ioc_radio_label">
-                        <input type="radio" name="draw_or_add" id="add_ioc_radio">
+                        <input type="checkbox" id="add_ioc_checkbox">
                         Add item/object/creature
                     </label>
                 </div>
+            </fieldset>
+
+            <fieldset id="add_delete_columns_and_rows_fieldset">
+                <label id="add_row_label">
+                    <input type="button" value="Add row" id="add_row" onclick="EditedMap.addRow()">
+                    <br>
+                </label>
+                <label id="add_column_label">
+                    <input type="button" value="Add column" id="add_cloumn" onclick="EditedMap.addColumn()">
+                    <br>
+                </label>
+                <label id="delete_row_label">
+                    <input type="checkbox" id="delete_row_checkbox" onclick="EditedMap.deleteRow(this)">
+                    Delete row
+                    <br>
+                </label>
+                <label id="delete_column_label">
+                    <input type="checkbox" id="delete_column_checkbox" onclick="EditedMap.deleteColumn(this)">
+                    Delete column
+                </label>
+            </fieldset>
+
+            <fieldset id="import_export_map_fieldset">
+                <label id="import_map_label">
+                    
+                </label>
+                <label id="export_map_label">
+
+                </label>
             </fieldset>
         </form>
     </header>
@@ -102,8 +131,6 @@
         <div id="map_container">
             <fieldset>
                 <div id="map_view"></div>
-
-                <div id="grid_lines">
                 </div>
             </fieldset>
         </div>

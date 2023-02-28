@@ -48,11 +48,23 @@ label {
 }
 
 #tools_fieldset {
-    width: 40vw;
+    width: 32vw;
 }
 
 #tools_fieldset div {
     float: left;
+}
+
+#add_delete_columns_and_rows_fieldset {
+    width: 10vw;
+}
+
+#add_row {
+    margin-top: 5px;
+}
+
+#add_cloumn{
+    margin-bottom: 5px;
 }
 
 #select_collision_label {

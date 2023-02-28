@@ -27,7 +27,7 @@ class Node {
         this.div.style.backgroundImage = `url(${this.background})`
 
         this.div.innerHTML = `  <img src="${this.wall}" alt="wall_texture" class="wall">
-                                <div class="collision ${(this.collision == 'none') ? "" : 
+                                <div class="collision ${(this.collision == 'none') ? "." : 
                                                         (this.collision == 'all') ? 'collision-r collision-l collision-u collision-d' : 
                                                         (this.collision == 'up') ? 'collision-u' : 
                                                         (this.collision == 'down') ? 'collision-d' :
@@ -70,9 +70,13 @@ const MapContainer = {
 }
 
 window.onload = () => {
+    let texture_select = document.getElementById('select_texture')
+    for(let i = 0; i < Object.entries(IDs.textures).length; i++) {
+        texture_select.innerHTML += `<option value="${Object.keys(IDs.textures)[i]}">${Object.entries(IDs.textures)[i].toString().split('/')[3].split('.')[0]}</option>`
+    }
+
     let map_name = document.getElementById('map_name')
     map_name.value = EditedMap.name
-
     map_name.oninput = () => {
         EditedMap.name = map_name.value
         console.log(EditedMap.name)
@@ -84,15 +88,15 @@ window.onload = () => {
 
 function showGridLines(checkbox) {
     if(checkbox.checked) {
-        MapContainer.nodes.map((row, y) => {
-            row.map((node, x) => {
+        MapContainer.nodes.map(row => {
+            row.map(node => {
                 node.div.classList.add('node_border')
             })
         })
     }
     else {
-        MapContainer.nodes.map((row, y) => {
-            row.map((node, x) => {
+        MapContainer.nodes.map(row => {
+            row.map(node => {
                 node.div.classList.remove('node_border')
             })
         })
@@ -101,15 +105,15 @@ function showGridLines(checkbox) {
 
 function showWalls(checkbox) {
     if(checkbox.checked) {
-        MapContainer.nodes.map((row, y) => {
-            row.map((node, x) => {
+        MapContainer.nodes.map(row => {
+            row.map(node => {
                 node.div.querySelector('.wall').style.display = 'block'
             })
         })
     }
     else {
-        MapContainer.nodes.map((row, y) => {
-            row.map((node, x) => {
+        MapContainer.nodes.map(row => {
+            row.map(node => {
                 node.div.querySelector('.wall').style.display = 'none'
             })
         })
@@ -118,15 +122,15 @@ function showWalls(checkbox) {
 
 function showCollision(checkbox) {
     if(checkbox.checked) {
-        MapContainer.nodes.map((row, y) => {
-            row.map((node, x) => {
+        MapContainer.nodes.map(row => {
+            row.map(node => {
                 node.div.querySelector('.collision').style.display = 'block'
             })
         })
     }
     else {
-        MapContainer.nodes.map((row, y) => {
-            row.map((node, x) => {
+        MapContainer.nodes.map(row => {
+            row.map(node => {
                 node.div.querySelector('.collision').style.display = 'none'
             })
         })
@@ -135,16 +139,16 @@ function showCollision(checkbox) {
 
 function showObjectsAndItems(checkbox) {
     if(checkbox.checked) {
-        MapContainer.nodes.map((row, y) => {
-            row.map((node, x) => {
+        MapContainer.nodes.map(row => {
+            row.map(node => {
                 if(node.object != null) node.div.querySelector('.object').style.display = 'block'
                 if(node.item != null) node.div.querySelector('.item').style.display = 'block'
             })
         })
     }
     else {
-        MapContainer.nodes.map((row, y) => {
-            row.map((node, x) => {
+        MapContainer.nodes.map(row => {
+            row.map(node => {
                 if(node.object != null) node.div.querySelector('.object').style.display = 'none'
                 if(node.item != null) node.div.querySelector('.item').style.display = 'none'
             })
@@ -154,15 +158,15 @@ function showObjectsAndItems(checkbox) {
 
 function showCreatures(checkbox) {
     if(checkbox.checked) {
-        MapContainer.nodes.map((row, y) => {
-            row.map((node, x) => {
+        MapContainer.nodes.map(row => {
+            row.map(node => {
                 if(node.creature != null) node.div.querySelector('.creature').style.display = 'block'
             })
         })
     }
     else {
-        MapContainer.nodes.map((row, y) => {
-            row.map((node, x) => {
+        MapContainer.nodes.map(row => {
+            row.map(node => {
                 if(node.creature != null) node.div.querySelector('.creature').style.display = 'none'
             })
         })
@@ -178,4 +182,54 @@ function selectLayer(select) {
         document.getElementById('select_collision_label').style.display = 'none'
         document.getElementById('select_texture_label').style.display = 'block'
     }
+}
+
+function removeRow(remove_y) {
+    let msg = 'Are you sure you want to delete this row?\nYou CAN NOT UNDO this action!!!'
+
+    if(confirm(msg)) {
+        MapContainer.nodes = []
+        document.getElementById('map_view').innerHTML = ''
+
+        EditedMap.bg_rows.splice(remove_y, 1)
+
+        EditedMap.background.splice(remove_y, 1)
+        EditedMap.walls.splice(remove_y, 1)
+        EditedMap.collision.splice(remove_y, 1)
+
+        MapContainer.showMap(EditedMap)
+        EditedMap.deleteRow(document.getElementById('delete_row_checkbox'))
+
+        showGridLines(document.getElementById('grid_lines_checkbox'))
+        showWalls(document.getElementById('show_walls_checkbox'))
+        showCollision(document.getElementById('show_collision_checkbox'))
+        showObjectsAndItems(document.getElementById('show_objects_and_items_checkbox'))
+        showCreatures(document.getElementById('show_creatures_checkbox'))
+    }
+    else { return }
+}
+
+function removeColumn(remove_x) {
+    let msg = 'Are you sure you want to delete this column?\nYou CAN NOT UNDO this action!!!'
+
+    if(confirm(msg)) {
+        MapContainer.nodes = []
+        document.getElementById('map_view').innerHTML = ''
+    
+        EditedMap.bg_rows.map((row, y) => { EditedMap.bg_rows[y] -= 1 })
+    
+        EditedMap.background.map(row => { row.splice(remove_x, 1) })
+        EditedMap.walls.map(row => { row.splice(remove_x, 1) })
+        EditedMap.collision.map(row => { row.splice(remove_x, 1) })
+    
+        MapContainer.showMap(EditedMap)
+        EditedMap.deleteColumn(document.getElementById('delete_column_checkbox'))
+
+        showGridLines(document.getElementById('grid_lines_checkbox'))
+        showWalls(document.getElementById('show_walls_checkbox'))
+        showCollision(document.getElementById('show_collision_checkbox'))
+        showObjectsAndItems(document.getElementById('show_objects_and_items_checkbox'))
+        showCreatures(document.getElementById('show_creatures_checkbox'))
+    }
+    else { return }
 }

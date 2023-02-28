@@ -198,19 +198,99 @@ class ActiveMap {
         this.breakMap(location)
     }
 
-    addColumn() {
-
-    }
-
     addRow() {
-
-    }
-
-    deleteColumn() {
-
-    }
-
-    deleteRow() {
+        MapContainer.nodes = []
+        document.getElementById('map_view').innerHTML = ''
         
+        this.bg_rows.push(this.bg_rows[0])
+        this.background.push([])
+        for(let i = 0; i < this.bg_rows[0]; i++) { this.background[this.bg_rows.length-1].push('.') }
+
+        this.walls.push([])
+        for(let i = 0; i < this.bg_rows[0]; i++) { this.walls[this.bg_rows.length-1].push('n') }
+
+        this.collision.push([])
+        for(let i = 0; i < this.bg_rows[0]; i++) { this.collision[this.bg_rows.length-1].push('.') }
+
+        MapContainer.showMap(EditedMap)
+        
+        showGridLines(document.getElementById('grid_lines_checkbox'))
+        showWalls(document.getElementById('show_walls_checkbox'))
+        showCollision(document.getElementById('show_collision_checkbox'))
+        showObjectsAndItems(document.getElementById('show_objects_and_items_checkbox'))
+        showCreatures(document.getElementById('show_creatures_checkbox'))
+    }
+
+    addColumn() {
+        MapContainer.nodes = []
+        document.getElementById('map_view').innerHTML = ''
+
+        this.bg_rows.map((row, y) => { this.bg_rows[y] += 1 })
+
+        this.background.map((row, y) => { this.background[y].push('.') })
+        this.walls.map((row, y) => { this.walls[y].push('n') })
+        this.collision.map((row, y) => { this.collision[y].push('.') })
+
+        MapContainer.showMap(EditedMap)
+
+        showGridLines(document.getElementById('grid_lines_checkbox'))
+        showWalls(document.getElementById('show_walls_checkbox'))
+        showCollision(document.getElementById('show_collision_checkbox'))
+        showObjectsAndItems(document.getElementById('show_objects_and_items_checkbox'))
+        showCreatures(document.getElementById('show_creatures_checkbox'))
+    }
+    
+    deleteRow(checkbox) {
+        let drawT = document.getElementById('draw_textures_checkbox')
+        let addIOC = document.getElementById('add_ioc_checkbox')
+
+        let delete_column = document.getElementById('delete_column_checkbox')
+
+        if(checkbox.checked) {
+            drawT.checked = false
+            addIOC.checked = false
+            delete_column.checked = false
+
+            MapContainer.nodes.map((row, y) => {
+                row.map(node => {
+                    node.div.setAttribute('onclick', `removeRow(${y})`)
+                })
+            })
+        }
+        else if(!checkbox.checked) {
+            MapContainer.nodes.map(row => {
+                row.map((node, x) => {
+                    node.div.setAttribute('onclick', '')
+                })
+            })
+        }
+        else { return }
+    }
+
+    deleteColumn(checkbox) {
+        let drawT = document.getElementById('draw_textures_checkbox')
+        let addIOC = document.getElementById('add_ioc_checkbox')
+
+        let delete_row = document.getElementById('delete_row_checkbox')
+
+        if(checkbox.checked) {
+            drawT.checked = false
+            addIOC.checked = false
+            delete_row.checked = false
+
+            MapContainer.nodes.map(row => {
+                row.map((node, x) => {
+                    node.div.setAttribute('onclick', `removeColumn(${x})`)
+                })
+            })
+        }
+        else if(!checkbox.checked) {
+            MapContainer.nodes.map(row => {
+                row.map((node, x) => {
+                    node.div.setAttribute('onclick', '')
+                })
+            })
+        }
+        else { return }
     }
 }
