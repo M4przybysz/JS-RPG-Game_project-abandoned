@@ -44,7 +44,7 @@
 
             <fieldset id="tools_fieldset">
                 <div>
-                    <b>Textures and collision:</b> <br><br>
+                    <b>Textures and collision:</b> <br>
                     <label id="select_layer_label">
                         Select layer
                         <select id="select_layer" oninput="selectLayer(this)">
@@ -57,17 +57,19 @@
                     <label id="select_texture_label">
                         Select texture
                         <select id="select_texture"></select>
-                        <br>
+                        <br><br>
                     </label>
                     <label id="select_collision_label">
                         Select collision
                         <select id="select_collision">
-                            <option value="r">right</option>
-                            <option value="l">left</option>
-                            <option value="u">up</option>
-                            <option value="d">down</option>
+                            <option value="r">r</option>
+                            <option value="l">l</option>
+                            <option value="u">u</option>
+                            <option value="d">d</option>
                             <option value="udlr" selected>all</option>
+                            <option value="s">switch</option>
                         </select>
+                        <br><br>
                     </label>
                     <label id="draw_textures_label">
                         <input type="checkbox" id="draw_textures_checkbox">
@@ -75,7 +77,7 @@
                     </label>
                 </div>
                 <div style="margin-left: 20px;">
-                    <b>Add item/object/creature:</b> <br><br>
+                    <b>Add item/object/creature:</b> <br>
                     <label id="ioc_name_label">
                         New I/O/C name 
                         <input type="text" id="ioc_name">
@@ -88,7 +90,7 @@
                             <option value="object">object</option>
                             <option value="creature">creature</option>
                         </select>
-                        <br>
+                        <br><br>
                     </label>
                     <label id="add_ioc_radio_label">
                         <input type="checkbox" id="add_ioc_checkbox">
@@ -119,10 +121,11 @@
 
             <fieldset id="import_export_map_fieldset">
                 <label id="import_map_label">
-                    
+                    <input type="button" value="Import map" id="import_map_button" onclick="document.getElementById('import_map_div').style.display = 'block';document.getElementById('export_map_div').style.display = 'none'">
+                    <br>
                 </label>
                 <label id="export_map_label">
-
+                    <input type="button" value="Export map" id="export_map_button" onclick="exportMap(); document.getElementById('export_map_div').style.display = 'block';document.getElementById('import_map_div').style.display = 'none'">
                 </label>
             </fieldset>
         </form>
@@ -131,8 +134,24 @@
         <div id="map_container">
             <fieldset>
                 <div id="map_view"></div>
-                </div>
             </fieldset>
+        </div>
+        <div id="import_map_div">
+            <div id="import_map_top">
+                <span>Import map</span>
+                <input type="button" value="X" onclick="document.getElementById('import_map_div').style.display = 'none'">
+            </div>
+            <div id="import_map_main">
+                <span>Import from defaults</span>                                           <br><br>
+                <select id="import_map_from_defaults">
+                    <option value="none" selected>none</option>
+                </select>                                                                   <br><br><br>
+
+                <input type="button" value="&nbsp;&nbsp;&nbsp;Import&nbsp;&nbsp;&nbsp;" onclick="importMap()">
+            </div>
+        </div>
+        <div id="export_map_div">
+            
         </div>
     </main>
 

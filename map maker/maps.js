@@ -1,8 +1,8 @@
 const DefaultMaps = {
     Empty : {
-        name : "Empty map",
+        name : "Empty",
 
-        background : [
+        background_map : [
             ['x10/.'], 
             ['x10/.'], 
             ['x10/.'], 
@@ -19,7 +19,7 @@ const DefaultMaps = {
             ['x10/.'], 
             ['x10/.'],
         ],
-        walls : [
+        walls_map : [
             ['x10/n'], 
             ['x10/n'], 
             ['x10/n'], 
@@ -36,7 +36,7 @@ const DefaultMaps = {
             ['x10/n'], 
             ['x10/n'],
         ],
-        collision : [
+        collision_map : [
             ['x10/.'], 
             ['x10/.'], 
             ['x10/.'], 
@@ -59,9 +59,9 @@ const DefaultMaps = {
     },
 
     Empty2 : {
-        name : "Empty map",
+        name : "Empty",
 
-        background : [
+        background_map : [
             ['x10/f'], 
             ['x10/f'], 
             ['x10/f'], 
@@ -78,7 +78,7 @@ const DefaultMaps = {
             ['x10/f'], 
             ['x10/f'],
         ],
-        walls : [
+        walls_map : [
             ['x10/n'], 
             ['x10/n'], 
             ['x10/n'], 
@@ -95,12 +95,12 @@ const DefaultMaps = {
             ['x10/n'], 
             ['x10/n'],
         ],
-        collision : [
+        collision_map : [
             ['x10/r'], 
             ['x10/l'], 
             ['x10/u'], 
             ['x10/d'], 
-            ['x10/udlr'], 
+            ['x10/a'], 
             ['x10/.'], 
             ['x10/.'], 
             ['x10/.'], 
@@ -115,7 +115,107 @@ const DefaultMaps = {
         objects : null,
         items : null,
         creatures : null,
-    }
+    },
+
+    Test1 : { // Simple room
+        name : 'Test1',
+
+        background_map : [  ['.', 'x10/f', '.'],
+                            ['x12/f'],
+                            ['x12/f'],
+                            ['x12/f'],
+                            ['x12/f'],
+                            ['.', 'x10/f', '.'],
+        ],
+        walls_map : [       ['n', 'x10/w', 'n'],
+                            ['w', 'x10/n', 'w'],
+                            ['w', 'x5/n', 'w', 'x4/n', 'w'],
+                            ['w', 'x10/n', 'ls'],
+                            ['w', 'x10/n', 'w'],
+                            ['n', 'x10/w', 'n'],
+        ],
+        collision_map : [   ['.', 'x10/a', '.'],
+                            ['a', 'x10/.', 'a'],
+                            ['a', 'x5/.', 'url', 'x4/.', 'a'],
+                            ['a', 'x10/.', '.-s:1:3:Test2'],
+                            ['a', 'x10/.', 'a'],
+                            ['.', 'x10/a', '.'],
+        ],
+        objects : null,
+        items : null,
+        creatures : null,
+    },
+
+    Test2 : { // Big test room
+        name : 'Test2',
+
+        background_map : [  ['x20/f'], 
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'], 
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+                            ['x20/f'],
+        ],
+        walls_map : [       ['x3/w', 'x3/ls', 'x14/w'],
+                            ['w', 'x6/n', 'x6/w', 'x6/n', 'w'],
+                            ['ls', 'x7/n', 'x4/w', 'x7/n', 'w'],
+                            ['ls', 'x8/n', 'x2/w', 'x8/n', 'w'],
+                            ['ls', 'x18/n', 'w'],
+                            ['w', 'x8/n', 'x3/w', 'x2/n', 'x3/w', 'x2/n', 'w'],
+                            ['w', 'x2/n', 'w', 'x2/n', 'w', 'x2/n', 'w', 'x6/n', 'w', 'x2/n', 'w'],
+                            ['w', 'x8/n', 'x3/w', 'x2/n', 'x3/w', 'x2/n', 'w'],
+                            ['w', 'x2/n', 'w', 'x2/n', 'w', 'x2/n', 'w', 'x6/n', 'w', 'x2/n', 'w'],
+                            ['w', 'x8/n', 'x3/w', 'x2/n', 'x3/w', 'x2/n', 'w'],
+                            ['w', 'x2/n', 'w', 'x2/n', 'w', 'x2/n', 'w', 'x6/n', 'w', 'x2/n', 'w'],
+                            ['w', 'x8/n', 'x3/w', 'x2/n', 'x3/w', 'x2/n', 'w'],
+                            ['w', 'x18/n', 'w'],
+                            ['w', 'x18/n', 'w'],
+                            ['w', 'x10/n', 'x6/w', 'n', 'x2/w'],
+                            ['w', 'x6/n', 'x5/w', 'x4/n', 'w', 'n', 'x2/w'],
+                            ['x2/w', 'n', 'x5/w', 'x5/n', 'w', 'x2/n', 'w', 'x2/n', 'w'],
+                            ['x2/w', 'n', 'w', 'x3/n', 'w', 'n', 'x2/w', 'n', 'x2/w', 'n', 'x3/w', 'n', 'w'],
+                            ['x2/w', 'x3/n', 'w', 'x4/n', 'w', 'n', 'x2/w', 'x5/n', 'w'],
+                            ['x20/w'],
+        ],
+        collision_map : [   ['x3/a', 'x3/.-s:10:3:Test1', 'x14/a'],
+                            ['a', 'x6/.', 'x6/a', 'x6/.', 'a'],
+                            ['.-s:10:3:Test1', 'x7/.', 'x4/a', 'x7/.', 'a'],
+                            ['.-s:10:3:Test1', 'x8/.', 'x2/a', 'x8/.', 'a'],
+                            ['.-s:10:3:Test1', 'x18/.', 'a'],
+                            ['a', 'x8/.', 'x3/a', 'x2/.', 'x3/a', 'x2/.', 'a'],
+                            ['a', 'x2/.', 'a', 'x2/.', 'a', 'x2/.', 'a', 'x6/.', 'a', 'x2/.', 'a'],
+                            ['a', 'x8/.', 'x3/a', 'x2/.', 'x3/a', 'x2/.', 'a'],
+                            ['a', 'x2/.', 'a', 'x2/.', 'a', 'x2/.', 'a', 'x6/.', 'a', 'x2/.', 'a'],
+                            ['a', 'x8/.', 'x3/a', 'x2/.', 'x3/a', 'x2/.', 'a'],
+                            ['a', 'x2/.', 'a', 'x2/.', 'a', 'x2/.', 'a', 'x6/.', 'a', 'x2/.', 'a'],
+                            ['a', 'x8/.', 'x3/a', 'x2/.', 'x3/a', 'x2/.', 'a'],
+                            ['a', 'x18/.', 'a'],
+                            ['a', 'x18/.', 'a'],
+                            ['a', 'x10/.', 'x6/a', '.', 'x2/a'],
+                            ['a', 'x6/.', 'x5/a', 'x4/.', 'a', '.', 'x2/a'],
+                            ['x2/a', '.', 'x5/a', 'x5/.', 'a', 'x2/.', 'a', 'x2/.', 'a'],
+                            ['x2/a', '.', 'a', 'x3/.', 'a', '.', 'x2/a', '.', 'x2/a', '.', 'x3/a', '.', 'a'],
+                            ['x2/a', 'x3/.', 'a', 'x4/.', 'a', '.', 'x2/a', 'x5/.', 'a'],
+                            ['x20/a'],
+        ],
+        objects : null,
+        items : null,
+        creatures : null,
+    },
 }
 
 class ActiveMap {
@@ -135,7 +235,7 @@ class ActiveMap {
         let id = ''
 
         this.bg_rows = []
-        location["background"].map((row, y) => {
+        location["background_map"].map((row, y) => {
             this.bg_rows.push(0)
             this.background.push([])
             row.map((node, x) => {
@@ -149,14 +249,14 @@ class ActiveMap {
                 else {
                     this.bg_rows[y] += 1 
 
-                    this.background[y].push(location['background'][y][x].replace(/ /g, ''))
+                    this.background[y].push(location['background_map'][y][x].replace(/ /g, ''))
                 }
             })
         })
 
         x_multiplier = 0
         id = ''
-        location["walls"].map((row, y) => {
+        location["walls_map"].map((row, y) => {
             this.walls.push([])
             row.map((node, x) => {
                 if(multinode_regex.test(node)) {
@@ -165,14 +265,14 @@ class ActiveMap {
                     for(let i = 0; i < x_multiplier; i++) { this.walls[y].push(id) }
                 }
                 else {
-                    this.walls[y].push(location['walls'][y][x].replace(/ /g, ''))
+                    this.walls[y].push(location['walls_map'][y][x].replace(/ /g, ''))
                 }
             })
         })
 
         x_multiplier = 0
         id = ''
-        location["collision"].map((row, y) => {
+        location["collision_map"].map((row, y) => {
             this.collision.push([])
             row.map((node, x) => {
                 if(multinode_regex.test(node)) {
@@ -181,7 +281,7 @@ class ActiveMap {
                     for(let i = 0; i < x_multiplier; i++) { this.collision[y].push(id) }
                 }
                 else {
-                    this.collision[y].push(location['collision'][y][x].replace(/ /g, ''))
+                    this.collision[y].push(location['collision_map'][y][x].replace(/ /g, ''))
                 }
             })
         })
@@ -214,11 +314,7 @@ class ActiveMap {
 
         MapContainer.showMap(EditedMap)
         
-        showGridLines(document.getElementById('grid_lines_checkbox'))
-        showWalls(document.getElementById('show_walls_checkbox'))
-        showCollision(document.getElementById('show_collision_checkbox'))
-        showObjectsAndItems(document.getElementById('show_objects_and_items_checkbox'))
-        showCreatures(document.getElementById('show_creatures_checkbox'))
+        checkCheckbox()
     }
 
     addColumn() {
@@ -233,11 +329,7 @@ class ActiveMap {
 
         MapContainer.showMap(EditedMap)
 
-        showGridLines(document.getElementById('grid_lines_checkbox'))
-        showWalls(document.getElementById('show_walls_checkbox'))
-        showCollision(document.getElementById('show_collision_checkbox'))
-        showObjectsAndItems(document.getElementById('show_objects_and_items_checkbox'))
-        showCreatures(document.getElementById('show_creatures_checkbox'))
+        checkCheckbox()
     }
     
     deleteRow(checkbox) {

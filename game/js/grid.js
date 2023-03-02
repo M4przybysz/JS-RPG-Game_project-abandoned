@@ -48,7 +48,7 @@ const Grid = {
     importLayer : function(location, layer) {
         this[layer] = []
 
-        let multinode_regex = new RegExp(/^[x]\d+\/[a-zA-Z\.]+(-s:\d+:\d+:[a-zA-Z0-9=+<>()\[\]{}_\-]+)?$/) // Base multinode notation - x axis
+        let multinode_regex = new RegExp(/^[x]\d+\/[a-zA-Z\.]+(-s:\d+:\d+:[a-zA-Z0-9=+<>()\[\]{}_\-]+)?$/) // Multinode notation - x axis
         let x_multiplier = 0
         let id = ''
 

@@ -17,22 +17,18 @@ class Node {
 
         this.bg_id = bg_id
         this.w_id = w_id
-        this.coll_id = coll_id
+        this.coll_id = (RegExp(/^[a-zA-Z\.]+(-s:\d+:\d+:[a-zA-Z0-9=+<>()\[\]{}_\-]+)$/).test(coll_id)) ? coll_id.split('-')[0] : coll_id
         
-        this.background = IDs.textures[bg_id]
-        this.wall = IDs.textures[w_id]
-        this.collision = IDs.collision[coll_id]
+        this.background = IDs.textures[this.bg_id]
+        this.wall = IDs.textures[this.w_id]
+        this.collision = (this.coll_id == 'a') ? 'all' : ((this.coll_id == '.') ? 'none' : this.coll_id)
         
         this.div.setAttribute('class', 'node node_border')
         this.div.style.backgroundImage = `url(${this.background})`
 
         this.div.innerHTML = `  <img src="${this.wall}" alt="wall_texture" class="wall">
-                                <div class="collision ${(this.collision == 'none') ? "." : 
-                                                        (this.collision == 'all') ? 'collision-r collision-l collision-u collision-d' : 
-                                                        (this.collision == 'up') ? 'collision-u' : 
-                                                        (this.collision == 'down') ? 'collision-d' :
-                                                        (this.collision == 'right') ? 'collision-r' : 'collision-l'}">
-                                    ${this.collision}
+                                <div class="collision">
+                                    ${(RegExp(/^[a-zA-Z\.]+(-s:\d+:\d+:[a-zA-Z0-9=+<>()\[\]{}_\-]+)$/).test(coll_id)) ? coll_id : this.collision}
                                 </div>`
 
         this.innerHTML += (this.object == null) ? '' : '<img src="${this.object.texture}" alt="object_texture" class="object">'
@@ -70,9 +66,17 @@ const MapContainer = {
 }
 
 window.onload = () => {
+    document.getElementById('import_map_div').style.display = 'none'
+    document.getElementById('export_map_div').style.display = 'none'
+
     let texture_select = document.getElementById('select_texture')
     for(let i = 0; i < Object.entries(IDs.textures).length; i++) {
         texture_select.innerHTML += `<option value="${Object.keys(IDs.textures)[i]}">${Object.entries(IDs.textures)[i].toString().split('/')[3].split('.')[0]}</option>`
+    }
+
+    let import_map_select = document.getElementById('import_map_from_defaults')
+    for(let i = 0; i < Object.keys(DefaultMaps).length; i++) {
+        import_map_select.innerHTML += `<option vlaue="${Object.keys(DefaultMaps)[i]}">${Object.keys(DefaultMaps)[i]}</option>`
     }
 
     let map_name = document.getElementById('map_name')
@@ -82,8 +86,15 @@ window.onload = () => {
         console.log(EditedMap.name)
     }
 
-
     MapContainer.showMap(EditedMap)
+}
+
+function checkCheckbox() {
+    showGridLines(document.getElementById('grid_lines_checkbox'))
+    showWalls(document.getElementById('show_walls_checkbox'))
+    showCollision(document.getElementById('show_collision_checkbox'))
+    showObjectsAndItems(document.getElementById('show_objects_and_items_checkbox'))
+    showCreatures(document.getElementById('show_creatures_checkbox'))
 }
 
 function showGridLines(checkbox) {
@@ -200,11 +211,7 @@ function removeRow(remove_y) {
         MapContainer.showMap(EditedMap)
         EditedMap.deleteRow(document.getElementById('delete_row_checkbox'))
 
-        showGridLines(document.getElementById('grid_lines_checkbox'))
-        showWalls(document.getElementById('show_walls_checkbox'))
-        showCollision(document.getElementById('show_collision_checkbox'))
-        showObjectsAndItems(document.getElementById('show_objects_and_items_checkbox'))
-        showCreatures(document.getElementById('show_creatures_checkbox'))
+        checkCheckbox()
     }
     else { return }
 }
@@ -225,11 +232,50 @@ function removeColumn(remove_x) {
         MapContainer.showMap(EditedMap)
         EditedMap.deleteColumn(document.getElementById('delete_column_checkbox'))
 
-        showGridLines(document.getElementById('grid_lines_checkbox'))
-        showWalls(document.getElementById('show_walls_checkbox'))
-        showCollision(document.getElementById('show_collision_checkbox'))
-        showObjectsAndItems(document.getElementById('show_objects_and_items_checkbox'))
-        showCreatures(document.getElementById('show_creatures_checkbox'))
+        checkCheckbox()
     }
     else { return }
+}
+
+function DrawTestureOrCollision() {
+
+
+    checkCheckbox()
+}
+
+function AddIOC() {
+
+
+    checkCheckbox()
+}
+
+function mapToString (obj) {
+    var str = '';
+
+    return str;
+}
+
+function exportMap() {
+    console.log(EditedMap)
+}
+
+function importMap() {
+    let msg = 'Are you sure you want to import new map?\nCurrent edited map will be overwriten!\nYou CAN NOT UNDO this action!!!'
+
+    if(confirm(msg)) {
+        let from_deafults = document.getElementById('import_map_from_defaults')
+
+        if(from_deafults.value != 'none') {
+            MapContainer.nodes = []
+            document.getElementById('map_view').innerHTML = ''
+
+            EditedMap = new ActiveMap(DefaultMaps[from_deafults.value].name, DefaultMaps[from_deafults.value])
+
+            MapContainer.showMap(EditedMap)
+            checkCheckbox()
+        }
+    }
+    else { return }
+
+    document.getElementById('import_map_div').style.display = 'none'
 }

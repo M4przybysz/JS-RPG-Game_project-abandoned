@@ -1,5 +1,3 @@
-
-
 const Imported_save = {}
 
 const Start_save = {
@@ -16,6 +14,8 @@ const Start_save = {
     },
     Locations : {
         Test1 : { // Simple room
+            name : 'Test1',
+
             background_map : [  ['.', 'x10/f', '.'],
                                 ['x12/f'],
                                 ['x12/f'],
@@ -42,6 +42,8 @@ const Start_save = {
             creatures : null,
         },
         Test2 : { // Big test room
+            name : 'Test2',
+
             background_map : [  ['x20/f'], 
                                 ['x20/f'],
                                 ['x20/f'],
@@ -90,11 +92,11 @@ const Start_save = {
                                 ['.-s:10:3:Test1', 'x8/.', 'x2/a', 'x8/.', 'a'],
                                 ['.-s:10:3:Test1', 'x18/.', 'a'],
                                 ['a', 'x8/.', 'x3/a', 'x2/.', 'x3/a', 'x2/.', 'a'],
-                                ['a', 'x2/.', 'a', 'x2/.', 'a', 'x2/.', 'a', 'x6/n', 'a', 'x2/.', 'a'],
+                                ['a', 'x2/.', 'a', 'x2/.', 'a', 'x2/.', 'a', 'x6/.', 'a', 'x2/.', 'a'],
                                 ['a', 'x8/.', 'x3/a', 'x2/.', 'x3/a', 'x2/.', 'a'],
-                                ['a', 'x2/.', 'a', 'x2/.', 'a', 'x2/.', 'a', 'x6/n', 'a', 'x2/.', 'a'],
+                                ['a', 'x2/.', 'a', 'x2/.', 'a', 'x2/.', 'a', 'x6/.', 'a', 'x2/.', 'a'],
                                 ['a', 'x8/.', 'x3/a', 'x2/.', 'x3/a', 'x2/.', 'a'],
-                                ['a', 'x2/.', 'a', 'x2/.', 'a', 'x2/.', 'a', 'x6/n', 'a', 'x2/.', 'a'],
+                                ['a', 'x2/.', 'a', 'x2/.', 'a', 'x2/.', 'a', 'x6/.', 'a', 'x2/.', 'a'],
                                 ['a', 'x8/.', 'x3/a', 'x2/.', 'x3/a', 'x2/.', 'a'],
                                 ['a', 'x18/.', 'a'],
                                 ['a', 'x18/.', 'a'],
