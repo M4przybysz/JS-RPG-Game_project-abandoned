@@ -43,7 +43,7 @@
             </fieldset>
 
             <fieldset id="tools_fieldset">
-                <div>
+                <div id="tools1">
                     <b>Textures and collision:</b> <br>
                     <label id="select_layer_label">
                         Select layer
@@ -57,11 +57,11 @@
                     <label id="select_texture_label">
                         Select texture
                         <select id="select_texture"></select>
-                        <br><br>
+                        <br>
                     </label>
                     <label id="select_collision_label">
                         Select collision
-                        <select id="select_collision">
+                        <select id="select_collision" oninput="selectCollision(this)">
                             <option value="r">r</option>
                             <option value="l">l</option>
                             <option value="u">u</option>
@@ -69,14 +69,20 @@
                             <option value="udlr" selected>all</option>
                             <option value="s">switch</option>
                         </select>
-                        <br><br>
+                        <br>
                     </label>
+                    <label id="switch_location_collision_label">
+                        <input type="text" id="sl_map_name">
+                        X: <input type="number" id="sl_map_x" min="0" step="1">
+                        Y: <input type="number" id="sl_map_y" min="0" step="1">
+                    </label>
+                    <br id="tools_br">
                     <label id="draw_textures_label">
                         <input type="checkbox" id="draw_textures_checkbox">
                         Draw textures/collision
                     </label>
                 </div>
-                <div style="margin-left: 20px;">
+                <div id="tools2">
                     <b>Add item/object/creature:</b> <br>
                     <label id="ioc_name_label">
                         New I/O/C name 

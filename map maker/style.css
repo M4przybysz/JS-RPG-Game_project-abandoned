@@ -48,11 +48,35 @@ label {
 }
 
 #tools_fieldset {
-    width: 32vw;
+    width: 37vw;
 }
 
-#tools_fieldset div {
+#tools1 {
     float: left;
+}
+
+#tools2 {
+    margin-left: 20px;
+    float: right;
+}
+
+#switch_location_collision_label {
+    display: none;
+}
+
+#switch_location_collision_label input {
+    box-sizing: border-box;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 18px;
+}
+
+#sl_map_name {
+    width: 5vw;
+}
+
+#sl_map_x, #sl_map_y {
+    width: 3vw;
 }
 
 #add_delete_columns_and_rows_fieldset {

@@ -195,6 +195,17 @@ function selectLayer(select) {
     }
 }
 
+function selectCollision(select) {
+    if(select.value == 's') {
+        document.getElementById('switch_location_collision_label').style.display = 'block'
+        document.getElementById('tools_br').style.display = 'none'
+    }
+    else {
+        document.getElementById('switch_location_collision_label').style.display = 'none'
+        document.getElementById('tools_br').style.display = 'block'
+    }
+}
+
 function removeRow(remove_y) {
     let msg = 'Are you sure you want to delete this row?\nYou CAN NOT UNDO this action!!!'
 
