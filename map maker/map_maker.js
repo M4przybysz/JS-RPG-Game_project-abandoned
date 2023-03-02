@@ -248,16 +248,58 @@ function removeColumn(remove_x) {
     else { return }
 }
 
-function DrawTestureOrCollision() {
+function drawTestureOrCollision(checkbox) {
+    let addIOC = document.getElementById('add_ioc_checkbox')
+    let del_r = document.getElementById('delete_row_checkbox')
+    let del_c = document.getElementById('delete_column_checkbox')
+
+    if(checkbox.checked) {
+        addIOC.checked = false
+        del_r.checked = false
+        del_c.checked = false 
+
+        MapContainer.nodes.map((row, y) => {
+            row.map((node, x) => {
+                node.div.setAttribute('onclick', `editTextureOrCollision(${x, y})`)
+            })
+        })
+    }
+    else if(!checkbox.checked) {
+        MapContainer.nodes.map(row => {
+            row.map(node => {
+                node.div.setAttribute('onclick', '')
+            })
+        })
+    }
+    else { return }
+}
+
+function editTextureOrCollision(x, y) {
 
 
     checkCheckbox()
 }
 
-function AddIOC() {
+function addIOC(checkbox) {
+    let draw_textures = document.getElementById('draw_textures_checkbox')
+    let del_r = document.getElementById('delete_row_checkbox')
+    let del_c = document.getElementById('delete_column_checkbox')
 
+    if(checkbox.checked) {
+        draw_textures.checked = false
+        del_r.checked = false
+        del_c.checked = false 
 
-    checkCheckbox()
+        
+    }
+    else if(!checkbox.checked) {
+        MapContainer.nodes.map(row => {
+            row.map(node => {
+                node.div.setAttribute('onclick', '')
+            })
+        })
+    }
+    else { return }
 }
 
 function mapToString (obj) {

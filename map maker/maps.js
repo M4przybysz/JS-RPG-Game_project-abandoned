@@ -117,7 +117,7 @@ const DefaultMaps = {
         creatures : null,
     },
 
-    Test1 : { // Simple room
+    Test1 : {
         name : 'Test1',
 
         background_map : [  ['.', 'x10/f', '.'],
@@ -146,7 +146,7 @@ const DefaultMaps = {
         creatures : null,
     },
 
-    Test2 : { // Big test room
+    Test2 : {
         name : 'Test2',
 
         background_map : [  ['x20/f'], 
