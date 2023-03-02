@@ -95,8 +95,6 @@ function checkCheckbox() {
     showCollision(document.getElementById('show_collision_checkbox'))
     showObjectsAndItems(document.getElementById('show_objects_and_items_checkbox'))
     showCreatures(document.getElementById('show_creatures_checkbox'))
-
-    drawTestureOrCollision(document.getElementById('draw_textures_checkbox'))
 }
 
 function showGridLines(checkbox) {
@@ -289,7 +287,18 @@ function editTextureOrCollision(x, y) {
         EditedMap[layer][y][x] = texture_select.value
     }
     else if(layer == 'collision') {
+        let collision_select = document.getElementById('select_collision')
 
+        if(collision_select.value == 's') {
+            let ls_x = document.getElementById('sl_map_x').value
+            let ls_y = document.getElementById('sl_map_y').value
+            let ls_map_name = document.getElementById('sl_map_name').value
+
+            EditedMap[layer][y][x] = `.-s:${ls_x}:${ls_y}:${ls_map_name}`
+        }
+        else {
+            EditedMap[layer][y][x] = collision_select.value
+        }
     }
     else { return }
 
@@ -297,6 +306,7 @@ function editTextureOrCollision(x, y) {
     EditedMap.deleteColumn(document.getElementById('delete_column_checkbox'))
 
     checkCheckbox()
+    drawTestureOrCollision(document.getElementById('draw_textures_checkbox'))
 }
 
 function addIOC(checkbox) {
@@ -319,6 +329,8 @@ function addIOC(checkbox) {
         })
     }
     else { return }
+
+    checkCheckbox()
 }
 
 function mapToString (obj) {
