@@ -2,7 +2,7 @@ tab_counter = 0
 new_tab_number = 0
 max_tab_count = 7
 
-let EditedMap = new ActiveMap('EMPTY', DefaultMaps.Empty2)
+let EditedMap = new ActiveMap('EMPTY', DefaultMaps.Empty)
 
 class Node {
     div = document.createElement('div')
@@ -95,6 +95,8 @@ function checkCheckbox() {
     showCollision(document.getElementById('show_collision_checkbox'))
     showObjectsAndItems(document.getElementById('show_objects_and_items_checkbox'))
     showCreatures(document.getElementById('show_creatures_checkbox'))
+
+    drawTestureOrCollision(document.getElementById('draw_textures_checkbox'))
 }
 
 function showGridLines(checkbox) {
@@ -260,7 +262,7 @@ function drawTestureOrCollision(checkbox) {
 
         MapContainer.nodes.map((row, y) => {
             row.map((node, x) => {
-                node.div.setAttribute('onclick', `editTextureOrCollision(${x, y})`)
+                node.div.setAttribute('onclick', `editTextureOrCollision(${x}, ${y})`)
             })
         })
     }
@@ -275,7 +277,24 @@ function drawTestureOrCollision(checkbox) {
 }
 
 function editTextureOrCollision(x, y) {
+    let layer_select = document.getElementById('select_layer')
+    layer = layer_select.value
 
+    MapContainer.nodes = []
+    document.getElementById('map_view').innerHTML = ''
+
+    if(layer == 'background' || layer == 'walls') {
+        let texture_select = document.getElementById('select_texture')
+
+        EditedMap[layer][y][x] = texture_select.value
+    }
+    else if(layer == 'collision') {
+
+    }
+    else { return }
+
+    MapContainer.showMap(EditedMap)
+    EditedMap.deleteColumn(document.getElementById('delete_column_checkbox'))
 
     checkCheckbox()
 }
@@ -290,7 +309,7 @@ function addIOC(checkbox) {
         del_r.checked = false
         del_c.checked = false 
 
-        
+
     }
     else if(!checkbox.checked) {
         MapContainer.nodes.map(row => {
