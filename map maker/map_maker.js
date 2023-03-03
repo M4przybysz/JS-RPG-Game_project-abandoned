@@ -204,7 +204,7 @@ function selectCollision(select) {
 }
 
 function removeRow(remove_y) {
-    let msg = 'Are you sure you want to delete this row?<br>You CAN NOT UNDO this action!!!'
+    let msg = 'Are you sure you want to delete this row?\n\nYou CAN NOT UNDO this action!!!'
 
     if(confirm(msg)) {
         MapContainer.nodes = []
@@ -224,7 +224,7 @@ function removeRow(remove_y) {
 }
 
 function removeColumn(remove_x) {
-    let msg = 'Are you sure you want to delete this column?<br>You CAN NOT UNDO this action!!!'
+    let msg = 'Are you sure you want to delete this column?\n\nYou CAN NOT UNDO this action!!!'
 
     if(confirm(msg)) {
         MapContainer.nodes = []
