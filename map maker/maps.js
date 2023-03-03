@@ -356,7 +356,6 @@ class ActiveMap {
                 })
             })
         }
-        else { return }
     }
 
     deleteColumn(checkbox) {
@@ -383,6 +382,5 @@ class ActiveMap {
                 })
             })
         }
-        else { return }
     }
 }

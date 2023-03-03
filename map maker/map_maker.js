@@ -224,7 +224,6 @@ function removeRow(remove_y) {
 
         checkCheckbox()
     }
-    else { return }
 }
 
 function removeColumn(remove_x) {
@@ -245,7 +244,6 @@ function removeColumn(remove_x) {
 
         checkCheckbox()
     }
-    else { return }
 }
 
 function drawTestureOrCollision(checkbox) {
@@ -271,7 +269,6 @@ function drawTestureOrCollision(checkbox) {
             })
         })
     }
-    else { return }
 }
 
 function editTextureOrCollision(x, y) {
@@ -300,7 +297,6 @@ function editTextureOrCollision(x, y) {
             EditedMap[layer][y][x] = collision_select.value
         }
     }
-    else { return }
 
     MapContainer.showMap(EditedMap)
     EditedMap.deleteColumn(document.getElementById('delete_column_checkbox'))
@@ -328,7 +324,6 @@ function addIOC(checkbox) {
             })
         })
     }
-    else { return }
 
     checkCheckbox()
 }
@@ -359,7 +354,6 @@ function importMap() {
             checkCheckbox()
         }
     }
-    else { return }
 
     document.getElementById('import_map_div').style.display = 'none'
 }
