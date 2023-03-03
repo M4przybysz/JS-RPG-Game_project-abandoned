@@ -328,43 +328,43 @@ function addIOC(checkbox) {
 function mapToString(map_object) {
     let map_str = ''
 
-    map_str = `${map_object.name} : {<br>&#9;name : '${map_object.name}',<br>&#9;background_map : [<br>&#9;&#9;`
+    map_str = `${map_object.name} : {<br>&emsp;name : '${map_object.name}',<br>&emsp;background_map : [<br>&emsp;&emsp;`
     map_object.background.map(row => {
         map_str += '['
         row.map(node => { map_str += `'${node}',` })
-        map_str += '],<br>&#9;&#9;'
+        map_str += '],<br>&emsp;&emsp;'
     })
 
-    map_str += `],<br>&#9;walls_map : [<br>&#9;&#9;`
+    map_str += `],<br>&emsp;walls_map : [<br>&emsp;&emsp;`
     map_object.walls.map(row => {
         map_str += '['
         row.map(node => { map_str += `'${node}',` })
-        map_str += '],<br>&#9;&#9;'
+        map_str += '],<br>&emsp;&emsp;'
     })
 
-    map_str += `],<br>&#9;collision_map : [<br>&#9;&#9;`
+    map_str += `],<br>&emsp;collision_map : [<br>&emsp;&emsp;`
     map_object.collision.map(row => {
         map_str += '['
         row.map(node => { map_str += `'${node}',` })
-        map_str += '],<br>&#9;&#9;'
+        map_str += '],<br>&emsp;&emsp;'
     })
 
-    map_str += `], <br>&#9;objects : `
-    if(map_object.objects == null) map_str += 'null,<br>&#9;'
+    map_str += `], <br>&emsp;objects : `
+    if(map_object.objects == null) map_str += 'null,<br>&emsp;'
     else {
-        map_str += '[],<br>&#9;&#9;'
+        map_str += '[],<br>&emsp;&emsp;'
     }
 
     map_str += `items : `
-    if(map_object.items == null) map_str += 'null,<br>&#9;'
+    if(map_object.items == null) map_str += 'null,<br>&emsp;'
     else {
-        map_str += '[],<br>&#9;'
+        map_str += '[],<br>&emsp;'
     }
 
     map_str += `creatures : `
-    if(map_object.creatures == null) map_str += 'null,<br>&#9;'
+    if(map_object.creatures == null) map_str += 'null,<br>&emsp;'
     else {
-        map_str += '[],<br>&#9;'
+        map_str += '[],<br>&emsp;'
     }
 
     map_str += '},'
