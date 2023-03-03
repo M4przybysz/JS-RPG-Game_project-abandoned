@@ -47,8 +47,6 @@ const MapContainer = {
 
         this.nodes = []
 
-        console.log(AMap)
-
         let root = document.documentElement
         root.style.setProperty('--grid_rows', AMap.bg_rows.length)
         root.style.setProperty('--grid_columns', AMap.bg_rows[0])
@@ -61,7 +59,6 @@ const MapContainer = {
                 document.getElementById('map_view').appendChild(this.nodes[y][x].div)
             }
         })
-        console.log(this.nodes)
     },
 }
 
@@ -207,7 +204,7 @@ function selectCollision(select) {
 }
 
 function removeRow(remove_y) {
-    let msg = 'Are you sure you want to delete this row?\nYou CAN NOT UNDO this action!!!'
+    let msg = 'Are you sure you want to delete this row?<br>You CAN NOT UNDO this action!!!'
 
     if(confirm(msg)) {
         MapContainer.nodes = []
@@ -227,7 +224,7 @@ function removeRow(remove_y) {
 }
 
 function removeColumn(remove_x) {
-    let msg = 'Are you sure you want to delete this column?\nYou CAN NOT UNDO this action!!!'
+    let msg = 'Are you sure you want to delete this column?<br>You CAN NOT UNDO this action!!!'
 
     if(confirm(msg)) {
         MapContainer.nodes = []
@@ -328,18 +325,59 @@ function addIOC(checkbox) {
     checkCheckbox()
 }
 
-function mapToString (obj) {
-    var str = '';
+function mapToString(map_object) {
+    let map_str = ''
 
-    return str;
+    map_str = `${map_object.name} : {<br>&#9;name : '${map_object.name}',<br>&#9;background_map : [<br>&#9;&#9;`
+    map_object.background.map(row => {
+        map_str += '['
+        row.map(node => { map_str += `'${node}',` })
+        map_str += '],<br>&#9;&#9;'
+    })
+
+    map_str += `],<br>&#9;walls_map : [<br>&#9;&#9;`
+    map_object.walls.map(row => {
+        map_str += '['
+        row.map(node => { map_str += `'${node}',` })
+        map_str += '],<br>&#9;&#9;'
+    })
+
+    map_str += `],<br>&#9;collision_map : [<br>&#9;&#9;`
+    map_object.collision.map(row => {
+        map_str += '['
+        row.map(node => { map_str += `'${node}',` })
+        map_str += '],<br>&#9;&#9;'
+    })
+
+    map_str += `], <br>&#9;objects : `
+    if(map_object.objects == null) map_str += 'null,<br>&#9;'
+    else {
+        map_str += '[],<br>&#9;&#9;'
+    }
+
+    map_str += `items : `
+    if(map_object.items == null) map_str += 'null,<br>&#9;'
+    else {
+        map_str += '[],<br>&#9;'
+    }
+
+    map_str += `creatures : `
+    if(map_object.creatures == null) map_str += 'null,<br>&#9;'
+    else {
+        map_str += '[],<br>&#9;'
+    }
+
+    map_str += '},'
+
+    return map_str
 }
 
 function exportMap() {
-    console.log(EditedMap)
+    document.getElementById('export_map_span').innerHTML = mapToString(EditedMap)
 }
 
 function importMap() {
-    let msg = 'Are you sure you want to import new map?\nCurrent edited map will be overwriten!\n\nYOU CAN NOT UNDO THIS ACTION!!!'
+    let msg = 'Are you sure you want to import new map?<br>Current edited map will be overwriten!<br><br>YOU CAN NOT UNDO THIS ACTION!!!'
 
     let addIOC = document.getElementById('add_ioc_checkbox')
     let del_r = document.getElementById('delete_row_checkbox')

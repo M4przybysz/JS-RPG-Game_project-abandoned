@@ -110,6 +110,6 @@ const Start_save = {
             objects : null,
             items : null,
             creatures : null,
-        }
+        },
     }
 }
