@@ -339,7 +339,12 @@ function exportMap() {
 }
 
 function importMap() {
-    let msg = 'Are you sure you want to import new map?\nCurrent edited map will be overwriten!\nYou CAN NOT UNDO this action!!!'
+    let msg = 'Are you sure you want to import new map?\nCurrent edited map will be overwriten!\n\nYOU CAN NOT UNDO THIS ACTION!!!'
+
+    let addIOC = document.getElementById('add_ioc_checkbox')
+    let del_r = document.getElementById('delete_row_checkbox')
+    let del_c = document.getElementById('delete_column_checkbox')
+    let draw_textures = document.getElementById('draw_textures_checkbox')
 
     if(confirm(msg)) {
         let from_deafults = document.getElementById('import_map_from_defaults')
@@ -352,6 +357,11 @@ function importMap() {
 
             MapContainer.showMap(EditedMap)
             checkCheckbox()
+            
+            addIOC.checked = false
+            del_c.checked = false
+            del_r.checked = false
+            draw_textures.checked = false
         }
     }
 
