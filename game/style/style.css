@@ -23,12 +23,4 @@ main {
     height: 95vh;
 }
 
-#game_pause {
-    display: block;
-    position: absolute;
-    z-index: 100;
-    top: 4vh;
-    width: 100vw;
-    height: 96vh;
-    background-color: rgba(0, 0, 0, 0.4);
-}
+

@@ -1,5 +1,5 @@
 //* This file runs is a game loop
-
+let isFirstRun = true;
 //TODO: Define global html game components ======================================================================================
 var game_grid = Grid.grid
 var player_node = null
@@ -17,6 +17,27 @@ window.onload = () => {
 //TODO: Put game functions during playthrough ===================================================================================
 function pauseOrUnpauseGame(hardpause) {
     let game_pause = document.getElementById('game_pause')
+
+    if (isFirstRun == true) {
+        
+        game_pause.innerHTML = ""
+        isFirstRun = false
+    }
+   else {
+        game_pause.innerHTML = ""
+        const exportSaveButton = document.createElement("input");
+        exportSaveButton.setAttribute("type", "button")
+        exportSaveButton.setAttribute("value", "Export Save")
+        exportSaveButton.addEventListener("click", exportSave);
+        game_pause.appendChild(exportSaveButton);
+    
+        const importSaveButton = document.createElement("input");
+        importSaveButton.setAttribute("type", "button")
+        importSaveButton.setAttribute("value", "Import Save")
+        importSaveButton.addEventListener("click", importSave);
+        game_pause.appendChild(importSaveButton);
+    }
+
     if(game_pause.style.display === 'none' || hardpause === true) {
         game_pause.style.display = 'block'  
     }
@@ -24,6 +45,22 @@ function pauseOrUnpauseGame(hardpause) {
         game_pause.style.display = 'none'
     }
 }
+
+function startNewGame() {
+    // pobierz nazwę postaci i wybraną klasę
+    playerName = prompt("Enter player name:");
+    playerClass = prompt("Choose player class (warrior, mage, rogue):");
+    alert("Starting new game...");
+    
+    // usuń menu pauzy
+    pauseOrUnpauseGame(false)
+  }
+  function importSave() {
+
+  }
+  function exportSave() {
+
+  }
 
 // Game ticks handler 
 var interval = 250; // Interval in milliseconds
@@ -53,7 +90,7 @@ document.onvisibilitychange = () => {
         expected_time_diff = Date.now() + interval 
         gameGridTicks()
     }
-    if(document.visibilityState === 'hidden') { // Puse game when user is not on the site
+    if(document.visibilityState === 'hidden') { // Pause game when user is not on the site
         pauseOrUnpauseGame(true)
     }
 }
