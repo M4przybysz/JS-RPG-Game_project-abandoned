@@ -5,7 +5,7 @@
     top: calc((var(--grid-rows) * var(--node_height)) + 6vh);
     width: calc(var(--node_width) * var(--grid-columns));
     height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 6vh);
-    background-color: gray;
+    background-color: #313045;
 }
 
 #stats_container {
@@ -14,7 +14,7 @@
     overflow: hidden;
     width: calc(100vh - (var(--grid-rows) * var(--node_height)) - 6vh);
     height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 6vh);
-    background-color: lightgrey;
+    background-color: #854b2f;
 }
 
 #exp_circle {
@@ -25,7 +25,7 @@
     width: calc(100vh - (var(--grid-rows) * var(--node_height)) - 8vh - 8px);
     height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 8vh - 8px);
     border-radius: 50%;
-    background: conic-gradient(green calc(3.6deg * var(--exp_percent)), lightslategrey 0deg);
+    background: conic-gradient(#619f3f calc(3.6deg * var(--exp_percent)), #dfcdb7 0deg);
     
 }
 
@@ -39,7 +39,7 @@
     height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 12vh);
     border-radius: 50%;
     padding: 0px;
-    background-color: lightgrey;
+    background-color: #dfcdb7;
 }
 
 #hp_rect {
@@ -48,7 +48,7 @@
     bottom: 0px;
     width: 12vh;
     height: calc(12vh * var(--hp_percent) / 100);
-    background-color: red;
+    background-color: #c12020;
 }
 
 #ap_container {
@@ -59,7 +59,7 @@
     top: 12vh;
     height: calc(2vh - 3px);
     width: calc(100vh - (var(--grid-rows) * var(--node_height)) - 8vh);
-    background-color: lightslategrey;
+    background-color: #dfcdb7;
 }
 
 #ap_rect {
@@ -68,7 +68,7 @@
     left: 0px;
     height: calc(2vh - 3px);
     width: calc(16vh * var(--ap_percent) / 100);
-    background-color: blue;
+    background-color: #48687f;
 }
 
 #abilities_container {
@@ -80,7 +80,7 @@
     width: 460px;
     line-height: 110px;
     vertical-align: middle;
-    background-color: lightgrey;
+    background-color: #854b2f;
 }
 
 .ability {
@@ -92,5 +92,5 @@
     border: 5px solid black;
     text-align: center;
     line-height: 70px;
-    background-color: lightslategrey;
+    background-color: #dfcdb7;
 }

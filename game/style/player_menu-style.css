@@ -4,44 +4,48 @@
     box-sizing: border-box;
     top: 5vh;
     left: calc(var(--node_width) * var(--grid-columns) + 1vh);
-    z-index: 5;
     width: var(--player_menu_width);
     height: 95vh;
-    background-color: gray;
+    background-color: #313045;
 }
 
 #tabs_icons_container {
-    z-index: 6;
     width: var(--player_menu_width);
-    height: 4vh;
-    background-color: lightgrey;
+    height: 5vh;
+    background-color: #854b2f;
+    line-height: 5vh;
 }
 
 .tab_icon {
     display: inline-block;
     box-sizing: border-box;
-    z-index: 7;
-    width: 4vh;
+    width: 7vh;
     height: 4vh;
-    border: 5px solid black;
-    line-height: 20px;
-    text-align: center;
+    margin-left: 5px;
+    border: 2px solid black;
     vertical-align: middle;
+    text-align: center;
+    background-color: #313045;
+    border-radius: 1vh;
 }
 
 .tab_icon:hover {
     cursor: pointer;
+    background-color: #c58132;
+}
+
+.tab_icon img {
+    width: calc(5vh - 4px);
+    height: 100%;
 }
 
 #tabs_container {
-    z-index: 6;
     width: var(--player_menu_width);
-    height: 60vh;
+    height: 50vh;
 }
 
 #player_equipment {
-    z-index: 6;
     width: var(--player_menu_width);
-    height: 31vh;
-    background-color: lightgrey;
+    height: 40vh;
+    background-color: #854b2f;
 }

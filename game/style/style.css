@@ -12,10 +12,20 @@
     --player_menu_width: calc(100vw - (var(--grid-columns) * var(--node_width)) - 1vh);
 }
 
+@font-face {
+    font-family: Alagard;
+    src: url(./fonts/alagard.ttf);
+  }
+
+html {
+    font-family: Alagard;
+}
+
 body {
     width: 100vw;
     height: 100vh;
     margin: 0px;
+    background-color: #251d22;
 }
 
 main {
