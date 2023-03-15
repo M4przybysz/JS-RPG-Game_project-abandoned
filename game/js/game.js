@@ -7,7 +7,7 @@ if(game_grid.innerHTML != '') {
     player_node = document.getElementById('player_node')
 }
 
-//TODO: Put game actions to do on load ==========================================================================================
+//TODO: Put game actions to do when window loads ==========================================================================================
 window.onload = () => {
 
     Grid.importLocation(Player.location)
@@ -23,6 +23,12 @@ function pauseOrUnpauseGame(hardpause) {
     else {
         game_pause.style.display = 'none'
     }
+}
+
+function openMenuTab(tab_number) {
+    for(let i = 1; i < 5; i++) document.getElementById(`tab${i}`).style.display = 'none'
+
+    document.getElementById(`tab${tab_number}`).style.display = 'block'
 }
 
 // Game ticks handler 

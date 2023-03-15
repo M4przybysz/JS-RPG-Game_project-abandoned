@@ -40,12 +40,26 @@
 }
 
 #tabs_container {
+    position: relative;
     width: var(--player_menu_width);
-    height: 50vh;
+    height: var(--player_menu_width);
 }
 
 #player_equipment {
     width: var(--player_menu_width);
-    height: 40vh;
+    height: calc(90vh - var(--player_menu_width));
     background-color: #854b2f;
+}
+
+.tab {
+    position: absolute;
+    box-sizing: border-box;
+    width: var(--player_menu_width);
+    height: var(--player_menu_width);
+    padding: 3px;
+}
+
+.tab img{
+    width: 100%;
+    height: 100%;
 }
