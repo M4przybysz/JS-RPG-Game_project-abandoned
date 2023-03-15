@@ -5,9 +5,9 @@
     --grid-columns: 19;
     --node_width: calc(8vh - 3px);
     --node_height: calc(8vh - 3px);
-    --exp_percent: 75;
-    --hp_percent: 70;
-    --ap_percent: 60;
+    --exp_percent: 100;
+    --hp_percent: 100;
+    --mana_percent: 100;
 
     --player_menu_width: calc(100vw - (var(--grid-columns) * var(--node_width)) - 1vh);
 }

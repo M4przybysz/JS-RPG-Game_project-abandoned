@@ -1,17 +1,17 @@
 #player_main_stats {
     position: absolute;
     box-sizing: border-box;
-    z-index: 5;
     top: calc((var(--grid-rows) * var(--node_height)) + 6vh);
     width: calc(var(--node_width) * var(--grid-columns));
     height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 6vh);
     background-color: #313045;
 }
 
-#stats_container {
-    position: absolute;
-    z-index: 6;
-    overflow: hidden;
+#stats_bars_container {
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+    padding: 5px;
     width: calc(100vh - (var(--grid-rows) * var(--node_height)) - 6vh);
     height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 6vh);
     background-color: #854b2f;
@@ -19,11 +19,10 @@
 
 #exp_circle {
     position: absolute;
-    z-index: 7;
-    top: calc(1vh + 4px);
+    top: calc(2vh + 4px);
     left: calc(1vh + 4px);
     width: calc(100vh - (var(--grid-rows) * var(--node_height)) - 8vh - 8px);
-    height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 8vh - 8px);
+    height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 8vh - 8px - 1px);
     border-radius: 50%;
     background: conic-gradient(#619f3f calc(3.6deg * var(--exp_percent)), #dfcdb7 0deg);
     
@@ -31,12 +30,11 @@
 
 #hp_circle {
     position: absolute;
-    z-index: 8;
     overflow: hidden;
-    top: 3vh;
-    left: 3vh;
-    width: calc(100vh - (var(--grid-rows) * var(--node_height)) - 12vh);
-    height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 12vh);
+    top: calc(5vh - 2px);
+    left: calc(4vh - 1px);
+    width: calc(100vh - (var(--grid-rows) * var(--node_height)) - 14vh + 2px);
+    height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 14vh + 2px);
     border-radius: 50%;
     padding: 0px;
     background-color: #dfcdb7;
@@ -44,48 +42,60 @@
 
 #hp_rect {
     position: absolute;
-    z-index: 9;
     bottom: 0px;
     width: 12vh;
-    height: calc(12vh * var(--hp_percent) / 100);
+    height: calc((11vh - 4px) * var(--hp_percent) / 100);
     background-color: #c12020;
 }
 
-#ap_container {
+#mana_container {
     position: absolute;
-    z-index: 10;
     overflow: hidden;
-    left: 1vh;
-    top: 12vh;
-    height: calc(2vh - 3px);
+    left: calc(1vh - 1px);
+    top: calc(12vh - 3px);
+    height: calc(2vh - 1px);
     width: calc(100vh - (var(--grid-rows) * var(--node_height)) - 8vh);
+    border-radius: 5px;
     background-color: #dfcdb7;
 }
 
-#ap_rect {
+#mana_rect {
     position: absolute;
-    z-index: 11;
     left: 0px;
-    height: calc(2vh - 3px);
-    width: calc(16vh * var(--ap_percent) / 100);
-    background-color: #48687f;
+    height: calc(2vh - 1px);
+    width: calc(16vh * var(--mana_percent) / 100);
+    background-color: #425292;
+}
+
+#stats_bars_border {
+    position: absolute;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+}
+
+#stats_text_container {
+    float: left;
+    box-sizing: border-box;
+    width: 15vw;
+    height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 6vh);
+    margin-left: 10px;
+    padding: 5px;
+    background-color: #251d22;
+    color: #81a598;
 }
 
 #abilities_container {
-    position: absolute;
-    z-index: 6;
-    top: 15px;
-    left: 15vw;
-    height: 110px;
+    float: left;
     width: 460px;
-    line-height: 110px;
+    height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 6vh);
+    margin-left: 10px;
+    line-height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 6vh);
     vertical-align: middle;
     background-color: #854b2f;
 }
 
 .ability {
     display: inline-block;
-    z-index: 7;
     margin-left: 50px;
     height: 70px;
     width: 70px;

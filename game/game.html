@@ -38,8 +38,8 @@
             </div>
             <div id="tabs_container">
                 <div class="tab" id="tab1"><img src="./assets/UI/test_world_map.png"></div>
-                <div class="tab" id="tab2"></div>
-                <div class="tab" id="tab3"></div>
+                <div class="tab" id="tab2"><img src="./assets/UI/test_player_eq.png"></div>
+                <div class="tab" id="tab3"><img src="./assets/UI/test_quest_log.png"></div>
                 <div class="tab" id="tab4"></div>
             </div>
             <div id="player_backpack_container">
@@ -93,15 +93,24 @@
             </div>
         </div>
         <div id="player_main_stats"> <!-- Block at the botto of the screen with hp, mana, exp, abilities -->
-            <div id="stats_container">
+            <div id="stats_bars_container">
                 <div id="lvl_container"></div>
                 <div id="exp_circle"></div>
                 <div id="hp_circle">
                     <div id="hp_rect"></div>
                 </div>
-                <div id="ap_container">
-                    <div id="ap_rect"></div>
+                <div id="mana_container">
+                    <div id="mana_rect"></div>
                 </div>
+                <img src="./assets/UI/logo-zse.png" id="stats_bars_border">
+            </div>
+            <div id="stats_text_container">
+                <span>
+                    Level: 1                    <br>
+                    Exp: 750/1000 (75%)         <br><br>
+                    Health: 70/100 (70%)        <br>
+                    Mana: 60/100 (60%)          <br>
+                </span>
             </div>
             <div id="abilities_container">
                 <div id="ability1" class="ability">A1</div>
