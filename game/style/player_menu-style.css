@@ -69,13 +69,22 @@
 
 #player_backpack {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: calc(100% - 10px);
     height: calc(100% - 10px);
-    border-spacing: 5px;
+    padding: 5px;
+    border-spacing: 10px;
+}
+
+#player_backpack tr {
+    text-align: center;
 }
 
 .item_container {
     box-sizing: border-box;
+    margin-right: 10px;
     border: 3px solid #81a598;
     background-color: #294034;
 }
