@@ -67,6 +67,27 @@
     background-color: #425292;
 }
 
+#diamond_shape {
+    position: absolute;
+    top: calc(1vh - 8px);
+    left: 8vh;
+    width: 0;
+    height: 0;
+    border: calc(1vh + 2px + (1px)/2) solid transparent;
+    border-bottom: calc(2vh + 2px) solid aquamarine;
+}
+
+#diamond_shape::after {
+    content: '';
+    position: absolute;
+    top: calc(2vh - 1px);
+    left: calc(-1vh - 2px);
+    width: 0;
+    height: 0;
+    border: calc(1vh + 2px + (1px)/2) solid transparent;
+    border-top: 2vh solid aquamarine;
+}
+
 #stats_bars_border {
     position: absolute;
     width: calc(100% - 10px);
