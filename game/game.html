@@ -2,11 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <!--! CSS is defined for chrome browser screen size 1536px x 753px as default (browser without bookmarks bar and left bar, windows 1920x1080 * 125%) -->
-    <!--                                                    ^   -->
-    <!--                                                    |   -->
-    <!--                                                    v   -->
-    <!-- Idk how this works but you can round this to 1535px x 750px (difference is not visible until element touches edges of the browser) -->
+    <!--! CSS is defined with viewport values: vh and vw -->
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/grid-style.css">
     <link rel="stylesheet" href="style/menu-style.css">
@@ -29,7 +25,7 @@
                 <!-- Grid that will change based on ongoing game -->
             </div>
         </div>
-        <div id="player_menu"> <!-- Menu on the right side of the screen with equipment, map, stats, etc. -->
+        <div id="player_menu"> <!-- Menu on the right side of the screen with equipment, map, quests, etc. -->
             <div id="tabs_icons_container">
                 <div class="tab_icon" onclick="openMenuTab(1)"><img src="./assets/UI/menu_icons/map_icon.png"></div>
                 <div class="tab_icon" onclick="openMenuTab(2)"><img src="./assets/UI/menu_icons/map_icon.png"></div>
@@ -72,7 +68,7 @@
             </div>
         </div>
         <div id="player_main_stats"> <!-- Block at the botto of the screen with hp, mana, exp, abilities -->
-            <div id="stats_bars_container">
+            <div id="stats_bars_container"
                 <div id="lvl_container"></div>
                 <div id="exp_circle"></div>
                 <div id="hp_circle">
@@ -105,10 +101,10 @@
 
     <script src="saves.js"></script>
     <script src="js/clock.js"></script> <!-- Menu clock -->
-    <script src="js/creatures.js"></script> <!-- Living beeings classes and objects -->
+    <script src="js/creatures.js"></script> <!-- Classes and objects for creatures and their behavior, abilities, etc. -->
     <script src="js/player.js"></script> <!-- Player object -->
     <script src="js/grid.js"></script> <!-- Grid and nodes objects -->
-    <script src="js/keyboard.js"></script> <!-- -->
+    <script src="js/keyboard.js"></script> <!-- Keyboard events handling -->
     <script src="js/game.js"></script>  <!--! Game loop -->
 </body>
 </html>
