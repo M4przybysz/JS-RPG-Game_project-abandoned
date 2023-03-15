@@ -4,44 +4,86 @@
     box-sizing: border-box;
     top: 5vh;
     left: calc(var(--node_width) * var(--grid-columns) + 1vh);
-    z-index: 5;
     width: var(--player_menu_width);
     height: 95vh;
-    background-color: gray;
+    background-color: #313045;
 }
 
 #tabs_icons_container {
-    z-index: 6;
     width: var(--player_menu_width);
-    height: 4vh;
-    background-color: lightgrey;
+    height: 5vh;
+    background-color: #854b2f;
+    line-height: 5vh;
 }
 
 .tab_icon {
     display: inline-block;
     box-sizing: border-box;
-    z-index: 7;
-    width: 4vh;
+    width: 7vh;
     height: 4vh;
-    border: 5px solid black;
-    line-height: 20px;
-    text-align: center;
+    margin-left: 5px;
+    border: 2px solid black;
     vertical-align: middle;
+    text-align: center;
+    background-color: #313045;
+    border-radius: 1vh;
 }
 
 .tab_icon:hover {
     cursor: pointer;
+    background-color: #c58132;
+}
+
+.tab_icon img {
+    width: calc(5vh - 4px);
+    height: 100%;
 }
 
 #tabs_container {
-    z-index: 6;
+    position: relative;
     width: var(--player_menu_width);
-    height: 60vh;
+    height: var(--player_menu_width);
 }
 
-#player_equipment {
-    z-index: 6;
+.tab {
+    position: absolute;
+    box-sizing: border-box;
     width: var(--player_menu_width);
-    height: 31vh;
-    background-color: lightgrey;
+    height: var(--player_menu_width);
+    padding: 5px;
+}
+
+.tab img{
+    width: 100%;
+    height: 100%;
+}
+
+#player_backpack_container {
+    position: relative;
+    box-sizing: border-box;
+    width: var(--player_menu_width);
+    height: calc(90vh - var(--player_menu_width));
+    padding: 5px;
+    background-color: #854b2f;
+}
+
+#player_backpack {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    padding: 5px;
+    border-spacing: 10px;
+}
+
+#player_backpack tr {
+    text-align: center;
+}
+
+.item_container {
+    box-sizing: border-box;
+    border: 3px solid #81a598;
+    background-color: #294034;
 }
