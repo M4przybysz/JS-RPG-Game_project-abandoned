@@ -1,5 +1,5 @@
 class Node {
-    constructor(position_x, position_y, item=null, creature=null) {
+    constructor(position_x, position_y, objs=null, items=null, creature=null) {
         this.div = document.createElement('div')
 
         this.position_x = position_x
@@ -8,7 +8,8 @@ class Node {
         // this.div.textContent = `${position_x} : ${position_y}`
         this.div.classList.add('node')
 
-        this.item = item
+        this.objs = objs
+        this.items = items
         this.creature = creature
     }
 
@@ -75,7 +76,7 @@ const Grid = {
         this.importLayer(location, 'walls_map')
         this.importLayer(location, 'collision_map')
 
-        //TODO: Add items and creatures import
+        //TODO: Add objects, items and creatures import
 
         this.loadGrid() // Load Grid for new location
     },
@@ -113,7 +114,7 @@ const Grid = {
                     () => {this.nodes[y][x].addCollision(this.collision_map[py][px])},
                     () => {this.nodes[y][x].addCollision('.')}) 
 
-                //TODO: Add cration of items and creatures
+                //TODO: Add creation of objects, items and creatures
 
                 // Create player node
                 if(y == this.player_node_y && x == this.player_node_x) {
