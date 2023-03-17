@@ -42,8 +42,8 @@ function pauseOrUnpauseGame(hardpause) {
     if(game_pause.style.display === 'none' || hardpause === true) {
         game_pause.style.display = 'block'
         game_pause.style.position = 'absolute'
-        game_pause.style.top = '0vh'
-        game_pause.style.left = '0vw'
+        game_pause.style.top = '0px'
+        game_pause.style.left = '0px'
         game_pause.style.width = '100vw'
         game_pause.style.height = '100vh'
         game_pause.style.zIndex = '9999' 
