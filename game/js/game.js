@@ -17,32 +17,55 @@ window.onload = () => {
 //TODO: Put game functions during playthrough ===================================================================================
 function pauseOrUnpauseGame(hardpause) {
     let game_pause = document.getElementById('game_pause')
+    let buttons_game_pause = document.getElementById('buttons_game_pause')
 
     if (isFirstRun == true) {
         
-        game_pause.innerHTML = ""
+        buttons_game_pause.innerHTML = ""
         isFirstRun = false
     }
    else {
-        game_pause.innerHTML = ""
+        buttons_game_pause.innerHTML = ""
         let exportSaveButton = document.createElement("input")
         exportSaveButton.setAttribute("type", "button")
         exportSaveButton.setAttribute("value", "Export Save")
         exportSaveButton.addEventListener("click", exportSave)
-        game_pause.appendChild(exportSaveButton)
+        buttons_game_pause.appendChild(exportSaveButton)
     
         let importSaveButton = document.createElement("input")
         importSaveButton.setAttribute("type", "button")
         importSaveButton.setAttribute("value", "Import Save")
         importSaveButton.addEventListener("click", importSave)
-        game_pause.appendChild(importSaveButton)
+        buttons_game_pause.appendChild(importSaveButton)
     }
 
     if(game_pause.style.display === 'none' || hardpause === true) {
-        game_pause.style.display = 'block'  
+        game_pause.style.display = 'block'
+        game_pause.style.position = 'absolute'
+        game_pause.style.top = '0vh'
+        game_pause.style.left = '0vw'
+        game_pause.style.width = '100vw'
+        game_pause.style.height = '100vh'
+        game_pause.style.zIndex = '9999' 
+        game_pause.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
+
+        buttons_game_pause.style.display = 'block' 
+        buttons_game_pause.style.position = 'absolute'
+        buttons_game_pause.style.top = '50vh'
+        buttons_game_pause.style.left = '50vw'
+        buttons_game_pause.style.width = '70vw'
+        buttons_game_pause.style.height = '60vh'
+        buttons_game_pause.style.zIndex = '10000' 
+        buttons_game_pause.style.transform = 'translate(-50%, -50%)'
+        buttons_game_pause.style.backgroundColor = 'orange'
+        buttons_game_pause.style.padding = 'padding: 20px'
+        buttons_game_pause.style.border = '3px solid black'
+
+       
     }
     else {
         game_pause.style.display = 'none'
+        buttons_game_pause.style.display = 'none'
     }
 }
 
