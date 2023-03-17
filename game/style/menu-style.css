@@ -1,16 +1,40 @@
 #menu {
     box-sizing: border-box;
-    z-index: 50;
     width: 100vw;
     height: 4vh;
-    background-color: gray;
+    background-color: #313045;
 }
 
 #clock {
-    z-index: 51;
     margin: auto;
     width: 100px;
     text-align: center;
     line-height: 4vh;
-    color: hotpink;
+    padding-top: 2px;
+    font-size: calc(4vh - 4px);
+    color: #81a598;
+}
+
+#game_pause {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#buttons_game_pause {
+    display: block;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    width: 70vw;
+    height: 60vh;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    background-color: orange;
+    padding: 20px;
+    border: 3px solid black;
 }

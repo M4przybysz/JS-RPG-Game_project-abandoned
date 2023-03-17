@@ -2,11 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <!--! CSS is defined for chrome browser screen size 1536px x 753px as default (browser without bookmarks bar and left bar, windows 1920x1080 * 125%) -->
-    <!--                                                    ^   -->
-    <!--                                                    |   -->
-    <!--                                                    v   -->
-    <!-- Idk how this works but you can round this to 1535px x 750px (difference is not visible until element touches edges of the browser) -->
+    <!--! CSS is defined with viewport values: vh and vw -->
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/grid-style.css">
     <link rel="stylesheet" href="style/menu-style.css">
@@ -29,33 +25,67 @@
                 <!-- Grid that will change based on ongoing game -->
             </div>
         </div>
-        <div id="player_menu"> <!-- Menu on the right side of the screen with equipment, map, stats, etc. -->
+        <div id="player_menu"> <!-- Menu on the right side of the screen with equipment, map, quests, etc. -->
             <div id="tabs_icons_container">
-                <div class="tab_icon">i1</div>
-                <div class="tab_icon">i2</div>
-                <div class="tab_icon">i3</div>
-                <div class="tab_icon">i4</div>
+                <div class="tab_icon" onclick="openMenuTab(1)"><img src="./assets/UI/menu_icons/map_icon.png"></div>
+                <div class="tab_icon" onclick="openMenuTab(2)"><img src="./assets/UI/menu_icons/eq_icon.png"></div>
+                <div class="tab_icon" onclick="openMenuTab(3)"><img src="./assets/UI/menu_icons/quest_log_icon.png"></div>
+                <div class="tab_icon" onclick="openMenuTab(4)"><img src="./assets/UI/menu_icons/detailed_stats_icon.png"></div>
             </div>
             <div id="tabs_container">
-                <div class="tab"></div>
-                <div class="tab"></div>
-                <div class="tab"></div>
-                <div class="tab"></div>
+                <div class="tab" id="tab1"><img src="./assets/UI/test_world_map.png"></div>
+                <div class="tab" id="tab2"><img src="./assets/UI/test_player_eq.png"></div>
+                <div class="tab" id="tab3"><img src="./assets/UI/test_quest_log.png"></div>
+                <div class="tab" id="tab4"></div>
             </div>
-            <div id="player_equipment">
-                
+            <div id="player_backpack_container">
+                <table id="player_backpack">
+                    <tr>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                    </tr>
+                    <tr>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                    </tr>
+                    <tr>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                        <td class="item_container"></td>
+                    </tr>
+                </table>
             </div>
         </div>
-        <div id="player_main_stats"> <!-- Block at the botto of the screen with hp, mana, exp, abilities -->
-            <div id="stats_container">
-                <div id="lvl_container"></div>
+        <div id="player_main_stats"> <!-- Block at the bottom of the screen with hp, mana, exp, abilities -->
+            <div id="stats_bars_container">
                 <div id="exp_circle"></div>
                 <div id="hp_circle">
                     <div id="hp_rect"></div>
                 </div>
-                <div id="ap_container">
-                    <div id="ap_rect"></div>
+                <div id="mana_container">
+                    <div id="mana_rect"></div>
                 </div>
+                <div id="diamond_shape"></div>
+                <img src="./assets/UI/logo-zse.png" id="stats_bars_border">
+            </div>
+            <div id="stats_text_container">
+                <span>
+                    Level: 1                    <br>
+                    Exp: 750/1000 (75%)         <br><br>
+                    Health: 70/100 (70%)        <br>
+                    Mana: 60/100 (60%)          <br>
+                </span>
             </div>
             <div id="abilities_container">
                 <div id="ability1" class="ability">A1</div>
@@ -64,16 +94,20 @@
             </div>
         </div>
         <div id="game_pause">
-            <!-- shadow that appears when the game is pause -->
+            <!-- shadow and menu that appear when the game is paused -->
+            <div id="buttons_game_pause">
+                <input type="button" value="New Game" onclick="startNewGame()">
+                <input type="button" value="Import Save" onclick="importSave()">
+            </div>
         </div>
     </main>
 
     <script src="saves.js"></script>
     <script src="js/clock.js"></script> <!-- Menu clock -->
-    <script src="js/creatures.js"></script> <!-- Living beeings classes and objects -->
+    <script src="js/creatures.js"></script> <!-- Classes and objects for creatures and their behavior, abilities, etc. -->
     <script src="js/player.js"></script> <!-- Player object -->
     <script src="js/grid.js"></script> <!-- Grid and nodes objects -->
-    <script src="js/keyboard.js"></script> <!-- -->
+    <script src="js/keyboard.js"></script> <!-- Keyboard events handling -->
     <script src="js/game.js"></script>  <!--! Game loop -->
 </body>
 </html>
