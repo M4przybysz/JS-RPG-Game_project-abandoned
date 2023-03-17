@@ -10,7 +10,7 @@ const KEY_MAP = {
 function keydownActions(event) {
     let key = event.key.toUpperCase()
 
-    if(key == 'ESCAPE') { // pressed Escape
+    if(key == 'ESCAPE' && isFirstRun != true) { // pressed Escape
         pauseOrUnpauseGame()
     }
 
