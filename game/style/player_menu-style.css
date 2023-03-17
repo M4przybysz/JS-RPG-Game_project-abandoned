@@ -73,6 +73,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: calc(100% - 10px);
+    max-height: 205px;
     height: calc(100% - 10px);
     padding: 5px;
     border-spacing: 10px;
