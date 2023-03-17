@@ -1,6 +1,6 @@
 //* This file runs is a game loop
-let isFirstRun = true;
 //TODO: Define global html game components ======================================================================================
+let isFirstRun = true
 var game_grid = Grid.grid
 var player_node = null
 if(game_grid.innerHTML != '') { 
@@ -25,17 +25,17 @@ function pauseOrUnpauseGame(hardpause) {
     }
    else {
         game_pause.innerHTML = ""
-        const exportSaveButton = document.createElement("input");
+        let exportSaveButton = document.createElement("input")
         exportSaveButton.setAttribute("type", "button")
         exportSaveButton.setAttribute("value", "Export Save")
-        exportSaveButton.addEventListener("click", exportSave);
-        game_pause.appendChild(exportSaveButton);
+        exportSaveButton.addEventListener("click", exportSave)
+        game_pause.appendChild(exportSaveButton)
     
-        const importSaveButton = document.createElement("input");
+        let importSaveButton = document.createElement("input")
         importSaveButton.setAttribute("type", "button")
         importSaveButton.setAttribute("value", "Import Save")
-        importSaveButton.addEventListener("click", importSave);
-        game_pause.appendChild(importSaveButton);
+        importSaveButton.addEventListener("click", importSave)
+        game_pause.appendChild(importSaveButton)
     }
 
     if(game_pause.style.display === 'none' || hardpause === true) {
@@ -54,13 +54,15 @@ function startNewGame() {
     
     // usuń menu pauzy
     pauseOrUnpauseGame(false)
-  }
-  function importSave() {
+}
 
-  }
-  function exportSave() {
+function importSave() {
 
-  }
+}
+
+function exportSave() {
+
+}
 
 // Game ticks handler 
 var interval = 250; // Interval in milliseconds
