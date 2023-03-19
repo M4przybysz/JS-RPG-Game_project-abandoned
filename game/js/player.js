@@ -15,4 +15,6 @@ const Player = {
     location : Start_save.Player.location,
     position_x : Start_save.Player.position_x,
     position_y : Start_save.Player.position_y,
+
+    backpack : []
 }
