@@ -63,7 +63,6 @@
     box-sizing: border-box;
     width: var(--player_menu_width);
     height: calc(90vh - var(--player_menu_width));
-    padding: 5px;
     background-color: #854b2f;
 }
 
@@ -73,18 +72,23 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: calc(100% - 10px);
-    max-height: 205px;
-    height: calc(100% - 10px);
-    padding: 5px;
-    border-spacing: 10px;
+    border-spacing: 7px;
 }
 
 #player_backpack tr {
     text-align: center;
+    height: 16%;
 }
 
 .item_container {
     box-sizing: border-box;
     border: 3px solid #81a598;
+    aspect-ratio: 1/1;
     background-color: #294034;
 }
+
+.item_container:after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+  }
