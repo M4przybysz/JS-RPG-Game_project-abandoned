@@ -1,5 +1,5 @@
 //* This file runs is a game loop
-//TODO: Define global html game components ======================================================================================
+//TODO: Define global game components ======================================================================================
 let isFirstRun = true
 var game_grid = Grid.grid
 var player_node = null

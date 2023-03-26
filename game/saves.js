@@ -12,6 +12,15 @@ const Start_save = {
         position_x : 3,
         position_y : 3,
     },
+    Item_list : [
+    
+    ],
+    MapObj_list : [
+
+    ],
+    Creature_list : [
+
+    ],
     Locations : {
         Test1 : { // Simple room
             name : 'Test1',
