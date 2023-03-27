@@ -1,5 +1,5 @@
 class Node {
-    constructor(position_x, position_y, objs=null, items=null, creature=null) {
+    constructor(position_x, position_y, map_object = null, items = null, creature = null) {
         this.div = document.createElement('div')
 
         this.position_x = position_x
@@ -8,7 +8,7 @@ class Node {
         // this.div.textContent = `${position_x} : ${position_y}`
         this.div.classList.add('node')
 
-        this.objs = objs
+        this.object = map_object
         this.items = items
         this.creature = creature
     }
@@ -31,6 +31,7 @@ const Grid = {
     walls_map : [],
     collision_map : [],
     items_map : null,
+    objects_map : null,
     creatures_map : null,
 
     texture_dict : { // dictionary containing texture corresponding to its id
@@ -41,12 +42,14 @@ const Grid = {
         'f' :       './assets/test_textures/floor.png',
         'w' :       './assets/test_textures/wall.png',
         'ls' :      './assets/test_textures/location_switch.png',
+
+        'fire' :    './assets/objects/fire.png',
     },
 
     container : document.getElementById('game_grid_container'),
     grid : document.getElementById('game_grid'),
 
-    importLayer : function(location, layer) {
+    importLayer(location, layer) {
         this[layer] = []
 
         let multinode_regex = new RegExp(/^[x]\d+\/[a-zA-Z\.]+(-s:\d+:\d+:[a-zA-Z0-9=+<>()\[\]{}_\-]+)?$/) // Multinode notation - x axis
@@ -67,8 +70,32 @@ const Grid = {
         })
     },
 
-    importLocation : function(location_name) { // Import every layer of location map
-        let location = Start_save.Locations[location_name]
+    importIOC(location, IOClist, ioc) {
+        let IOC = ioc + '_map'
+        this[IOC] = null
+
+        if(location[ioc] != null) { // Check if any IOC id is set in this location
+            let list = Active_save[IOClist]
+            this[IOC] = []
+
+            // Create 2d array of id as big as background_map array
+            this.background_map.map((row, y) => {
+                this[IOC].push([])
+                row.map(() => {
+                    this[IOC][y].push(null)
+                })
+            })
+
+            // Write IOC id at the right place
+            location[ioc].map((id) => {
+                this[IOC][list[id].y][list[id].x] = list[id].id
+            })
+            // console.log(this[IOC])
+        }
+    },
+
+    importLocation(location_name) { // Import every layer of location map
+        let location = Active_save.Locations[location_name]
 
         this.nodes = [] // Clear nodes before renderring new location
         
@@ -76,13 +103,17 @@ const Grid = {
         this.importLayer(location, 'walls_map')
         this.importLayer(location, 'collision_map')
 
+        this.importIOC(location, 'Item_list', 'items')
+        this.importIOC(location, 'MapObj_list', 'objects')
+        this.importIOC(location, 'Creature_list', 'creatures')
+
         //TODO: Add objects, items and creatures import
 
         this.loadGrid() // Load Grid for new location
     },
 
     // Simplify checking of Grid node's position in relation to entire location layer
-    nodeInLayerAction : function(x, y, layer, action_if_true, action_if_false) { 
+    nodeInLayerAction(x, y, layer, action_if_true, action_if_false) { 
         if(x < 0 || y < 0 || y > this[layer].length-1 || x > this[layer][y].length-1) {
             action_if_false() // Action if node position is outside the layer map
             return
@@ -90,7 +121,7 @@ const Grid = {
         action_if_true() // Action if node position is inside the layer map
     },
 
-    loadGrid : function() {
+    loadGrid() {
         this.grid.innerHTML = ""
 
         // Create Grid nodes
@@ -114,7 +145,19 @@ const Grid = {
                     () => {this.nodes[y][x].addCollision(this.collision_map[py][px])},
                     () => {this.nodes[y][x].addCollision('.')}) 
 
-                //TODO: Add creation of objects, items and creatures
+                //TODO: Add creation of map objects, items and creatures
+                // Create item
+
+
+                // Create map object
+                if(this.objects_map != null) {
+                    this.nodeInLayerAction(px, py, 'objects_map',
+                        () => {this.nodes[y][x].div.innerHTML += `<img src="${this.texture_dict[(this.objects_map[py][px] != null) ? Active_save.MapObj_list[this.objects_map[py][px]].texture : 'n']}">`},
+                        () => {this.nodes[y][x].div.innerHTML += ''})
+                }
+
+                // Create creature
+
 
                 // Create player node
                 if(y == this.player_node_y && x == this.player_node_x) {
@@ -132,7 +175,7 @@ const Grid = {
         console.log(this.nodes)
     },
 
-    moveGrid : function(key) {
+    moveGrid(key) {
         // Check if Player is accessing a new location
         let switch_location = new RegExp(/^[a-zA-Z\.]+-s:\d+:\d+:[a-zA-Z0-9=+<>()\[\]{}_\-]+$/)
         if(switch_location.test(this.nodes[this.player_node_y][this.player_node_x].collision)) {
@@ -189,6 +232,20 @@ const Grid = {
                     this.nodeInLayerAction(node.position_x, node.position_y, 'collision_map', 
                         () => {this.nodes[y][x].addCollision(this.collision_map[node.position_y][node.position_x])},
                         () => {this.nodes[y][x].addCollision('.')}) 
+
+                    // Draw items
+
+
+                    // Draw map objects
+                    if(this.objects_map != null) {
+                        this.nodeInLayerAction(node.position_x, node.position_y, 'objects_map',
+                            () => {this.nodes[y][x].div.innerHTML += `<img src="${this.texture_dict[(this.objects_map[node.position_y][node.position_x] != null) ? Active_save.MapObj_list[this.objects_map[node.position_y][node.position_x]].texture : 'n']}">`},
+                            () => {this.nodes[y][x].div.innerHTML += ''})
+                    }
+
+                    // Draw creatures
+
+
                 })
             })
 
@@ -198,9 +255,24 @@ const Grid = {
         }
 
         //TODO: Change this to real player assets when they are done
+        // Set wall texture under player node
+        document.getElementById('player_node').innerHTML = `<img src="${
+            this.texture_dict[(Player.position_y >= 0 && Player.position_y < this.walls_map.length && Player.position_x >= 0 && Player.position_x < this.walls_map[Player.position_y].length) ? this.walls_map[Player.position_y][Player.position_x] : 'n']
+        }">`
+
+        // Set item texture under playr node
+
+
+
+        // Set map object texture under playr node
+        if(this.objects_map != null && this.objects_map[Player.position_y][Player.position_x] != null) {
+            document.getElementById('player_node').innerHTML += `<img src="${
+                this.texture_dict[(Player.position_y >= 0 && Player.position_y < this.objects_map.length && Player.position_x >= 0 && Player.position_x < this.objects_map[Player.position_y].length) ? Active_save.MapObj_list[this.objects_map[Player.position_y][Player.position_x]].texture : 'n']
+            }">`   
+        }
+
         // Set player node image
-        document.getElementById('player_node').innerHTML = `<img src="${this.texture_dict[(Player.position_y >= 0 && Player.position_y < this.walls_map.length && Player.position_x >= 0 && Player.position_x < this.walls_map[Player.position_y].length) ? this.walls_map[Player.position_y][Player.position_x] : 'n']}">
-                                                            <img src="assets/test_textures/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">`
+        document.getElementById('player_node').innerHTML += `<img src="assets/test_textures/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">`
 
         active_wsad_key = null // Clear last pressed key
     }

@@ -35,14 +35,18 @@ class Consumable extends Item {
 //================================================================================================================================
 //================================================================================================================================
 class MapObj {
-    constructor(id, name, map_x, map_y, img) {
+    constructor(id, name, map_x, map_y, texture = null) {
         this.id = id
         this.name = name
 
         this.y = map_y
         this.x = map_x
 
-        this.img = img
+        this.texture = texture
+    }
+
+    activateEffect(condition) {
+
     }
 }
 

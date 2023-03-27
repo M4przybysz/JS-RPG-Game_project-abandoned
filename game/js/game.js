@@ -9,7 +9,8 @@ if(game_grid.innerHTML != '') {
 
 //TODO: Put game actions to do when window loads ==========================================================================================
 window.onload = () => {
-
+    Active_save = Start_save
+    
     Grid.importLocation(Player.location)
     gameGridTicks() // First game ticks loop start
 }
@@ -70,13 +71,16 @@ function pauseOrUnpauseGame(hardpause) {
 }
 
 function startNewGame() {
-    // pobierz nazwę postaci i wybraną klasę
+    // load player name and chosen class
     playerName = prompt("Enter player name:");
     playerClass = prompt("Choose player class (warrior, mage, rogue):");
     alert("Starting new game...");
     
-    // usuń menu pauzy
+    // delete pause menu
     pauseOrUnpauseGame(false)
+
+    // set Start_save as Active_save
+    Active_save = Start_save
 }
 
 function importSave() {

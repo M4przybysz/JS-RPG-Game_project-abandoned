@@ -1,3 +1,5 @@
+var Active_save = {}
+
 const Imported_save = {}
 
 const Start_save = {
@@ -12,15 +14,15 @@ const Start_save = {
         position_x : 3,
         position_y : 3,
     },
-    Item_list : [
-    
-    ],
-    MapObj_list : [
+    Item_list : {
 
-    ],
-    Creature_list : [
+    },
+    MapObj_list : {
+        test_map_object : new MapObj('test_map_object', 'test_map_object', 2, 2, 'fire'),
+    },
+    Creature_list : {
 
-    ],
+    },
     Locations : {
         Test1 : { // Simple room
             name : 'Test1',
@@ -46,8 +48,8 @@ const Start_save = {
                                 ['a', 'x10/.', 'a'],
                                 ['.', 'x10/a', '.'],
             ],
-            objects : null,
             items : null,
+            objects : ['test_map_object'],
             creatures : null,
         },
         Test2 : { // Big test room
@@ -116,8 +118,8 @@ const Start_save = {
                                 ['x2/a', 'x3/.', 'a', 'x4/.', 'a', '.', 'x2/a', 'x5/.', 'a'],
                                 ['x20/a'],
             ],
-            objects : null,
             items : null,
+            objects : null,
             creatures : null,
         },
     }
