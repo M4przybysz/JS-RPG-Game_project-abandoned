@@ -236,10 +236,15 @@ const Grid = {
                     // Draw items
 
 
-                    // Draw map objects
+                    // Draw map objects and activate their effects
                     if(this.objects_map != null) {
                         this.nodeInLayerAction(node.position_x, node.position_y, 'objects_map',
-                            () => {this.nodes[y][x].div.innerHTML += `<img src="${this.texture_dict[(this.objects_map[node.position_y][node.position_x] != null) ? Active_save.MapObj_list[this.objects_map[node.position_y][node.position_x]].texture : 'n']}">`},
+                            () => {
+                                this.nodes[y][x].div.innerHTML += `<img src="${this.texture_dict[(this.objects_map[node.position_y][node.position_x] != null) ? Active_save.MapObj_list[this.objects_map[node.position_y][node.position_x]].texture : 'n']}">`
+                                if(this.objects_map[node.position_y][node.position_x] != null) {
+                                    Active_save.MapObj_list[this.objects_map[node.position_y][node.position_x]].activateEffect()
+                                }
+                            },
                             () => {this.nodes[y][x].div.innerHTML += ''})
                     }
 

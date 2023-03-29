@@ -1,10 +1,14 @@
 class Item {
-    constructor(id, name, map_x, map_y, ) {
+    use() {}
+
+    constructor(id, name, map_x, map_y, usage = () => {console.log('Hello!!! I do nothing!')}) {
         this.id = id
         this.name = name
 
         this.y = map_y
         this.x = map_x
+
+        this.use = usage
     }
 }
 
@@ -35,18 +39,17 @@ class Consumable extends Item {
 //================================================================================================================================
 //================================================================================================================================
 class MapObj {
-    constructor(id, name, map_x, map_y, texture = null) {
+    activateEffect() {}
+
+    constructor(id, map_x, map_y, texture = null, effect = () => {console.log('Hello!!! I do nothing!')}) {
         this.id = id
-        this.name = name
 
         this.y = map_y
         this.x = map_x
 
         this.texture = texture
-    }
 
-    activateEffect(condition) {
-
+        this.activateEffect = effect // Overwrite "activateEffect" method
     }
 }
 

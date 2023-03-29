@@ -18,7 +18,7 @@ const Start_save = {
 
     },
     MapObj_list : {
-        test_map_object : new MapObj('test_map_object', 'test_map_object', 2, 2, 'fire'),
+        test_map_object : new MapObj('test_map_object', 2, 2, 'fire'),
     },
     Creature_list : {
 
