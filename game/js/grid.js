@@ -35,6 +35,7 @@ const Grid = {
     creatures_map : null,
 
     texture_dict : { // dictionary containing texture corresponding to its id
+        // test textures
         undefined : './assets/null.png',
         null :      './assets/null.png',
         'n' :       './assets/null.png',
@@ -43,7 +44,11 @@ const Grid = {
         'w' :       './assets/test_textures/wall.png',
         'ls' :      './assets/test_textures/location_switch.png',
 
+        // map objects
         'fire' :    './assets/objects/fire.png',
+
+        // items
+        'stick' : './assets/items/stick.png',
     },
 
     container : document.getElementById('game_grid_container'),
@@ -71,24 +76,24 @@ const Grid = {
     },
 
     importIOC(location, IOClist, ioc) {
-        let IOC = ioc + '_map'
-        this[IOC] = null
+        let grid_ioc_map = ioc + '_map'
+        this[grid_ioc_map] = null
 
         if(location[ioc] != null) { // Check if any IOC id is set in this location
             let list = Active_save[IOClist]
-            this[IOC] = []
+            this[grid_ioc_map] = []
 
             // Create 2d array of id as big as background_map array
             this.background_map.map((row, y) => {
-                this[IOC].push([])
+                this[grid_ioc_map].push([])
                 row.map(() => {
-                    this[IOC][y].push(null)
+                    this[grid_ioc_map][y].push(null)
                 })
             })
 
             // Write IOC id at the right place
             location[ioc].map((id) => {
-                this[IOC][list[id].y][list[id].x] = list[id].id
+                this[grid_ioc_map][list[id].y][list[id].x] = list[id].id
             })
             // console.log(this[IOC])
         }
@@ -106,8 +111,6 @@ const Grid = {
         this.importIOC(location, 'Item_list', 'items')
         this.importIOC(location, 'MapObj_list', 'objects')
         this.importIOC(location, 'Creature_list', 'creatures')
-
-        //TODO: Add objects, items and creatures import
 
         this.loadGrid() // Load Grid for new location
     },
@@ -145,10 +148,6 @@ const Grid = {
                     () => {this.nodes[y][x].addCollision(this.collision_map[py][px])},
                     () => {this.nodes[y][x].addCollision('.')}) 
 
-                //TODO: Add creation of map objects, items and creatures
-                // Create item
-
-
                 // Create map object
                 if(this.objects_map != null) {
                     this.nodeInLayerAction(px, py, 'objects_map',
@@ -156,6 +155,14 @@ const Grid = {
                         () => {this.nodes[y][x].div.innerHTML += ''})
                 }
 
+                // Create item
+                if(this.items_map != null) {
+                    this.nodeInLayerAction(px, py, 'items_map', 
+                        () => {this.nodes[y][x].div.innerHTML += `<img src="${this.texture_dict[(this.items_map[py][px] != null) ? Active_save.Item_list[this.items_map[py][px]].texture : 'n']}">`},
+                        () => {this.nodes[y][x].div.innerHTML += ''})
+                }
+
+                //TODO: Add creation of reatures
                 // Create creature
 
 
@@ -233,9 +240,6 @@ const Grid = {
                         () => {this.nodes[y][x].addCollision(this.collision_map[node.position_y][node.position_x])},
                         () => {this.nodes[y][x].addCollision('.')}) 
 
-                    // Draw items
-
-
                     // Draw map objects and activate their effects
                     if(this.objects_map != null) {
                         this.nodeInLayerAction(node.position_x, node.position_y, 'objects_map',
@@ -245,6 +249,13 @@ const Grid = {
                                     Active_save.MapObj_list[this.objects_map[node.position_y][node.position_x]].activateEffect()
                                 }
                             },
+                            () => {this.nodes[y][x].div.innerHTML += ''})
+                    }
+
+                    // Draw items
+                    if(this.items_map != null) {
+                        this.nodeInLayerAction(node.position_x, node.position_y, 'objects_map',
+                            () => {this.nodes[y][x].div.innerHTML += `<img src="${this.texture_dict[(this.items_map[node.position_y][node.position_x] != null) ? Active_save.Item_list[this.items_map[node.position_y][node.position_x]].texture : 'n']}">`},
                             () => {this.nodes[y][x].div.innerHTML += ''})
                     }
 
@@ -265,14 +276,17 @@ const Grid = {
             this.texture_dict[(Player.position_y >= 0 && Player.position_y < this.walls_map.length && Player.position_x >= 0 && Player.position_x < this.walls_map[Player.position_y].length) ? this.walls_map[Player.position_y][Player.position_x] : 'n']
         }">`
 
-        // Set item texture under playr node
-
-
-
         // Set map object texture under playr node
         if(this.objects_map != null && this.objects_map[Player.position_y][Player.position_x] != null) {
             document.getElementById('player_node').innerHTML += `<img src="${
                 this.texture_dict[(Player.position_y >= 0 && Player.position_y < this.objects_map.length && Player.position_x >= 0 && Player.position_x < this.objects_map[Player.position_y].length) ? Active_save.MapObj_list[this.objects_map[Player.position_y][Player.position_x]].texture : 'n']
+            }">`   
+        }
+
+        // Set item texture under playr node
+        if(this.objects_map != null && this.items_map[Player.position_y][Player.position_x] != null) {
+            document.getElementById('player_node').innerHTML += `<img src="${
+                this.texture_dict[(Player.position_y >= 0 && Player.position_y < this.items_map.length && Player.position_x >= 0 && Player.position_x < this.items_map[Player.position_y].length) ? Active_save.Item_list[this.items_map[Player.position_y][Player.position_x]].texture : 'n']
             }">`   
         }
 

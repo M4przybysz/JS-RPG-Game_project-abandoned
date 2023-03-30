@@ -1,38 +1,40 @@
 class Item {
     use() {}
 
-    constructor(id, name, map_x, map_y, usage = () => {console.log('Hello!!! I do nothing!')}) {
+    constructor(id, name, map_x, map_y, texture, usage = () => {console.log('Hello!!! I am an item!')}) {
         this.id = id
         this.name = name
 
         this.y = map_y
         this.x = map_x
 
+        this.texture = texture
+
         this.use = usage
     }
 }
 
 class Tool extends Item {
-    constructor(id, name, map_x, map_y, ) {
-        super(id, name, map_x, map_y, )
+    constructor(id, name, map_x, map_y, texture, usage = () => {console.log('Hello!!! I am a tool!')}) {
+        super(id, name, map_x, map_y, texture, usage)
     }
 }
 
 class Weapon extends Tool {
-    constructor(id, name, map_x, map_y, ) {
-        super(id, name, map_x, map_y, )
+    constructor(id, name, map_x, map_y, texture, usage = () => {console.log('Hello!!! I a weapon!')}) {
+        super(id, name, map_x, map_y, texture, usage)
     }
 }
 
 class Armor extends Item {
-    constructor(id, name, map_x, map_y, ) {
-        super(id, name, map_x, map_y, )
+    constructor(id, name, map_x, map_y, texture, usage = () => {console.log('Hello!!! I am on armor piece!')}) {
+        super(id, name, map_x, map_y, texture, usage)
     }
 }
 
 class Consumable extends Item {
-    constructor(id, name, map_x, map_y, ) {
-        super(id, name, map_x, map_y, )
+    constructor(id, name, map_x, map_y, texture, usage = () => {console.log('Hello!!! I am a consumable item!')}) {
+        super(id, name, map_x, map_y, texture, usage)
     }
 }
 
