@@ -18,9 +18,15 @@ const Player = {
     position_x : Start_save.Player.position_x,
     position_y : Start_save.Player.position_y,
 
+    equiped_item : null,
+
+    head_armor : null,
+    torso_armor : null,
+    legs_armor : null,
+
     backpack : [],
 
-    pickupItem : function(item_id) {
+    pickUpItem : function(item_id) {
         let backpack_max_capacity = 18
         let item_containers = document.getElementsByClassName('item_container')
 

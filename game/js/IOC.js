@@ -43,7 +43,7 @@ class Consumable extends Item {
 class MapObj {
     activateEffect() {}
 
-    constructor(id, map_x, map_y, texture = null, effect = () => {console.log('Hello!!! I do nothing!')}) {
+    constructor(id, map_x, map_y, texture = null, effect = () => {return}) {
         this.id = id
 
         this.y = map_y
