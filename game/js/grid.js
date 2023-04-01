@@ -34,22 +34,7 @@ const Grid = {
     objects_map : null,
     creatures_map : null,
 
-    texture_dict : { // dictionary containing texture corresponding to its id
-        // test textures
-        undefined : './assets/null.png',
-        null :      './assets/null.png',
-        'n' :       './assets/null.png',
-        '.' :       './assets/void.png',
-        'f' :       './assets/test_textures/floor.png',
-        'w' :       './assets/test_textures/wall.png',
-        'ls' :      './assets/test_textures/location_switch.png',
-
-        // map objects
-        'fire' :    './assets/objects/fire.png',
-
-        // items
-        'stick' : './assets/items/stick.png',
-    },
+    
 
     container : document.getElementById('game_grid_container'),
     grid : document.getElementById('game_grid'),
@@ -79,7 +64,7 @@ const Grid = {
         let grid_ioc_map = ioc + '_map'
         this[grid_ioc_map] = null
 
-        if(location[ioc] != null) { // Check if any IOC id is set in this location
+        if(location[ioc] != null && Object.keys(Active_save[IOClist]).length != 0) { // Check if any IOC id is set in this location
             let list = Active_save[IOClist]
             this[grid_ioc_map] = []
 
@@ -135,13 +120,13 @@ const Grid = {
 
                 // Create background
                 this.nodeInLayerAction(px, py, 'background_map', 
-                    () => {this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict[this.background_map[py][px]]})`}, 
-                    () => {this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict['.']})`}) 
+                    () => {this.nodes[y][x].div.style.backgroundImage = `url(${Texture_dict[this.background_map[py][px]]})`}, 
+                    () => {this.nodes[y][x].div.style.backgroundImage = `url(${Texture_dict['.']})`}) 
 
                 // Create "walls"
                 this.nodeInLayerAction(px, py, 'walls_map', 
-                    () => {this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict[this.walls_map[py][px]]}">`},
-                    () => {this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict['n']}">`}) 
+                    () => {this.nodes[y][x].div.innerHTML = `<img src="${Texture_dict[this.walls_map[py][px]]}">`},
+                    () => {this.nodes[y][x].div.innerHTML = `<img src="${Texture_dict['n']}">`}) 
 
                 // Apply collision
                 this.nodeInLayerAction(px, py, 'collision_map',
@@ -151,14 +136,14 @@ const Grid = {
                 // Create map object
                 if(this.objects_map != null) {
                     this.nodeInLayerAction(px, py, 'objects_map',
-                        () => {this.nodes[y][x].div.innerHTML += `<img src="${this.texture_dict[(this.objects_map[py][px] != null) ? Active_save.MapObj_list[this.objects_map[py][px]].texture : 'n']}">`},
+                        () => {this.nodes[y][x].div.innerHTML += `<img src="${Texture_dict[(this.objects_map[py][px] != null) ? Active_save.MapObj_list[this.objects_map[py][px]].texture : 'n']}">`},
                         () => {this.nodes[y][x].div.innerHTML += ''})
                 }
 
                 // Create item
                 if(this.items_map != null) {
                     this.nodeInLayerAction(px, py, 'items_map', 
-                        () => {this.nodes[y][x].div.innerHTML += `<img src="${this.texture_dict[(this.items_map[py][px] != null) ? Active_save.Item_list[this.items_map[py][px]].texture : 'n']}">`},
+                        () => {this.nodes[y][x].div.innerHTML += `<img src="${Texture_dict[(this.items_map[py][px] != null) ? Active_save.Item_list[this.items_map[py][px]].texture : 'n']}">`},
                         () => {this.nodes[y][x].div.innerHTML += ''})
                 }
 
@@ -169,7 +154,7 @@ const Grid = {
                 // Create player node
                 if(y == this.player_node_y && x == this.player_node_x) {
                     this.nodes[y][x].div.id = 'player_node'
-                    this.nodes[y][x].div.innerHTML = '<img src="./assets/test_textures/arrow_down.png" alt="Sorry. There is no arrow."></img>'
+                    this.nodes[y][x].div.innerHTML = `<img src="./assets/test_textures/arrow_${KEY_DICT[Player.direction]}.png" alt="Sorry. There is no arrow."></img>`
                 }
             }
         }
@@ -227,13 +212,13 @@ const Grid = {
 
                     // Draw background
                     this.nodeInLayerAction(node.position_x, node.position_y, 'background_map', 
-                        () => {this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict[this.background_map[node.position_y][node.position_x]]})`}, 
-                        () => {this.nodes[y][x].div.style.backgroundImage = `url(${this.texture_dict['.']})`})
+                        () => {this.nodes[y][x].div.style.backgroundImage = `url(${Texture_dict[this.background_map[node.position_y][node.position_x]]})`}, 
+                        () => {this.nodes[y][x].div.style.backgroundImage = `url(${Texture_dict['.']})`})
 
                     // Draw 'walls'
                     this.nodeInLayerAction(node.position_x, node.position_y, 'walls_map', 
-                        () => {this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict[this.walls_map[node.position_y][node.position_x]]}">`}, 
-                        () => {this.nodes[y][x].div.innerHTML = `<img src="${this.texture_dict['n']}">`}) 
+                        () => {this.nodes[y][x].div.innerHTML = `<img src="${Texture_dict[this.walls_map[node.position_y][node.position_x]]}">`}, 
+                        () => {this.nodes[y][x].div.innerHTML = `<img src="${Texture_dict['n']}">`}) 
 
                     // Apply collision
                     this.nodeInLayerAction(node.position_x, node.position_y, 'collision_map', 
@@ -244,7 +229,7 @@ const Grid = {
                     if(this.objects_map != null) {
                         this.nodeInLayerAction(node.position_x, node.position_y, 'objects_map',
                             () => {
-                                this.nodes[y][x].div.innerHTML += `<img src="${this.texture_dict[(this.objects_map[node.position_y][node.position_x] != null) ? Active_save.MapObj_list[this.objects_map[node.position_y][node.position_x]].texture : 'n']}">`
+                                this.nodes[y][x].div.innerHTML += `<img src="${Texture_dict[(this.objects_map[node.position_y][node.position_x] != null) ? Active_save.MapObj_list[this.objects_map[node.position_y][node.position_x]].texture : 'n']}">`
                                 if(this.objects_map[node.position_y][node.position_x] != null) {
                                     Active_save.MapObj_list[this.objects_map[node.position_y][node.position_x]].activateEffect()
                                 }
@@ -255,7 +240,7 @@ const Grid = {
                     // Draw items
                     if(this.items_map != null) {
                         this.nodeInLayerAction(node.position_x, node.position_y, 'objects_map',
-                            () => {this.nodes[y][x].div.innerHTML += `<img src="${this.texture_dict[(this.items_map[node.position_y][node.position_x] != null) ? Active_save.Item_list[this.items_map[node.position_y][node.position_x]].texture : 'n']}">`},
+                            () => {this.nodes[y][x].div.innerHTML += `<img src="${Texture_dict[(this.items_map[node.position_y][node.position_x] != null) ? Active_save.Item_list[this.items_map[node.position_y][node.position_x]].texture : 'n']}">`},
                             () => {this.nodes[y][x].div.innerHTML += ''})
                     }
 
@@ -273,25 +258,26 @@ const Grid = {
         //TODO: Change this to real player assets when they are done
         // Set wall texture under player node
         document.getElementById('player_node').innerHTML = `<img src="${
-            this.texture_dict[(Player.position_y >= 0 && Player.position_y < this.walls_map.length && Player.position_x >= 0 && Player.position_x < this.walls_map[Player.position_y].length) ? this.walls_map[Player.position_y][Player.position_x] : 'n']
+            Texture_dict[(Player.position_y >= 0 && Player.position_y < this.walls_map.length && Player.position_x >= 0 && Player.position_x < this.walls_map[Player.position_y].length) ? this.walls_map[Player.position_y][Player.position_x] : 'n']
         }">`
 
         // Set map object texture under playr node
         if(this.objects_map != null && this.objects_map[Player.position_y][Player.position_x] != null) {
             document.getElementById('player_node').innerHTML += `<img src="${
-                this.texture_dict[(Player.position_y >= 0 && Player.position_y < this.objects_map.length && Player.position_x >= 0 && Player.position_x < this.objects_map[Player.position_y].length) ? Active_save.MapObj_list[this.objects_map[Player.position_y][Player.position_x]].texture : 'n']
+                Texture_dict[(Player.position_y >= 0 && Player.position_y < this.objects_map.length && Player.position_x >= 0 && Player.position_x < this.objects_map[Player.position_y].length) ? Active_save.MapObj_list[this.objects_map[Player.position_y][Player.position_x]].texture : 'n']
             }">`   
         }
 
         // Set item texture under playr node
         if(this.objects_map != null && this.items_map[Player.position_y][Player.position_x] != null) {
             document.getElementById('player_node').innerHTML += `<img src="${
-                this.texture_dict[(Player.position_y >= 0 && Player.position_y < this.items_map.length && Player.position_x >= 0 && Player.position_x < this.items_map[Player.position_y].length) ? Active_save.Item_list[this.items_map[Player.position_y][Player.position_x]].texture : 'n']
+                Texture_dict[(Player.position_y >= 0 && Player.position_y < this.items_map.length && Player.position_x >= 0 && Player.position_x < this.items_map[Player.position_y].length) ? Active_save.Item_list[this.items_map[Player.position_y][Player.position_x]].texture : 'n']
             }">`   
         }
 
         // Set player node image
-        document.getElementById('player_node').innerHTML += `<img src="assets/test_textures/arrow_${KEY_MAP[key]}.png" alt="Sorry. There is no arrow.">`
+        document.getElementById('player_node').innerHTML += `<img src="assets/test_textures/arrow_${KEY_DICT[key]}.png" alt="Sorry. There is no arrow.">`
+        Player.direction = key
 
         active_wsad_key = null // Clear last pressed key
     }

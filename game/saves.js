@@ -1,6 +1,22 @@
 var Active_save = {}
+var Imported_save = {}
 
-const Imported_save = {}
+const Texture_dict = { // dictionary containing texture corresponding to its id
+    // test textures
+    undefined : './assets/null.png',
+    null :      './assets/null.png',
+    'n' :       './assets/null.png',
+    '.' :       './assets/void.png',
+    'f' :       './assets/test_textures/floor.png',
+    'w' :       './assets/test_textures/wall.png',
+    'ls' :      './assets/test_textures/location_switch.png',
+
+    // map objects
+    'fire' :    './assets/objects/fire.png',
+
+    // items
+    'stick' : './assets/items/stick.png',
+}
 
 const Start_save = {
     Player : {
