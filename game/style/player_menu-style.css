@@ -6,7 +6,7 @@
     left: calc(var(--node_width) * var(--grid-columns) + 1vh);
     width: var(--player_menu_width);
     height: 95vh;
-    background-color: #313045;
+    background-color: #251d22;
 }
 
 #tabs_icons_container {
@@ -19,10 +19,10 @@
 .tab_icon {
     display: inline-block;
     box-sizing: border-box;
-    width: 7vh;
+    width: 4vw;
     height: 4vh;
     margin-left: 5px;
-    border: 2px solid black;
+    border: 3px solid #251d22;
     vertical-align: middle;
     text-align: center;
     background-color: #313045;
@@ -56,6 +56,58 @@
 .tab img{
     width: 100%;
     height: 100%;
+}
+
+#player_equipment {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#player_equipment .eq_item_container {
+    box-sizing: border-box;
+    position: absolute;
+    width: 4vw;
+    height: 4vw;
+    border: 4px solid #251d22;
+    aspect-ratio: 1/1;
+    background-color: #dfcdb7;
+}
+
+#head_armor {
+    top: 7vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#torso_armor {
+    top: 20vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#legs_armor {
+    top: 33vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#equiped_item {
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+
+#equiped_heal {
+    position: absolute;
+    top: 75%;
+    left: 20%;
+    width: 5vh;
+    height: 5vh;
+    transform: translate(-50%, -50%);
+    border: 4px solid #251d22;
+    aspect-ratio: 1/1;
+    background-color: #dfcdb7;
 }
 
 #player_backpack_container {

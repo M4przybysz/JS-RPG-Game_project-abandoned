@@ -4,20 +4,21 @@ const Player = {
     
     direction : 'S', // W - north, D - east, S - south, A - west 
 
+    // Basic statistics
     lvl : 1,
     exp : 0,
     exp_to_next_lvl : 100,
-
     hp : 100,
     max_hp : 100,
-
     mana : 100,
     max_mana : 100,
 
+    // Player location and position
     location : Start_save.Player.location,
     position_x : Start_save.Player.position_x,
     position_y : Start_save.Player.position_y,
 
+    // Plaer inventory
     equiped_item : null,
 
     head_armor : null,
