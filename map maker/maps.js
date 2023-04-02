@@ -216,6 +216,54 @@ const DefaultMaps = {
         items : null,
         creatures : null,
     },
+
+    Test_School_Entrance_And_Interiors : {
+        name : 'Test_School_Entrance_And_Interiors',
+        
+        background_map : [
+        ['.','.','.','.','sch_floor','sch_floor','.','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','.','sch_floor','sch_floor','sch_floor',],
+        ['sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','.','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','.','sch_floor','sch_floor','sch_floor',],
+        ['sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','.','.','sch_floor','.',],
+        ['.','sch_floor','.','.','sch_floor','.','.','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor','sch_floor',],
+        ['sch_floor','sch_floor','.','sch_floor','sch_floor','sch_floor','.','sch_floor','sch_floor','.','.','sch_floor','.','.','sch_floor','.',],
+        ['sch_floor','sch_floor','.','sch_floor','sch_floor','sch_floor','.','sch_floor','sch_floor','.','sch_floor','sch_floor','.','sch_floor','sch_floor','.',],
+        ['.','.','.','.','.','.','.','sch_floor','sch_floor','.','.','.','.','.','.','.',],
+        ['grass','grass','grass','grass','grass','grass','grass','pavement_vertical','pavement_vertical','grass','grass','grass','grass','grass','grass','grass',],
+        ['pavement_horizontal','pavement_horizontal','pavement_horizontal','pavement_horizontal','pavement_horizontal','pavement_horizontal','pavement_horizontal','pavement_horizontal','pavement_horizontal','pavement_horizontal','pavement_horizontal','pavement_horizontal','pavement_horizontal','pavement_horizontal','pavement_horizontal','pavement_horizontal',],
+        ['grass','grass','grass','grass','grass','grass','grass','grass','grass','grass','grass','grass','grass','grass','grass','grass',],
+        ['grass','grass','grass','grass','grass','grass','grass','grass','grass','grass','grass','grass','grass','grass','grass','grass',],
+        ],
+        walls_map : [
+        ['sch_in_uwall','sch_in_uwall','sch_in_uwall','sch_in_uwall','n','n','sch_in_rwall','n','n','sch_in_uwall','n','n','sch_in_lwall','n','n','n',],
+        ['n','n','n','n','n','n','sch_in_rwall','n','n','n','n','n','sch_in_lwall','n','n','n',],
+        ['n','n','n','n','n','n','n','n','n','n','n','n','sch_in_lwall','sch_in_corner4','n','sch_in_corner3',],
+        ['sch_in_uwall','n','sch_in_corner2','sch_in_uwall','n','sch_in_uwall','sch_in_corner2','n','n','n','n','n','n','n','n','n',],
+        ['n','n','sch_in_rwall','n','n','n','sch_in_rwall','n','n','sch_in_corner1','sch_in_uwall','n','sch_in_corner2','sch_in_corner1','n','sch_in_corner2',],
+        ['n','n','sch_in_rwall','n','n','n','sch_in_rwall','n','n','sch_in_lwall','n','n','sch_in_rwall','n','n','sch_in_rwall',],
+        ['sch_out_win','sch_out_win','sch_out_win','sch_out_win','sch_out_win','sch_out_win','sch_out_win','n','n','sch_out_win','sch_out_win','sch_out_win','sch_out_win','sch_out_win','sch_out_win','sch_out_win',],
+        ['n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n',],
+        ['n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n',],
+        ['n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n',],
+        ['n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n',],
+        ],
+        collision_map : [
+        ['a','a','a','a','.','.','a','.','.','a','.','.','a','.','.','.',],
+        ['.','.','.','.','.','.','a','.','.','.','.','.','a','.','.','.',],
+        ['.','.','.','.','.','.','.','.','.','.','.','.','a','a','.','a',],
+        ['a','.','a','a','.','a','a','.','.','.','.','.','.','.','.','.',],
+        ['.','.','a','.','.','.','a','.','.','a','a','.','a','a','.','a',],
+        ['.','.','a','.','.','.','a','.','.','a','.','.','a','.','.','a',],
+        ['a','a','a','a','a','a','a','.','.','a','a','a','a','a','a','a',],
+        ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.',],
+        ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.',],
+        ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.',],
+        ['.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.',],
+        ],
+        objects : null,
+        items : null,
+        creatures : null,
+    },
+        
 }
 
 class ActiveMap {
