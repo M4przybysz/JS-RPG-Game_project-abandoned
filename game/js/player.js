@@ -33,40 +33,9 @@ const Player = {
 
     backpack : [],
 
-    pickUpItem(item_id) {
-        let backpack_max_capacity = 18
-        
-        if(this.backpack.length < backpack_max_capacity) {
-            let item_containers = document.getElementsByClassName('item_container')
-            this.backpack.push(item_id) // Add new item
-
-            // Refresh visual backpack
-            for(let container of item_containers) { container.innerHTML = '' }
-            for(let i = 0; i < this.backpack.length; i++) {
-                let item = Active_save.Item_list[this.backpack[i]]
-                item_containers[i].innerHTML = `<img src="${Texture_dict[item.texture]}">
-                                                <div class="item_functions">
-                                                    <input type="button" value="Equip" onclick="Player.equipItem(${(item.constructor.name == 'Armor' && item.armor_place == 'head') ? 'head_armor' : 
-                                                                                                                (((item.constructor.name == 'Armor' && item.armor_place == 'torso') ? 'troso_armor' : 
-                                                                                                                ((item.constructor.name == 'Armor' && item.armor_place == 'legs') ? 'legs_armor' : 
-                                                                                                                (item.constructor.name == 'Healing' || item.constructor.name == 'Food') ? 'equiped_healing' : 'equiped_item')))}, ${this.backpack[i]})">
-                                                    <input type="button" value="Use" onclick="Active_save.Item_list[${this.backpack[i]}.use()">
-                                                    <input type="button" value="Info" onclick="Active_save.Item_list[${this.backpack[i]}.showInfo()">
-                                                    <input type="button" value="Drop" onclick="Player.dropItem(${this.backpack[i]})">
-                                                </div>`
-            }
-        }
-        else {
-            console.log(`backpack max capacity (${backpack_max_capacity}) reached. Can't pick up more items`)
-        }
-    },
-
-    dropItem(item_id) {
-        // Delete item from bacpack 
-        this.backpack.splice(this.backpack.indexOf(item_id), 1)
-
-        // Refresh visual backpack
+    refreshBackpack() {
         let item_containers = document.getElementsByClassName('item_container')
+        // Refresh visual backpack
         for(let container of item_containers) { container.innerHTML = '' }
         for(let i = 0; i < this.backpack.length; i++) {
             let item = Active_save.Item_list[this.backpack[i]]
@@ -81,6 +50,26 @@ const Player = {
                                                 <input type="button" value="Drop" onclick="Player.dropItem(${this.backpack[i]})">
                                             </div>`
         }
+    },
+
+    pickUpItem(item_id) {
+        let backpack_max_capacity = 18
+        
+        if(this.backpack.length < backpack_max_capacity) {
+            this.backpack.push(item_id) // Add new item
+
+            this.refreshBackpack()
+        }
+        else {
+            console.log(`backpack max capacity (${backpack_max_capacity}) reached. Can't pick up more items`)
+        }
+    },
+
+    dropItem(item_id) {
+        // Delete item from bacpack 
+        this.backpack.splice(this.backpack.indexOf(item_id), 1)
+
+        this.refreshBackpack()
     },
 
     equipItem(eq_place, item_id) {
