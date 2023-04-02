@@ -27,14 +27,33 @@ class Weapon extends Tool {
 }
 
 class Armor extends Item {
-    constructor(id, name, map_x, map_y, texture, usage = () => {console.log('Hello!!! I am on armor piece!')}) {
-        super(id, name, map_x, map_y, texture, usage)
+    constructor(id, name, map_x, map_y, texture, armor_place, def_value = 0) {
+        super(id, name, map_x, map_y, texture, () => {console.log('Hello!!! I am on armor piece!')})
+
+        this.armor_place = armor_place // head, torso, legs
+        this.def = def_value // numeric defense value
     }
 }
 
 class Consumable extends Item {
-    constructor(id, name, map_x, map_y, texture, usage = () => {console.log('Hello!!! I am a consumable item!')}) {
-        super(id, name, map_x, map_y, texture, usage)
+    constructor(id, name, map_x, map_y, texture, ) {
+        super(id, name, map_x, map_y, texture, () => {console.log('Hello!!! I am a consumable item!')})
+    }
+}
+
+class Healing extends Consumable {
+    constructor(id, name, map_x, map_y, texture, healing_value = 0) {
+        super(id, name, map_x, map_y, texture)
+
+        this.healing_value = healing_value // how much item will heal the player
+    }
+}
+
+class Food extends Consumable {
+    constructor(id, name, map_x, map_y, texture, healing_value = 0, ) {
+        super(id, name, map_x, map_y, texture, )
+
+        this.healing_value = healing_value
     }
 }
 
@@ -43,7 +62,7 @@ class Consumable extends Item {
 class MapObj {
     activateEffect() {}
 
-    constructor(id, map_x, map_y, texture = null, effect = () => {return}) {
+    constructor(id, map_x, map_y, texture = null, effect = () => {}) {
         this.id = id
 
         this.y = map_y

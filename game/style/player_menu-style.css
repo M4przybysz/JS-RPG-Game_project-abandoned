@@ -6,7 +6,7 @@
     left: calc(var(--node_width) * var(--grid-columns) + 1vh);
     width: var(--player_menu_width);
     height: 95vh;
-    background-color: #251d22;
+    background-color: #313045;
 }
 
 #tabs_icons_container {
@@ -64,7 +64,7 @@
     height: 100%;
 }
 
-#player_equipment .eq_item_container {
+.eq_item_container {
     box-sizing: border-box;
     position: absolute;
     width: 4vw;
@@ -98,7 +98,7 @@
     transform: translate(-50%, -50%);
 }
 
-#equiped_heal {
+#equiped_healing {
     position: absolute;
     top: 75%;
     left: 20%;
@@ -108,6 +108,14 @@
     border: 4px solid #251d22;
     aspect-ratio: 1/1;
     background-color: #dfcdb7;
+}
+
+.eq_item_container img {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
 }
 
 #player_backpack_container {

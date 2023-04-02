@@ -21,11 +21,10 @@ function pauseOrUnpauseGame(hardpause) {
     let buttons_game_pause = document.getElementById('buttons_game_pause')
 
     if (isFirstRun == true) {
-        
         buttons_game_pause.innerHTML = ""
         isFirstRun = false
     }
-   else {
+    else {
         buttons_game_pause.innerHTML = ""
         let exportSaveButton = document.createElement("input")
         exportSaveButton.setAttribute("type", "button")
