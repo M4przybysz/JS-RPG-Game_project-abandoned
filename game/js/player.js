@@ -35,13 +35,25 @@ const Player = {
 
     pickUpItem(item_id) {
         let backpack_max_capacity = 18
-        let item_containers = document.getElementsByClassName('item_container')
-
+        
         if(this.backpack.length < backpack_max_capacity) {
-            this.backpack.push(item_id)
+            let item_containers = document.getElementsByClassName('item_container')
+            this.backpack.push(item_id) // Add new item
 
+            // Refresh visual backpack
+            for(let container of item_containers) { container.innerHTML = '' }
             for(let i = 0; i < this.backpack.length; i++) {
-                item_containers[i].innerHTML = `<img src="${Texture_dict[Active_save.Item_list[this.backpack[i]].texture]}">`
+                let item = Active_save.Item_list[this.backpack[i]]
+                item_containers[i].innerHTML = `<img src="${Texture_dict[item.texture]}">
+                                                <div class="item_functions">
+                                                    <input type="button" value="Equip" onclick="Player.equipItem(${(item.constructor.name == 'Armor' && item.armor_place == 'head') ? 'head_armor' : 
+                                                                                                                (((item.constructor.name == 'Armor' && item.armor_place == 'torso') ? 'troso_armor' : 
+                                                                                                                ((item.constructor.name == 'Armor' && item.armor_place == 'legs') ? 'legs_armor' : 
+                                                                                                                (item.constructor.name == 'Healing' || item.constructor.name == 'Food') ? 'equiped_healing' : 'equiped_item')))}, ${this.backpack[i]})">
+                                                    <input type="button" value="Use" onclick="Active_save.Item_list[${this.backpack[i]}.use()">
+                                                    <input type="button" value="Info" onclick="Active_save.Item_list[${this.backpack[i]}.showInfo()">
+                                                    <input type="button" value="Drop" onclick="Player.dropItem(${this.backpack[i]})">
+                                                </div>`
             }
         }
         else {
@@ -49,10 +61,32 @@ const Player = {
         }
     },
 
+    dropItem(item_id) {
+        // Delete item from bacpack 
+        this.backpack.splice(this.backpack.indexOf(item_id), 1)
+
+        // Refresh visual backpack
+        let item_containers = document.getElementsByClassName('item_container')
+        for(let container of item_containers) { container.innerHTML = '' }
+        for(let i = 0; i < this.backpack.length; i++) {
+            let item = Active_save.Item_list[this.backpack[i]]
+            item_containers[i].innerHTML = `<img src="${Texture_dict[item.texture]}">
+                                            <div class="item_functions">
+                                                <input type="button" value="Equip" onclick="Player.equipItem(${(item.constructor.name == 'Armor' && item.armor_place == 'head') ? 'head_armor' : 
+                                                                                                            (((item.constructor.name == 'Armor' && item.armor_place == 'torso') ? 'troso_armor' : 
+                                                                                                            ((item.constructor.name == 'Armor' && item.armor_place == 'legs') ? 'legs_armor' : 
+                                                                                                            (item.constructor.name == 'Healing' || item.constructor.name == 'Food') ? 'equiped_healing' : 'equiped_item')))}, ${this.backpack[i]})">
+                                                <input type="button" value="Use" onclick="Active_save.Item_list[${this.backpack[i]}.use()">
+                                                <input type="button" value="Info" onclick="Active_save.Item_list[${this.backpack[i]}.showInfo()">
+                                                <input type="button" value="Drop" onclick="Player.dropItem(${this.backpack[i]})">
+                                            </div>`
+        }
+    },
+
     equipItem(eq_place, item_id) {
         let item = Active_save.Item_list[item_id]
 
-        // check if item can be placed
+        // Check if item can be placed
         if(eq_place == 'head_armor' && (item.constructor.name != 'Armor' || item.armor_place != 'head')) return
         if(eq_place == 'torso_armor' && (item.constructor.name != 'Armor' || item.armor_place != 'torso')) return
         if(eq_place == 'legs_armor' && (item.constructor.name != 'Armor' || item.armor_place != 'legs')) return
@@ -60,18 +94,18 @@ const Player = {
 
         let item_containers = document.getElementsByClassName('item_container')
 
-        // place item
+        // Place item
         this[eq_place] = item_id
         document.getElementById(eq_place).innerHTML = `<img src="${Texture_dict[item.texture]}">`
 
-        // update player stats
+        // Update player stats
         Player.defense = 0 + Active_save.Item_list[this.head_armor] ? Active_save.Item_list[this.head_armor].def_value : 0 
             + Active_save.Item_list[this.torso_armor] ? Active_save.Item_list[this.torso_armor].def_value : 0
             + Active_save.Item_list[this.legs_armor] ? Active_save.Item_list[this.legs_armor].def_value : 0
 
         Player.attack_power = 0 + Active_save.Item_list[this.equiped_item] ? Active_save.Item_list[this.equiped_item].attack_value ?? 0 : 0
 
-        // refresh backpack
+        // Refresh backpack
         this.backpack.splice(this.backpack.indexOf(item_id), 1)
         for(let i = 0; i < item_containers.length; i++) {
             item_containers[i].innerHTML = ''

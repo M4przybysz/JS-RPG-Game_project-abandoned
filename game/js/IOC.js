@@ -1,3 +1,5 @@
+//================================================================================================================================
+//================================================================================================================================
 class Item {
     use() {}
 
@@ -31,7 +33,7 @@ class Armor extends Item {
         super(id, name, map_x, map_y, texture, () => {console.log('Hello!!! I am on armor piece!')})
 
         this.armor_place = armor_place // head, torso, legs
-        this.def = def_value // numeric defense value
+        this.def = def_value // Numeric defense value
     }
 }
 
@@ -45,7 +47,7 @@ class Healing extends Consumable {
     constructor(id, name, map_x, map_y, texture, healing_value = 0) {
         super(id, name, map_x, map_y, texture)
 
-        this.healing_value = healing_value // how much item will heal the player
+        this.healing_value = healing_value // How much item will heal the player
     }
 }
 

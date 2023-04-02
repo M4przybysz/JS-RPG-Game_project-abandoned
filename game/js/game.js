@@ -70,15 +70,15 @@ function pauseOrUnpauseGame(hardpause) {
 }
 
 function startNewGame() {
-    // load player name and chosen class
+    // Load player name and chosen class
     playerName = prompt("Enter player name:");
     playerClass = prompt("Choose player class (warrior, mage, rogue):");
     alert("Starting new game...");
     
-    // delete pause menu
+    // Delete pause menu
     pauseOrUnpauseGame(false)
 
-    // set Start_save as Active_save
+    // Set Start_save as Active_save
     Active_save = Start_save
 }
 

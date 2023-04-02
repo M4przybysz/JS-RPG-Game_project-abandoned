@@ -8,19 +8,39 @@ const KEY_DICT = {
 }
 
 function itemPickUp(x_mod, y_mod) {
-    // add item to player backpack
+    // Add item to player backpack
     Player.pickUpItem(Grid.items_map[Player.position_y + y_mod][Player.position_x + x_mod])
 
-    // item is in player backpack so it has no x and y values
+    // Item is in player backpack so it has no x and y values
     Active_save.Item_list[Grid.items_map[Player.position_y + y_mod][Player.position_x + x_mod]].x = null
     Active_save.Item_list[Grid.items_map[Player.position_y + y_mod][Player.position_x + x_mod]].y = null
 
-    // remove item from location and grid
+    // Remove item from location and grid
     Active_save.Locations[Player.location].items.splice(Active_save.Locations[Player.location].items.indexOf(Grid.items_map[Player.position_y + y_mod][Player.position_x + x_mod]), 1)
     Grid.items_map[Player.position_y + y_mod][Player.position_x + x_mod] = null
 
-    // reload location
+    // Reload location
     Grid.importLocation(Player.location)
+}
+
+function itemDrop(item_id) {
+    if(Grid.items_map[Player.position_y][Player.position_x] === null && Player.backpack.includes(item_id)) {
+        Player.dropItem(item_id)
+
+        // Add item to location
+        Grid.items_map[Player.position_y][Player.position_x] = item_id 
+        if(Active_save.Locations[Player.location].items == null) Active_save.Locations[Player.location].items = []
+        Active_save.Locations[Player.location].items.push(item_id)
+
+        Active_save.Item_list[item_id].x = Player.position_x
+        Active_save.Item_list[item_id].y = Player.position_y
+
+        // Refresh location
+        Grid.importLocation(Player.location)
+    }
+    else {
+        console.log(`can't drop this item at this location`)
+    }
 }
 
 function keydownActions(event) {
@@ -30,12 +50,12 @@ function keydownActions(event) {
         pauseOrUnpauseGame()
     }
 
-    // pressed WSAD
+    // Pressed WSAD
     if((key == 'W' || key == 'S' || key == 'A' || key == 'D') && game_pause.style.display == 'none') { 
         active_wsad_key = key
     }
 
-    // pressed E (action key)
+    // Pressed E (action key)
     if(key == 'E' && game_pause.style.display == 'none') {
         // Pick up an item
         if(Grid.items_map[Player.position_y][Player.position_x] != null) { itemPickUp(0, 0) }

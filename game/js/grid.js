@@ -14,7 +14,7 @@ class Node {
     }
 
     addCollision(id) {
-        if(id == 'a') this.collision = 'udlr' // a means 'all' while setting collision
+        if(id == 'a') this.collision = 'udlr' // 'a' means 'all' while setting collision
         else this.collision = id
     }
 }
@@ -22,10 +22,10 @@ class Node {
 const Grid = {
     grid_width : 19,
     grid_height : 10,
-    player_node_x : 9, // position x of player_node in grid
-    player_node_y : 5, // position y of player_node in grid
+    player_node_x : 9, // Position x of player_node in grid
+    player_node_y : 5, // Position y of player_node in grid
 
-    // layered maps of the game
+    // Layered maps of the game
     nodes : [],
     background_map : [],
     walls_map : [],
@@ -60,19 +60,18 @@ const Grid = {
 
     importIOC(location, IOClist, ioc) {
         let grid_ioc_map = ioc + '_map'
-        this[grid_ioc_map] = null
+        this[grid_ioc_map] = []
+
+        // Create 2d array of id as big as background_map array
+        this.background_map.map((row, y) => {
+            this[grid_ioc_map].push([])
+            row.map(() => {
+                this[grid_ioc_map][y].push(null)
+            })
+        })
 
         if(location[ioc] != null && Object.keys(Active_save[IOClist]).length != 0) { // Check if any IOC id is set in this location
             let list = Active_save[IOClist]
-            this[grid_ioc_map] = []
-
-            // Create 2d array of id as big as background_map array
-            this.background_map.map((row, y) => {
-                this[grid_ioc_map].push([])
-                row.map(() => {
-                    this[grid_ioc_map][y].push(null)
-                })
-            })
 
             // Write IOC id at the right place
             location[ioc].map((id) => {
@@ -152,7 +151,7 @@ const Grid = {
                 // Create player node
                 if(y == this.player_node_y && x == this.player_node_x) {
                     this.nodes[y][x].div.id = 'player_node'
-                    this.nodes[y][x].div.innerHTML = `<img src="./assets/test_textures/arrow_${KEY_DICT[Player.direction]}.png" alt="Sorry. There is no arrow."></img>`
+                    this.nodes[y][x].div.innerHTML += `<img src="./assets/test_textures/arrow_${KEY_DICT[Player.direction]}.png" alt="Sorry. There is no arrow."></img>`
                 }
             }
         }
@@ -254,7 +253,6 @@ const Grid = {
             Player.position_y += XY[key][1]
         }
 
-        //TODO: Change this to real player assets when they are done
         // Set wall texture under player node
         document.getElementById('player_node').innerHTML = `<img src="${
             Texture_dict[(Player.position_y >= 0 && Player.position_y < this.walls_map.length && Player.position_x >= 0 && Player.position_x < this.walls_map[Player.position_y].length) ? this.walls_map[Player.position_y][Player.position_x] : 'n']
@@ -274,6 +272,7 @@ const Grid = {
             }">`   
         }
 
+        //TODO: Change this to real player assets when they are done
         // Set player node image
         document.getElementById('player_node').innerHTML += `<img src="assets/test_textures/arrow_${KEY_DICT[key]}.png" alt="Sorry. There is no arrow.">`
         Player.direction = key

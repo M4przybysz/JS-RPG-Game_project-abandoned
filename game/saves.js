@@ -1,8 +1,8 @@
 var Active_save = {}
 var Imported_save = {}
 
-const Texture_dict = { // dictionary containing texture corresponding to its id
-    // test textures
+const Texture_dict = { // Dictionary containing texture corresponding to its id
+    // Test textures
     undefined : './assets/null.png',
     null :      './assets/null.png',
     'n' :       './assets/null.png',
@@ -11,10 +11,10 @@ const Texture_dict = { // dictionary containing texture corresponding to its id
     'w' :       './assets/test_textures/wall.png',
     'ls' :      './assets/test_textures/location_switch.png',
 
-    // map objects
+    // Map objects
     'fire' :    './assets/objects/fire.png',
 
-    // items
+    // Items
     'stick' : './assets/items/stick.png',
 }
 
