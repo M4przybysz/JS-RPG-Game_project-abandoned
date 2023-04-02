@@ -328,7 +328,7 @@ function addIOC(checkbox) {
 function mapToString(map_object) {
     let map_str = ''
 
-    map_str = `${map_object.name} : {<br>&emsp;name : '${map_object.name}',<br>&emsp;background_map : [<br>&emsp;&emsp;`
+    map_str = `${map_object.name.trim().replaceAll(' ', '_')} : {<br>&emsp;name : '${map_object.name.trim().replaceAll(' ', '_')}',<br>&emsp;background_map : [<br>&emsp;&emsp;`
     map_object.background.map(row => {
         map_str += '['
         row.map(node => { map_str += `'${node}',` })

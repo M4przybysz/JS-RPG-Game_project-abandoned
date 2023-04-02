@@ -60,8 +60,6 @@ function pauseOrUnpauseGame(hardpause) {
         buttons_game_pause.style.backgroundColor = 'orange'
         buttons_game_pause.style.padding = 'padding: 20px'
         buttons_game_pause.style.border = '3px solid black'
-
-       
     }
     else {
         game_pause.style.display = 'none'
