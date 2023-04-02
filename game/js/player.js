@@ -35,8 +35,9 @@ const Player = {
 
     refreshBackpack() {
         let item_containers = document.getElementsByClassName('item_container')
-        // Refresh visual backpack
+
         for(let container of item_containers) { container.innerHTML = '' }
+        
         for(let i = 0; i < this.backpack.length; i++) {
             let item = Active_save.Item_list[this.backpack[i]]
             item_containers[i].innerHTML = `<img src="${Texture_dict[item.texture]}">
