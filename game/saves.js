@@ -31,8 +31,8 @@ const Start_save = {
         position_y : 3,
     },
     Item_list : {
-        test_item : new Weapon('test_item', 'test_stick', 4, 4, 'stick'),
-        test_item2 : new Weapon('test_item2', 'test_stick', 3, 4, 'stick'),
+        test_item : new Weapon('test_item', 'test_stick', 4, 4, 'stick', 10),
+        test_item2 : new Weapon('test_item2', 'test_stick', 3, 4, 'stick', 20),
     },
     MapObj_list : {
         test_map_object : new MapObj('test_map_object', 2, 2, 'fire'),

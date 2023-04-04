@@ -23,8 +23,10 @@ class Tool extends Item {
 }
 
 class Weapon extends Tool {
-    constructor(id, name, map_x, map_y, texture, usage = () => {console.log('Hello!!! I am a weapon!')}) {
+    constructor(id, name, map_x, map_y, texture, attack_power = 0, usage = () => {console.log('Hello!!! I am a weapon!')}) {
         super(id, name, map_x, map_y, texture, usage)
+
+        this.attack_power_value = attack_power
     }
 
     showInfo() {

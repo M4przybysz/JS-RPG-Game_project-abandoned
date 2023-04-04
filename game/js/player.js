@@ -34,6 +34,14 @@ const Player = {
     backpack : [],
     backpack_max_capacity : 18,
 
+    updateStats() {
+        this.defense = 0 + Active_save.Item_list[this.head_armor] ? Active_save.Item_list[this.head_armor].def_value : 0
+            + Active_save.Item_list[this.torso_armor] ? Active_save.Item_list[this.torso_armor].def_value : 0
+            + Active_save.Item_list[this.legs_armor] ? Active_save.Item_list[this.legs_armor].def_value : 0
+
+        this.attack_power = 0 + Active_save.Item_list[this.equiped_item] ? Active_save.Item_list[this.equiped_item].attack_power_value ?? 0 : 0
+    },
+
     refreshBackpack(pickup = true) {
         let item_containers = document.getElementsByClassName('item_container')
 
@@ -78,10 +86,15 @@ const Player = {
     },
 
     dropEqItem(eq_place) {
+        // Remove item from equipment
         document.getElementById(eq_place).setAttribute('onclick', '')
         document.getElementById(eq_place).innerHTML = ''
         this[eq_place] = null
 
+        // Update player stats
+        this.updateStats()
+
+        // Refresh backpack
         this.refreshBackpack()
     },
 
@@ -112,11 +125,7 @@ const Player = {
         document.getElementById(eq_place).setAttribute('onclick', `showEqItemFunctions('${eq_place}')`)
 
         // Update player stats
-        Player.defense = 0 + Active_save.Item_list[this.head_armor] ? Active_save.Item_list[this.head_armor].def_value : 0
-            + Active_save.Item_list[this.torso_armor] ? Active_save.Item_list[this.torso_armor].def_value : 0
-            + Active_save.Item_list[this.legs_armor] ? Active_save.Item_list[this.legs_armor].def_value : 0
-
-        Player.attack_power = 0 + Active_save.Item_list[this.equiped_item] ? Active_save.Item_list[this.equiped_item].attack_value ?? 0 : 0
+        this.updateStats()
 
         // Refresh backpack
         this.backpack.splice(this.backpack.indexOf(item_id), 1)
@@ -129,10 +138,15 @@ const Player = {
 
     unequipItem(eq_place, item_id) {
         if(this.backpack.length < this.backpack_max_capacity) {
+            // Remove item from equipment
             document.getElementById(eq_place).setAttribute('onclick', '')
             document.getElementById(eq_place).innerHTML = ''
             this[eq_place] = null
 
+            // Update player stats
+            this.updateStats()
+
+            // Refresh backpack
             this.backpack.push(item_id)
             this.refreshBackpack()
         }
