@@ -1,16 +1,65 @@
-const Imported_save = {}
+var Active_save = {}
+var Imported_save = {}
+
+const Texture_dict = { // Dictionary containing texture corresponding to its id
+    // Test textures
+    undefined : './assets/null.png',
+    null :      './assets/null.png',
+    'n' :       './assets/null.png',
+    '.' :       './assets/void.png',
+    'f' :       './assets/test_textures/floor.png',
+    'w' :       './assets/test_textures/wall.png',
+    'ls' :      './assets/test_textures/location_switch.png',
+
+    // Map textures
+
+    // Map objects
+    'fire' :    './assets/objects/fire.png',
+
+    // Items
+    'stick' : './assets/items/stick.png',
+    'coin' : './assets/items/coin.png',
+}
 
 const Start_save = {
     Player : {
         name : null,
         class : null,
-        lvl : 0,
-        exp : 0,
-        hp : 100,
-        ap : 100,
+        direction : 'S',
         location : 'Test2',
         position_x : 3,
         position_y : 3,
+
+        lvl : 0,
+        exp : 0,
+
+        max_hp : 100,
+        max_mana : 100,
+
+        hp : 100,
+        mana : 100,
+        defense : 0,
+        attack_power : 0,
+
+        equiped_item : null,
+        equiped_healing : null,
+
+        head_armor : null,
+        torso_armor : null,
+        legs_armor : null,
+
+        backpack : [],
+        backpack_max_capacity : 18,
+    },
+    Item_list : {
+        test_item : new Weapon('test_item', 'test_stick', 4, 4, 'stick', 10),
+        test_item2 : new Armor('test_item2', 'test_coin', 3, 4, 'coin', 'head', 20),
+    },
+    MapObj_list : {
+        test_map_object : new MapObj('test_map_object', 2, 2, 'fire'),
+    },
+    Creature_list : {
+
     },
     Locations : {
         Test1 : { // Simple room
@@ -37,8 +86,8 @@ const Start_save = {
                                 ['a', 'x10/.', 'a'],
                                 ['.', 'x10/a', '.'],
             ],
-            objects : null,
-            items : null,
+            items : ['test_item', 'test_item2'],
+            objects : ['test_map_object'],
             creatures : null,
         },
         Test2 : { // Big test room
@@ -107,8 +156,8 @@ const Start_save = {
                                 ['x2/a', 'x3/.', 'a', 'x4/.', 'a', '.', 'x2/a', 'x5/.', 'a'],
                                 ['x20/a'],
             ],
-            objects : null,
             items : null,
+            objects : null,
             creatures : null,
         },
     }

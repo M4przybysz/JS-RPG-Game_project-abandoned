@@ -5,7 +5,7 @@
     --grid-columns: 19;
     --node_width: calc(8vh - 3px);
     --node_height: calc(8vh - 3px);
-    --exp_percent: 100;
+    --exp_percent: 0;
     --hp_percent: 100;
     --mana_percent: 100;
 

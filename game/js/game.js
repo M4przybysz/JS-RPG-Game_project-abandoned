@@ -1,5 +1,5 @@
 //* This file runs is a game loop
-//TODO: Define global html game components ======================================================================================
+//TODO: Define global game components ======================================================================================
 let isFirstRun = true
 var game_grid = Grid.grid
 var player_node = null
@@ -9,6 +9,10 @@ if(game_grid.innerHTML != '') {
 
 //TODO: Put game actions to do when window loads ==========================================================================================
 window.onload = () => {
+    Active_save = Start_save
+    
+    showPlayerInfo()
+    openMenuTab(1)
 
     Grid.importLocation(Player.location)
     gameGridTicks() // First game ticks loop start
@@ -20,11 +24,10 @@ function pauseOrUnpauseGame(hardpause) {
     let buttons_game_pause = document.getElementById('buttons_game_pause')
 
     if (isFirstRun == true) {
-        
         buttons_game_pause.innerHTML = ""
         isFirstRun = false
     }
-   else {
+    else {
         buttons_game_pause.innerHTML = ""
         let exportSaveButton = document.createElement("input")
         exportSaveButton.setAttribute("type", "button")
@@ -68,13 +71,16 @@ function pauseOrUnpauseGame(hardpause) {
 }
 
 function startNewGame() {
-    // pobierz nazwę postaci i wybraną klasę
+    // Load player name and chosen class
     playerName = prompt("Enter player name:");
     playerClass = prompt("Choose player class (warrior, mage, rogue):");
     alert("Starting new game...");
     
-    // usuń menu pauzy
+    // Delete pause menu
     pauseOrUnpauseGame(false)
+
+    // Set Start_save as Active_save
+    Active_save = Start_save
 }
 
 function importSave() {
@@ -91,22 +97,27 @@ function openMenuTab(tab_number) {
     document.getElementById(`tab${tab_number}`).style.display = 'block'
 }
 
-// Game ticks handler 
+// Grid ticks handler 
 var interval = 250; // Interval in milliseconds
-var expected_time_diff = Date.now() + interval; // Expected time difference between interval and now in milliseconds
+var expected_time_diff = Date.now() + interval // Expected time difference (in milliseconds) between ticks
 var time_diff
 
 function gameGridTicks() {
-    time_diff = Date.now() - expected_time_diff; // Get actual time difference
+    time_diff = Date.now() - expected_time_diff // Get actual time difference
 
-    if(time_diff > interval || document.visibilityState === 'hidden') {return -1} // Time error handling. Errors occur when game tab is not visible to the user
+    if(document.visibilityState === 'hidden') { return } // Time error handling. Errors occur when game tab is not visible to the user
+
+    if(time_diff > interval) {
+        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'ESCAPE'}))
+        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'ESCAPE'}))
+    }
 
     //TODO: Put game events that need to run in intervals here ==================================================================
     Grid.moveGrid(active_wsad_key)
     timer()
 
     // Start next loop ==================================
-    expected_time_diff += interval;
+    expected_time_diff += interval
     setTimeout(gameGridTicks, interval - time_diff)
 }
 

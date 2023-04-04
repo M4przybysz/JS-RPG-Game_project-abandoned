@@ -19,19 +19,21 @@
 .tab_icon {
     display: inline-block;
     box-sizing: border-box;
-    width: 7vh;
+    width: 4vw;
     height: 4vh;
     margin-left: 5px;
-    border: 2px solid black;
+    border: 3px solid #251d22;
     vertical-align: middle;
     text-align: center;
     background-color: #313045;
     border-radius: 1vh;
+    transition: 0.3s;
 }
 
 .tab_icon:hover {
     cursor: pointer;
     background-color: #c58132;
+    color: #313045;;
 }
 
 .tab_icon img {
@@ -58,12 +60,119 @@
     height: 100%;
 }
 
+#player_equipment {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.eq_item_container {
+    box-sizing: border-box;
+    position: absolute;
+    width: 4vw;
+    height: 4vw;
+    border: 4px solid #251d22;
+    aspect-ratio: 1/1;
+    background-color: #dfcdb7;
+}
+
+#head_armor {
+    top: 7vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#torso_armor {
+    top: 20vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#legs_armor {
+    top: 33vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#equiped_item {
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+
+#equiped_healing {
+    position: absolute;
+    top: 75%;
+    left: 20%;
+    width: 5vh;
+    height: 5vh;
+    transform: translate(-50%, -50%);
+    border: 4px solid #251d22;
+    aspect-ratio: 1/1;
+    background-color: #dfcdb7;
+}
+
+.eq_item_container img {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+}
+
+#info_container {
+    box-sizing: border-box;
+    position: absolute;
+    top: 1vh;
+    left: 1vh;
+    width: calc(100% - 2vh);
+    height: calc(100% - 2vh);
+    padding: 1vh;
+    background-color: #251d22;
+    color: #81a598;
+}
+
+#item_info_text {
+    display: none;
+}
+
+#info_container input {
+    box-sizing: border-box;
+    position: absolute;
+    top: 1vw;
+    width: 2vw;
+    height: 2vw;
+    text-align: center;
+    font-family: Alagard;
+    font-size: 2vh;
+    font-weight: bolder;
+    line-height: 2vw;
+    background-color: #251d22;
+    color: #81a598;
+    border: 3px solid #81a598;
+    border-radius: 1vh;
+    transition: 0.3s;
+}
+
+#player_info_button {
+    right: calc(3vw + 5px);
+}
+
+#item_info_button {
+    right: 1vw;
+}
+
+#info_container input:hover {
+    cursor: pointer;
+    background-color: #c58132;
+    color: #313045;
+}
+
 #player_backpack_container {
     position: relative;
     box-sizing: border-box;
     width: var(--player_menu_width);
     height: calc(90vh - var(--player_menu_width));
-    padding: 5px;
     background-color: #854b2f;
 }
 
@@ -73,18 +182,61 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: calc(100% - 10px);
-    max-height: 205px;
-    height: calc(100% - 10px);
-    padding: 5px;
-    border-spacing: 10px;
+    border-spacing: 7px;
 }
 
 #player_backpack tr {
     text-align: center;
+    height: 16%;
 }
 
 .item_container {
     box-sizing: border-box;
-    border: 3px solid #81a598;
-    background-color: #294034;
+    position: relative;
+    border: 4px solid #251d22;
+    aspect-ratio: 1/1;
+    background-color: #dfcdb7;
+}
+
+.item_container:after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+}
+
+.item_container img {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+}
+
+.item_functions, .eq_item_functions {
+    position: absolute;
+    display: none;
+    bottom: 50%;
+    left: 50%;
+    z-index: 100;
+}
+
+.item_functions input, .eq_item_functions input {
+    box-sizing: border-box;
+    width: 5vw;
+    height: calc(2vh + 5px);
+    padding: 0px;
+    padding-top: 2px;
+    background-color: #313045;
+    border: 3px solid #251d22;
+    border-radius: 1vh;
+    text-align: center;
+    font-family: Alagard;
+    color: #81a598;
+    transition: 0.3s;
+}
+
+.item_functions input:hover, .eq_item_functions input:hover {
+    cursor: pointer;
+    background-color: #c58132;
+    color: #313045;;
 }
