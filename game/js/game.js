@@ -96,22 +96,27 @@ function openMenuTab(tab_number) {
     document.getElementById(`tab${tab_number}`).style.display = 'block'
 }
 
-// Game ticks handler 
+// Grid ticks handler 
 var interval = 250; // Interval in milliseconds
-var expected_time_diff = Date.now() + interval; // Expected time difference between interval and now in milliseconds
+var expected_time_diff = Date.now() + interval // Expected time difference (in milliseconds) between ticks
 var time_diff
 
 function gameGridTicks() {
-    time_diff = Date.now() - expected_time_diff; // Get actual time difference
+    time_diff = Date.now() - expected_time_diff // Get actual time difference
 
-    if(time_diff > interval || document.visibilityState === 'hidden') {return -1} // Time error handling. Errors occur when game tab is not visible to the user
+    if(document.visibilityState === 'hidden') { return } // Time error handling. Errors occur when game tab is not visible to the user
+
+    if(time_diff > interval) {
+        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'ESCAPE'}))
+        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'ESCAPE'}))
+    }
 
     //TODO: Put game events that need to run in intervals here ==================================================================
     Grid.moveGrid(active_wsad_key)
     timer()
 
     // Start next loop ==================================
-    expected_time_diff += interval;
+    expected_time_diff += interval
     setTimeout(gameGridTicks, interval - time_diff)
 }
 

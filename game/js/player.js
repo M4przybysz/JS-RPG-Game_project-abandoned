@@ -33,24 +33,30 @@ const Player = {
 
     backpack : [],
 
-    refreshBackpack() {
+    refreshBackpack(pickup = true) {
         let item_containers = document.getElementsByClassName('item_container')
 
-        for(let container of item_containers) { container.innerHTML = '' }
+        for(let container of item_containers) { 
+            container.innerHTML = '' 
+            container.setAttribute('onclick', '')
+        }
         
         for(let i = 0; i < this.backpack.length; i++) {
             let item = Active_save.Item_list[this.backpack[i]]
             item_containers[i].innerHTML = `<img src="${Texture_dict[item.texture]}">
                                             <div class="item_functions">
-                                                <input type="button" value="Equip" onclick="Player.equipItem(${(item.constructor.name == 'Armor' && item.armor_place == 'head') ? 'head_armor' : 
-                                                                                                            (((item.constructor.name == 'Armor' && item.armor_place == 'torso') ? 'troso_armor' : 
-                                                                                                            ((item.constructor.name == 'Armor' && item.armor_place == 'legs') ? 'legs_armor' : 
-                                                                                                            (item.constructor.name == 'Healing' || item.constructor.name == 'Food') ? 'equiped_healing' : 'equiped_item')))}, ${this.backpack[i]})">
-                                                <input type="button" value="Use" onclick="Active_save.Item_list[${this.backpack[i]}.use()">
-                                                <input type="button" value="Info" onclick="Active_save.Item_list[${this.backpack[i]}.showInfo()">
-                                                <input type="button" value="Drop" onclick="Player.dropItem(${this.backpack[i]})">
+                                                <input type="button" value="Equip" onclick="Player.equipItem('${(item.constructor.name == 'Armor' && item.armor_place == 'head') ? "head_armor" : 
+                                                                                                                (((item.constructor.name == 'Armor' && item.armor_place == 'torso') ? "troso_armor" : 
+                                                                                                                ((item.constructor.name == 'Armor' && item.armor_place == 'legs') ? "legs_armor" : 
+                                                                                                                (item.constructor.name == 'Healing' || item.constructor.name == 'Food') ? "equiped_healing" : "equiped_item")))}', '${this.backpack[i]}')">
+                                                <input type="button" value="Use" onclick="Active_save.Item_list['${this.backpack[i]}'].use()">
+                                                <input type="button" value="Info" onclick="Active_save.Item_list['${this.backpack[i]}'].showInfo()">
+                                                <input type="button" value="Drop" onclick="itemDrop('${this.backpack[i]}')">
                                             </div>`
+            item_containers[i].setAttribute('onclick', `showItemFunctions(${i})`)
         }
+
+        if(pickup == true) item_containers[0].click() // First clicked item (after picking up) needs double click (idk why) so 1 click is automaticly simulated
     },
 
     pickUpItem(item_id) {
@@ -70,11 +76,14 @@ const Player = {
         // Delete item from bacpack 
         this.backpack.splice(this.backpack.indexOf(item_id), 1)
 
-        this.refreshBackpack()
+        this.refreshBackpack(false)
     },
 
     equipItem(eq_place, item_id) {
         let item = Active_save.Item_list[item_id]
+        let take_off = null
+
+        openMenuTab(2)
 
         // Check if item can be placed
         if(eq_place == 'head_armor' && (item.constructor.name != 'Armor' || item.armor_place != 'head')) return
@@ -82,7 +91,8 @@ const Player = {
         if(eq_place == 'legs_armor' && (item.constructor.name != 'Armor' || item.armor_place != 'legs')) return
         if(eq_place == 'equiped_healing' && (item.constructor.name != 'Healing' || item.constructor.name != 'Food')) return
 
-        let item_containers = document.getElementsByClassName('item_container')
+        // Check if equipment place is free
+        if(this[eq_place] != null) { take_off = this[eq_place] }
 
         // Place item
         this[eq_place] = item_id
@@ -97,11 +107,20 @@ const Player = {
 
         // Refresh backpack
         this.backpack.splice(this.backpack.indexOf(item_id), 1)
-        for(let i = 0; i < item_containers.length; i++) {
-            item_containers[i].innerHTML = ''
+        if(take_off != null) { this.backpack.push(take_off) }
+        this.refreshBackpack()
+    }
+}
+
+function showItemFunctions(item_number) {
+    let item_functions = document.getElementsByClassName('item_functions')
+    if(item_functions[item_number].style.display == 'none') { 
+        for(let i = 0; i < item_functions.length; i++) {
+            item_functions[i].style.display = 'none'
         }
-        for(let i = 0; i < this.backpack.length; i++) {
-            item_containers[i].innerHTML = `<img src="${Texture_dict[Active_save.Item_list[this.backpack[i]].texture]}">`
-        }
+        item_functions[item_number].style.display = 'block'
+    } 
+    else { 
+        item_functions[item_number].style.display = 'none' 
     }
 }

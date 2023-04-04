@@ -163,5 +163,28 @@
 }
 
 .item_functions {
+    position: absolute;
     display: none;
+    bottom: 50%;
+    left: 50%;
+    z-index: 100;
+}
+
+.item_functions input {
+    box-sizing: border-box;
+    width: 5vw;
+    height: calc(2vh + 5px);
+    padding: 0px;
+    padding-top: 2px;
+    background-color: #313045;
+    border: 3px solid #251d22;
+    border-radius: 1vh;
+    text-align: center;
+    font-family: Alagard;
+    color: #81a598;
+    transition: 0.5s;
+}
+
+.item_functions input:hover {
+    background-color: #c58132;
 }

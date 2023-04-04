@@ -23,8 +23,12 @@ class Tool extends Item {
 }
 
 class Weapon extends Tool {
-    constructor(id, name, map_x, map_y, texture, usage = () => {console.log('Hello!!! I a weapon!')}) {
+    constructor(id, name, map_x, map_y, texture, usage = () => {console.log('Hello!!! I am a weapon!')}) {
         super(id, name, map_x, map_y, texture, usage)
+    }
+
+    showInfo() {
+        openMenuTab(4)
     }
 }
 
@@ -34,6 +38,10 @@ class Armor extends Item {
 
         this.armor_place = armor_place // head, torso, legs
         this.def = def_value // Numeric defense value
+    }
+
+    showInfo() {
+        openMenuTab(4)
     }
 }
 
@@ -49,6 +57,10 @@ class Healing extends Consumable {
 
         this.healing_value = healing_value // How much item will heal the player
     }
+
+    showInfo() {
+        openMenuTab(4)
+    }
 }
 
 class Food extends Consumable {
@@ -56,6 +68,10 @@ class Food extends Consumable {
         super(id, name, map_x, map_y, texture, )
 
         this.healing_value = healing_value
+    }
+
+    showInfo() {
+        openMenuTab(4)
     }
 }
 
