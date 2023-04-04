@@ -27,6 +27,7 @@
     text-align: center;
     background-color: #313045;
     border-radius: 1vh;
+    transition: 0.3s;
 }
 
 .tab_icon:hover {
@@ -182,7 +183,7 @@
     text-align: center;
     font-family: Alagard;
     color: #81a598;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .item_functions input:hover, .eq_item_functions input:hover {

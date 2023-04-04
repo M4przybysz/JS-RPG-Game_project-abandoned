@@ -11,28 +11,49 @@ const Texture_dict = { // Dictionary containing texture corresponding to its id
     'w' :       './assets/test_textures/wall.png',
     'ls' :      './assets/test_textures/location_switch.png',
 
+    // Map textures
+
     // Map objects
     'fire' :    './assets/objects/fire.png',
 
     // Items
     'stick' : './assets/items/stick.png',
+    'coin' : './assets/items/coin.png',
 }
 
 const Start_save = {
     Player : {
         name : null,
         class : null,
-        lvl : 0,
-        exp : 0,
-        hp : 100,
-        ap : 100,
+        direction : 'S',
         location : 'Test2',
         position_x : 3,
         position_y : 3,
+
+        lvl : 0,
+        exp : 0,
+
+        max_hp : 100,
+        max_mana : 100,
+
+        hp : 100,
+        mana : 100,
+        defense : 0,
+        attack_power : 0,
+
+        equiped_item : null,
+        equiped_healing : null,
+
+        head_armor : null,
+        torso_armor : null,
+        legs_armor : null,
+
+        backpack : [],
+        backpack_max_capacity : 18,
     },
     Item_list : {
         test_item : new Weapon('test_item', 'test_stick', 4, 4, 'stick', 10),
-        test_item2 : new Weapon('test_item2', 'test_stick', 3, 4, 'stick', 20),
+        test_item2 : new Item('test_item2', 'test_stick', 3, 4, 'coin'),
     },
     MapObj_list : {
         test_map_object : new MapObj('test_map_object', 2, 2, 'fire'),

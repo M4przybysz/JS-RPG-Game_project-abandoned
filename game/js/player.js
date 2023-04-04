@@ -4,6 +4,11 @@ const Player = {
     
     direction : 'S', // W - north, D - east, S - south, A - west 
 
+    // Player location and position
+    location : Start_save.Player.location,
+    position_x : Start_save.Player.position_x,
+    position_y : Start_save.Player.position_y,
+
     // player level values
     lvl : 1,
     exp : 0,
@@ -17,11 +22,6 @@ const Player = {
     mana : 100,
     defense : 0,
     attack_power : 0,
-
-    // Player location and position
-    location : Start_save.Player.location,
-    position_x : Start_save.Player.position_x,
-    position_y : Start_save.Player.position_y,
 
     // Plaer inventory
     equiped_item : null,
