@@ -15,7 +15,7 @@ function itemPickUp(x_mod, y_mod) {
 }
 
 function itemDrop(item_id, drop_from_eq = false, eq_place = null) {
-    if((Grid.items_map[Player.position_y][Player.position_x] === null && Player.backpack.includes(item_id)) || (drop_from_eq == true && eq_place != null)) {
+    if((Grid.items_map[Player.position_y][Player.position_x] === null && Player.backpack.includes(item_id)) || (Grid.items_map[Player.position_y][Player.position_x] === null && drop_from_eq == true && eq_place != null)) {
         if(drop_from_eq == true && eq_place != null) { Player.dropEqItem(eq_place) }
         else { Player.dropItem(item_id) }
 
