@@ -32,6 +32,7 @@ const Player = {
     legs_armor : null,
 
     backpack : [],
+    backpack_max_capacity : 18,
 
     refreshBackpack(pickup = true) {
         let item_containers = document.getElementsByClassName('item_container')
@@ -54,21 +55,18 @@ const Player = {
                                                 <input type="button" value="Drop" onclick="itemDrop('${this.backpack[i]}')">
                                             </div>`
             item_containers[i].setAttribute('onclick', `showItemFunctions(${i})`)
-        }
 
-        if(pickup == true) item_containers[0].click() // First clicked item (after picking up) needs double click (idk why) so 1 click is automaticly simulated
+            if(pickup == true) item_containers[i].click() // First clicked item sometimes needs double click (idk why) so all items are automaticaly clicked
+        }
     },
 
     pickUpItem(item_id) {
-        let backpack_max_capacity = 18
-        
-        if(this.backpack.length < backpack_max_capacity) {
+        if(this.backpack.length < this.backpack_max_capacity) {
             this.backpack.push(item_id) // Add new item
-
             this.refreshBackpack()
         }
         else {
-            console.log(`backpack max capacity (${backpack_max_capacity}) reached. Can't pick up more items`)
+            console.log(`backpack max capacity (${this.backpack_max_capacity}) reached. Can't pick up more items`)
         }
     },
 
@@ -77,6 +75,14 @@ const Player = {
         this.backpack.splice(this.backpack.indexOf(item_id), 1)
 
         this.refreshBackpack(false)
+    },
+
+    dropEqItem(eq_place) {
+        document.getElementById(eq_place).setAttribute('onclick', '')
+        document.getElementById(eq_place).innerHTML = ''
+        this[eq_place] = null
+
+        this.refreshBackpack()
     },
 
     equipItem(eq_place, item_id) {
@@ -96,10 +102,17 @@ const Player = {
 
         // Place item
         this[eq_place] = item_id
-        document.getElementById(eq_place).innerHTML = `<img src="${Texture_dict[item.texture]}">`
+        document.getElementById(eq_place).innerHTML = `<img src="${Texture_dict[item.texture]}">
+                                                        <div class="eq_item_functions">
+                                                            <input type="button" value="Unequip" onclick="Player.unequipItem('${eq_place}', '${item_id}')">
+                                                            <input type="button" value="Use" onclick="Active_save.Item_list['${item_id}'].use()">
+                                                            <input type="button" value="Info" onclick="Active_save.Item_list['${item_id}'].showInfo()">
+                                                            <input type="button" value="Drop" onclick="itemDrop('${item_id}', true, '${eq_place}')">
+                                                        </div>`
+        document.getElementById(eq_place).setAttribute('onclick', `showEqItemFunctions('${eq_place}')`)
 
         // Update player stats
-        Player.defense = 0 + Active_save.Item_list[this.head_armor] ? Active_save.Item_list[this.head_armor].def_value : 0 
+        Player.defense = 0 + Active_save.Item_list[this.head_armor] ? Active_save.Item_list[this.head_armor].def_value : 0
             + Active_save.Item_list[this.torso_armor] ? Active_save.Item_list[this.torso_armor].def_value : 0
             + Active_save.Item_list[this.legs_armor] ? Active_save.Item_list[this.legs_armor].def_value : 0
 
@@ -108,8 +121,25 @@ const Player = {
         // Refresh backpack
         this.backpack.splice(this.backpack.indexOf(item_id), 1)
         if(take_off != null) { this.backpack.push(take_off) }
-        this.refreshBackpack()
-    }
+        this.refreshBackpack(false)
+
+        // Click equipment
+        document.getElementById(eq_place).click()
+    },
+
+    unequipItem(eq_place, item_id) {
+        if(this.backpack.length < this.backpack_max_capacity) {
+            document.getElementById(eq_place).setAttribute('onclick', '')
+            document.getElementById(eq_place).innerHTML = ''
+            this[eq_place] = null
+
+            this.backpack.push(item_id)
+            this.refreshBackpack()
+        }
+        else {
+            console.log(`backpack max capacity (${this.backpack_max_capacity}) reached. Can't unequip this item`)
+        }
+    },
 }
 
 function showItemFunctions(item_number) {
@@ -122,5 +152,15 @@ function showItemFunctions(item_number) {
     } 
     else { 
         item_functions[item_number].style.display = 'none' 
+    }
+}
+
+function showEqItemFunctions(eq_place) {
+    let eq_item_functions = document.getElementById(eq_place).getElementsByClassName('eq_item_functions')[0]
+    if(eq_item_functions.style.display == 'none') {
+        eq_item_functions.style.display = 'block'
+    } 
+    else { 
+        eq_item_functions.style.display = 'none' 
     }
 }

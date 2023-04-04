@@ -162,7 +162,7 @@
     height: calc(100% - 6px);
 }
 
-.item_functions {
+.item_functions, .eq_item_functions {
     position: absolute;
     display: none;
     bottom: 50%;
@@ -170,7 +170,7 @@
     z-index: 100;
 }
 
-.item_functions input {
+.item_functions input, .eq_item_functions input {
     box-sizing: border-box;
     width: 5vw;
     height: calc(2vh + 5px);
@@ -185,6 +185,6 @@
     transition: 0.5s;
 }
 
-.item_functions input:hover {
+.item_functions input:hover, .eq_item_functions input:hover {
     background-color: #c58132;
 }
