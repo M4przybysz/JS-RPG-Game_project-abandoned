@@ -33,6 +33,7 @@
 .tab_icon:hover {
     cursor: pointer;
     background-color: #c58132;
+    color: #313045;;
 }
 
 .tab_icon img {
@@ -119,6 +120,54 @@
     height: calc(100% - 6px);
 }
 
+#info_container {
+    box-sizing: border-box;
+    position: absolute;
+    top: 1vh;
+    left: 1vh;
+    width: calc(100% - 2vh);
+    height: calc(100% - 2vh);
+    padding: 1vh;
+    background-color: #251d22;
+    color: #81a598;
+}
+
+#item_info_text {
+    display: none;
+}
+
+#info_container input {
+    box-sizing: border-box;
+    position: absolute;
+    top: 1vw;
+    width: 2vw;
+    height: 2vw;
+    text-align: center;
+    font-family: Alagard;
+    font-size: 2vh;
+    font-weight: bolder;
+    line-height: 2vw;
+    background-color: #251d22;
+    color: #81a598;
+    border: 3px solid #81a598;
+    border-radius: 1vh;
+    transition: 0.3s;
+}
+
+#player_info_button {
+    right: calc(3vw + 5px);
+}
+
+#item_info_button {
+    right: 1vw;
+}
+
+#info_container input:hover {
+    cursor: pointer;
+    background-color: #c58132;
+    color: #313045;
+}
+
 #player_backpack_container {
     position: relative;
     box-sizing: border-box;
@@ -187,5 +236,7 @@
 }
 
 .item_functions input:hover, .eq_item_functions input:hover {
+    cursor: pointer;
     background-color: #c58132;
+    color: #313045;;
 }

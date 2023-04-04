@@ -44,7 +44,16 @@
                     </div>
                 </div>
                 <div class="tab" id="tab3"><img src="./assets/UI/test_quest_log.png"></div>
-                <div class="tab" id="tab4"></div>
+                <div class="tab" id="tab4">
+                    <div id="info_container">
+                        <span id="player_info_text"></span>
+                        <span id="item_info_text">
+                            Item info: <br><br>
+                        </span>
+                        <input type="button" id="player_info_button" value="P" onclick="showPlayerInfo()">
+                        <input type="button" id="item_info_button" value="I" onclick="showItemInfo()">
+                    </div>
+                </div>
             </div>
             <div id="player_backpack_container">
                 <table id="player_backpack">

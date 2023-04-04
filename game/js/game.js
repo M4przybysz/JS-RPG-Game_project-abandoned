@@ -11,6 +11,9 @@ if(game_grid.innerHTML != '') {
 window.onload = () => {
     Active_save = Start_save
     
+    showPlayerInfo()
+    openMenuTab(1)
+
     Grid.importLocation(Player.location)
     gameGridTicks() // First game ticks loop start
 }

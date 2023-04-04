@@ -178,3 +178,18 @@ function showEqItemFunctions(eq_place) {
         eq_item_functions.style.display = 'none' 
     }
 }
+
+function showPlayerInfo() {
+    openMenuTab(4)
+
+    document.getElementById('info_container').style.display = 'block'
+    document.getElementById('item_info_text').style.display = 'none'
+
+    let span = document.getElementById('player_info_text')
+    span.style.display = 'block'
+
+    span.innerHTML = `
+        Player info: <br><br>
+        Name: ${Player.name} <br>
+        Class : ${Player.class} <br>`
+}

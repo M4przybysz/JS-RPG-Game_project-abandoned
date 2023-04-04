@@ -1,3 +1,46 @@
+function itemPickUp(x_mod, y_mod) {
+    // Add item to player backpack
+    Player.pickUpItem(Grid.items_map[Player.position_y + y_mod][Player.position_x + x_mod])
+
+    // Item is in player backpack so it has no x and y values
+    Active_save.Item_list[Grid.items_map[Player.position_y + y_mod][Player.position_x + x_mod]].x = null
+    Active_save.Item_list[Grid.items_map[Player.position_y + y_mod][Player.position_x + x_mod]].y = null
+
+    // Remove item from location and grid
+    Active_save.Locations[Player.location].items.splice(Active_save.Locations[Player.location].items.indexOf(Grid.items_map[Player.position_y + y_mod][Player.position_x + x_mod]), 1)
+    Grid.items_map[Player.position_y + y_mod][Player.position_x + x_mod] = null
+
+    // Reload location
+    Grid.importLocation(Player.location)
+}
+
+function itemDrop(item_id, drop_from_eq = false, eq_place = null) {
+    if((Grid.items_map[Player.position_y][Player.position_x] === null && Player.backpack.includes(item_id)) || (drop_from_eq == true && eq_place != null)) {
+        if(drop_from_eq == true && eq_place != null) { Player.dropEqItem(eq_place) }
+        else { Player.dropItem(item_id) }
+
+        // Add item to location
+        Grid.items_map[Player.position_y][Player.position_x] = item_id 
+        if(Active_save.Locations[Player.location].items == null) Active_save.Locations[Player.location].items = []
+        Active_save.Locations[Player.location].items.push(item_id)
+
+        Active_save.Item_list[item_id].x = Player.position_x
+        Active_save.Item_list[item_id].y = Player.position_y
+
+        // Refresh location
+        Grid.importLocation(Player.location)
+    }
+    else {
+        console.log(`can't drop this item at this location`)
+    }
+}
+
+function showItemInfo() {
+    document.getElementById('info_container').style.display = 'block'
+    document.getElementById('player_info_text').style.display = 'none'
+    document.getElementById('item_info_text').style.display = 'block'
+}
+
 //================================================================================================================================
 //================================================================================================================================
 class Item {
@@ -14,11 +57,30 @@ class Item {
 
         this.use = usage
     }
+
+    showInfo() {
+        openMenuTab(4)
+        document.getElementById('info_container').style.display = 'block'
+        document.getElementById('player_info_text').style.display = 'none'
+
+        let span = document.getElementById('item_info_text')
+        span.style.display = 'block'
+        
+        span.innerHTML = `
+            Item info: <br><br>
+            Name: ${this.name} <br>
+            ------------------------------- <br>
+            Item type: ${this.constructor.name}`
+    }
 }
 
 class Tool extends Item {
     constructor(id, name, map_x, map_y, texture, usage = () => {console.log('Hello!!! I am a tool!')}) {
         super(id, name, map_x, map_y, texture, usage)
+    }
+
+    showInfo() {
+        openMenuTab(4)
     }
 }
 
@@ -42,14 +104,18 @@ class Armor extends Item {
         this.def = def_value // Numeric defense value
     }
 
-    showInfo() {
-        openMenuTab(4)
-    }
+    // showInfo() {
+    //     openMenuTab(4)
+    // }
 }
 
 class Consumable extends Item {
     constructor(id, name, map_x, map_y, texture, ) {
         super(id, name, map_x, map_y, texture, () => {console.log('Hello!!! I am a consumable item!')})
+    }
+
+    showInfo() {
+        openMenuTab(4)
     }
 }
 
