@@ -101,7 +101,7 @@ class Armor extends Item {
         super(id, name, map_x, map_y, texture, () => {console.log('Hello!!! I am on armor piece!')})
 
         this.armor_place = armor_place // head, torso, legs
-        this.def = def_value // Numeric defense value
+        this.def_value = def_value // Numeric defense value
     }
 
     // showInfo() {
