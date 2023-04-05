@@ -54,6 +54,7 @@ const Start_save = {
     Item_list : {
         test_item : new Weapon('test_item', 'test_stick', 4, 4, 'stick', 10),
         test_item2 : new Armor('test_item2', 'test_coin', 3, 4, 'coin', 'head', 20),
+        test_healing : new Healing('test_healing', 'test_healing', 5, 5, 'coin', 20),
     },
     MapObj_list : {
         test_map_object : new MapObj('test_map_object', 2, 2, 'fire'),
@@ -156,7 +157,7 @@ const Start_save = {
                                 ['x2/a', 'x3/.', 'a', 'x4/.', 'a', '.', 'x2/a', 'x5/.', 'a'],
                                 ['x20/a'],
             ],
-            items : null,
+            items : ['test_healing'],
             objects : null,
             creatures : null,
         },

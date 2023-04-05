@@ -108,7 +108,7 @@ const Player = {
         if(eq_place == 'head_armor' && (item.constructor.name != 'Armor' || item.armor_place != 'head')) return
         if(eq_place == 'torso_armor' && (item.constructor.name != 'Armor' || item.armor_place != 'torso')) return
         if(eq_place == 'legs_armor' && (item.constructor.name != 'Armor' || item.armor_place != 'legs')) return
-        if(eq_place == 'equiped_healing' && (item.constructor.name != 'Healing' || item.constructor.name != 'Food')) return
+        if(eq_place == 'equiped_healing' && item.constructor.name != 'Healing' && item.constructor.name != 'Food') return
 
         // Check if equipment place is free
         if(this[eq_place] != null) { take_off = this[eq_place] }
