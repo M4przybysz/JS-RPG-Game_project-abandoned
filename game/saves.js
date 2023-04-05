@@ -55,14 +55,19 @@ const Start_save = {
         backpack : [],
         backpack_max_capacity : 18,
     },
-    Item_list : {
-        test_item : new Weapon('test_item', 'test_stick', 4, 4, 'stick', 10),
-        test_item2 : new Armor('test_item2', 'test_coin', 3, 4, 'coin', 'head', 20),
+    Item_list : {  
+       // Armor
+        test_coin : new Armor('test_coin', 'test_coin', 3, 4, 'coin', 'head', 20),
+
+       // Healing  
         test_healing_potion : new Healing('test_healing_potion', 'test_healing_potion', 5, 5, 'healing_potion', 20),
+        test_mana_potion : new Healing('test_mana_potion', 'test_mana_potion', 5, 3, 'mana_potion', 20),
+        
+       //  Weapons
         test_rich_longsword : new Weapon('test_rich_longsword','test_rich_longsword', 5, 4, 'rich_longsword', 20),
         test_magic_short_sword : new Weapon('test_magic_short_sword', 'test_magic_short_sword', 5, 6, 'magic_short_sword', 20),
-        test_mana_potion : new Healing('test_mana_potion', 'test_mana_potion', 5, 3, 'mana_potion', 20),
-    },
+        test_stick : new Weapon('test_stick', 'test_stick', 4, 4, 'stick', 10),
+    },  
     MapObj_list : {
         test_map_object : new MapObj('test_map_object', 2, 2, 'fire'),
     },
@@ -94,7 +99,7 @@ const Start_save = {
                                 ['a', 'x10/.', 'a'],
                                 ['.', 'x10/a', '.'],
             ],
-            items : ['test_item', 'test_item2'],
+            items : ['test_stick', 'test_coin'],
             objects : ['test_map_object'],
             creatures : null,
         },
