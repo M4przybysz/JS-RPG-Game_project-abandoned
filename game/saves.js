@@ -17,8 +17,12 @@ const Texture_dict = { // Dictionary containing texture corresponding to its id
     'fire' :    './assets/objects/fire.png',
 
     // Items
-    'stick' : './assets/items/stick.png',
+    'stick' : './assets/items/stick.png', // ./assets/items/
     'coin' : './assets/items/coin.png',
+    'rich_longsword' : './assets/items/rich_longsword.png',
+    'magic_short_sword' : './assets/items/magic_short_sword.png',
+    'healing_potion' : './assets/items/healing_potion.png',
+    'mana_potion' : './assets/items/mana_potion.png'
 }
 
 const Start_save = {
@@ -54,7 +58,10 @@ const Start_save = {
     Item_list : {
         test_item : new Weapon('test_item', 'test_stick', 4, 4, 'stick', 10),
         test_item2 : new Armor('test_item2', 'test_coin', 3, 4, 'coin', 'head', 20),
-        test_healing : new Healing('test_healing', 'test_healing', 5, 5, 'coin', 20),
+        test_healing_potion : new Healing('test_healing_potion', 'test_healing_potion', 5, 5, 'healing_potion', 20),
+        test_rich_longsword : new Weapon('test_rich_longsword','test_rich_longsword', 5, 4, 'rich_longsword', 20),
+        test_magic_short_sword : new Weapon('test_magic_short_sword', 'test_magic_short_sword', 5, 6, 'magic_short_sword', 20),
+        test_mana_potion : new Healing('test_mana_potion', 'test_mana_potion', 5, 3, 'mana_potion', 20),
     },
     MapObj_list : {
         test_map_object : new MapObj('test_map_object', 2, 2, 'fire'),
@@ -157,7 +164,7 @@ const Start_save = {
                                 ['x2/a', 'x3/.', 'a', 'x4/.', 'a', '.', 'x2/a', 'x5/.', 'a'],
                                 ['x20/a'],
             ],
-            items : ['test_healing'],
+            items : ['test_healing_potion', 'test_rich_longsword', 'test_magic_short_sword', 'test_mana_potion'],
             objects : null,
             creatures : null,
         },
