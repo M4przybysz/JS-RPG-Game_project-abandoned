@@ -70,18 +70,82 @@ function pauseOrUnpauseGame(hardpause) {
 }
 
 function startNewGame() {
-    // pobierz nazwę postaci i wybraną klasę
-    playerName = prompt("Enter player name:");
-    playerClass = prompt("Choose player class (warrior, mage, rogue):");
-    alert("Starting new game...");
-    
-    // usuń menu pauzy
-    pauseOrUnpauseGame(false)
+    gameDiv = document.getElementById('buttons_game_pause')
+
+    form = document.createElement("form");
+    nameLabel = document.createElement("label")
+    nameInput = document.createElement("input")
+    warriorButton = document.createElement("button")
+    mageButton = document.createElement("button")
+    submitButton = document.createElement("button")
+
+    form.setAttribute("onsubmit", "return false;")
+    nameLabel.textContent = "Enter player name:"
+    nameInput.setAttribute("type", "text")
+    nameInput.setAttribute("required", "")
+    warriorButton.setAttribute("type", "button")
+    warriorButton.setAttribute("value", "warrior")
+    warriorButton.textContent = "Warrior"
+    mageButton.setAttribute("type", "button")
+    mageButton.setAttribute("value", "mage")
+    mageButton.textContent = "Mage"
+    submitButton.textContent = "Start new game"
+
+    form.appendChild(nameLabel)
+    form.appendChild(nameInput)
+    form.appendChild(document.createElement("br"))
+    form.appendChild(warriorButton)
+    form.appendChild(mageButton)
+    form.appendChild(document.createElement("br"))
+    form.appendChild(submitButton)
+    gameDiv.appendChild(form)
+
+    warriorButton.addEventListener("click", function() {
+        warriorButton.classList.add("selected")
+        mageButton.classList.remove("selected")
+      })
+      mageButton.addEventListener("click", function() {
+        warriorButton.classList.remove("selected")
+        mageButton.classList.add("selected")
+      })
+
+      submitButton.addEventListener("click", function() {
+        const playerName = nameInput.value;
+        let playerClass = "";
+        if (warriorButton.classList.contains("selected")) {
+          playerClass = "warrior"
+        } 
+        else if (mageButton.classList.contains("selected")) {
+          playerClass = "mage"
+        }
+        if (playerClass === "") {
+          console.log("Please select a class.")
+        } else {
+          console.log(`Starting new game with player name: ${playerName} and class: ${playerClass}`)
+        }
+      })
+     
 }
 
-function importSave() {
+//TODO: Implement importing saves ===================================================================================
+function importSave() { 
+    let read = document.getElementById('reader')
 
-}
+    function printFile(file) {
+        const reader = new FileReader()
+            reader.onload = (evt) => {
+            let str = evt.target.result
+            console.log(str)
+        }
+        reader.readAsText(file)
+    }
+
+    read.oninput = () => {
+        let File = read.files[0]
+        console.log(File)
+        printFile(File)
+    }
+    }
 
 function exportSave() {
 
