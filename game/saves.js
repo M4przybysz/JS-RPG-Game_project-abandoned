@@ -59,6 +59,8 @@ const Start_save = {
        // Armor
         test_coin : new Armor('test_coin', 'test_coin', 3, 4, 'coin', 'head', 20),
 
+       // Food 
+
        // Healing  
         test_healing_potion : new Healing('test_healing_potion', 'test_healing_potion', 5, 5, 'healing_potion', 20),
         test_mana_potion : new Healing('test_mana_potion', 'test_mana_potion', 5, 3, 'mana_potion', 20),
