@@ -15,7 +15,7 @@ function keydownActions(event) {
     }
 
     // pressed WSAD
-    if((key == 'W' || key == 'S' || key == 'A' || key == 'D') && game_pause.style.display == 'none') { 
+    if((key == 'W' || key == 'S' || key == 'A' || key == 'D') && document.getElementById('game_pause').style.display == 'none') { 
         active_wsad_key = key
     }
 

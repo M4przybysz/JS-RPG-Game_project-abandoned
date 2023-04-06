@@ -1,6 +1,6 @@
 //* This file runs is a game loop
 //TODO: Define global html game components ======================================================================================
-let isFirstRun = true
+var isFirstRun = true
 var game_grid = Grid.grid
 var player_node = null
 if(game_grid.innerHTML != '') { 
@@ -9,7 +9,8 @@ if(game_grid.innerHTML != '') {
 
 //TODO: Put game actions to do when window loads ==========================================================================================
 window.onload = () => {
-
+    document.addEventListener('submit', startNewGame)
+    
     Grid.importLocation(Player.location)
     gameGridTicks() // First game ticks loop start
 }
@@ -17,114 +18,59 @@ window.onload = () => {
 //TODO: Put game functions during playthrough ===================================================================================
 function pauseOrUnpauseGame(hardpause) {
     let game_pause = document.getElementById('game_pause')
-    let buttons_game_pause = document.getElementById('buttons_game_pause')
+    let pause_menu = document.getElementById('game_pause_menu')
 
-    if (isFirstRun == true) {
-        
-        buttons_game_pause.innerHTML = ""
-        isFirstRun = false
+    if(isFirstRun == true) {
+        game_pause.style.backgroundColor = '#251d22'
     }
-   else {
-        buttons_game_pause.innerHTML = ""
-        let exportSaveButton = document.createElement("input")
-        exportSaveButton.setAttribute("type", "button")
-        exportSaveButton.setAttribute("value", "Export Save")
-        exportSaveButton.addEventListener("click", exportSave)
-        buttons_game_pause.appendChild(exportSaveButton)
-    
-        let importSaveButton = document.createElement("input")
-        importSaveButton.setAttribute("type", "button")
-        importSaveButton.setAttribute("value", "Import Save")
-        importSaveButton.addEventListener("click", importSave)
-        buttons_game_pause.appendChild(importSaveButton)
+    else {
+        game_pause.style.backgroundColor = 'rgba(37, 29, 34, 0.6)'
     }
 
     if(game_pause.style.display === 'none' || hardpause === true) {
         game_pause.style.display = 'block'
-        game_pause.style.position = 'absolute'
-        game_pause.style.top = '0px'
-        game_pause.style.left = '0px'
-        game_pause.style.width = '100vw'
-        game_pause.style.height = '100vh'
-        game_pause.style.zIndex = '9999' 
-        game_pause.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
-
-        buttons_game_pause.style.display = 'block' 
-        buttons_game_pause.style.position = 'absolute'
-        buttons_game_pause.style.top = '50vh'
-        buttons_game_pause.style.left = '50vw'
-        buttons_game_pause.style.width = '70vw'
-        buttons_game_pause.style.height = '60vh'
-        buttons_game_pause.style.zIndex = '10000' 
-        buttons_game_pause.style.transform = 'translate(-50%, -50%)'
-        buttons_game_pause.style.backgroundColor = 'orange'
-        buttons_game_pause.style.padding = 'padding: 20px'
-        buttons_game_pause.style.border = '3px solid black'
-
-       
+        pause_menu.style.display = 'block'
     }
     else {
         game_pause.style.display = 'none'
-        buttons_game_pause.style.display = 'none'
+        pause_menu.style.display = 'none'
     }
 }
 
-function startNewGame() {
-    gameDiv = document.getElementById('buttons_game_pause')
+function createPlayer() {
+    document.getElementById('game_start_menu').style.display = 'none'
+    document.getElementById('player_creator').style.display = 'block'
+}
 
-    form = document.createElement("form");
-    nameLabel = document.createElement("label")
-    nameInput = document.createElement("input")
-    warriorButton = document.createElement("button")
-    mageButton = document.createElement("button")
-    submitButton = document.createElement("button")
+function startNewGame(event) {
+    event.preventDefault()
 
-    form.setAttribute("onsubmit", "return false;")
-    nameLabel.textContent = "Enter player name:"
-    nameInput.setAttribute("type", "text")
-    nameInput.setAttribute("required", "")
-    warriorButton.setAttribute("type", "button")
-    warriorButton.setAttribute("value", "warrior")
-    warriorButton.textContent = "Warrior"
-    mageButton.setAttribute("type", "button")
-    mageButton.setAttribute("value", "mage")
-    mageButton.textContent = "Mage"
-    submitButton.textContent = "Start new game"
+    let warrior_button = document.getElementById('warrior_button')
+    let mage_button = document.getElementById('mage_button')
 
-    form.appendChild(nameLabel)
-    form.appendChild(nameInput)
-    form.appendChild(document.createElement("br"))
-    form.appendChild(warriorButton)
-    form.appendChild(mageButton)
-    form.appendChild(document.createElement("br"))
-    form.appendChild(submitButton)
-    gameDiv.appendChild(form)
+    let playerName = document.getElementById('player_name_input').value
+    let playerClass = ""
+    
+    if(warrior_button.classList.contains("selected")) {
+        playerClass = "warrior"
+    } 
+    else if(mage_button.classList.contains("selected")) {
+        playerClass = "mage"
+    }
 
-    warriorButton.addEventListener("click", function() {
-        warriorButton.classList.add("selected")
-        mageButton.classList.remove("selected")
-      })
-      mageButton.addEventListener("click", function() {
-        warriorButton.classList.remove("selected")
-        mageButton.classList.add("selected")
-      })
+    if(playerClass === "") {
+        console.log("Please select a class.")
+    } 
+    else {
+        console.log(`Starting new game with player name: ${playerName} and class: ${playerClass}`)
 
-      submitButton.addEventListener("click", function() {
-        const playerName = nameInput.value;
-        let playerClass = "";
-        if (warriorButton.classList.contains("selected")) {
-          playerClass = "warrior"
-        } 
-        else if (mageButton.classList.contains("selected")) {
-          playerClass = "mage"
-        }
-        if (playerClass === "") {
-          console.log("Please select a class.")
-        } else {
-          console.log(`Starting new game with player name: ${playerName} and class: ${playerClass}`)
-        }
-      })
-     
+        isFirstRun = false
+
+        document.getElementById('player_creator').style.display = 'none'
+        document.getElementById('game_pause').style.display = 'none'
+
+        document.addEventListener('keydown', keydownActions)
+    }
 }
 
 //TODO: Implement importing saves ===================================================================================
@@ -140,12 +86,12 @@ function importSave() {
         reader.readAsText(file)
     }
 
-    read.oninput = () => {
-        let File = read.files[0]
-        console.log(File)
-        printFile(File)
-    }
-    }
+    // read.oninput = () => {
+    //     let File = read.files[0]
+    //     console.log(File)
+    //     printFile(File)
+    // }
+}
 
 function exportSave() {
 
@@ -176,16 +122,12 @@ function gameGridTicks() {
     setTimeout(gameGridTicks, interval - time_diff)
 }
 
-//TODO: Put game loops and event listeners here =================================================================================
-document.addEventListener('keydown', keydownActions)
-
-
 document.onvisibilitychange = () => {
     if(document.visibilityState === 'visible') { // Restart gameGridTicks() every time user is back on the site
         expected_time_diff = Date.now() + interval 
         gameGridTicks()
     }
-    if(document.visibilityState === 'hidden') { // Pause game when user is not on the site
+    if(document.visibilityState === 'hidden' && isFirstRun == false) { // Pause game when user is not on the site
         pauseOrUnpauseGame(true)
     }
 }
