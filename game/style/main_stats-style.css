@@ -19,10 +19,10 @@
 
 #exp_circle {
     position: absolute;
-    top: calc(2vh + 4px);
-    left: calc(1vh + 4px);
-    width: calc(100vh - (var(--grid-rows) * var(--node_height)) - 8vh - 8px);
-    height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 8vh - 8px - 1px);
+    top: 14%;
+    left: 8%;
+    width: 84%;
+    height: 82%;
     border-radius: 50%;
     background: conic-gradient(#619f3f calc(3.6deg * var(--exp_percent)), #dfcdb7 0deg);
     
@@ -31,10 +31,10 @@
 #hp_circle {
     position: absolute;
     overflow: hidden;
-    top: calc(5vh - 2px);
-    left: calc(4vh - 1px);
-    width: calc(100vh - (var(--grid-rows) * var(--node_height)) - 14vh + 2px);
-    height: calc(100vh - (var(--grid-rows) * var(--node_height)) - 14vh + 2px);
+    top: 26%;
+    left: calc(22% - 1px);
+    width: 57%;
+    height: 58%;
     border-radius: 50%;
     padding: 0px;
     background-color: #dfcdb7;
@@ -43,18 +43,18 @@
 #hp_rect {
     position: absolute;
     bottom: 0px;
-    width: 12vh;
-    height: calc((11vh - 4px) * var(--hp_percent) / 100);
+    width: 100%;
+    height: calc((100%) * var(--hp_percent) / 100);
     background-color: #c12020;
 }
 
 #mana_container {
     position: absolute;
     overflow: hidden;
-    left: calc(1vh - 1px);
-    top: calc(12vh - 3px);
-    height: calc(2vh - 1px);
-    width: calc(100vh - (var(--grid-rows) * var(--node_height)) - 8vh);
+    left: 4%;
+    top: 64%;
+    height: 10%;
+    width: 91%;
     border-radius: 5px;
     background-color: #dfcdb7;
 }
@@ -62,30 +62,18 @@
 #mana_rect {
     position: absolute;
     left: 0px;
-    height: calc(2vh - 1px);
-    width: calc(16vh * var(--mana_percent) / 100);
+    height: 100%;
+    width: calc((100%) * var(--mana_percent) / 100);
     background-color: #425292;
 }
 
 #diamond_shape {
     position: absolute;
-    top: calc(1vh - 8px);
-    left: 8vh;
-    width: 0;
-    height: 0;
-    border: calc(1vh + 2px + (1px)/2) solid transparent;
-    border-bottom: calc(2vh + 2px) solid aquamarine;
-}
-
-#diamond_shape::after {
-    content: '';
-    position: absolute;
-    top: calc(2vh - 1px);
-    left: calc(-1vh - 2px);
-    width: 0;
-    height: 0;
-    border: calc(1vh + 2px + (1px)/2) solid transparent;
-    border-top: 2vh solid aquamarine;
+    top: 4%;
+    left: 51%;
+    transform: translateX(-50%);
+    width: 15%;
+    height: 25%;
 }
 
 #stats_bars_border {
