@@ -144,9 +144,12 @@ const Grid = {
                         () => {this.nodes[y][x].div.innerHTML += ''})
                 }
 
-                //TODO: Add creation of creatures
                 // Create creatures
-
+                if(this.creatures_map != null) {
+                    this.nodeInLayerAction(px, py, 'creatures_map',
+                    () => {this.nodes[y][x].div.innerHTML += `<img src="${Texture_dict[(this.creatures_map[py][px] != null) ? Active_save.Creature_list[this.creatures_map[py][px]].texture : 'n']}">`},
+                    () => {this.nodes[y][x].div.innerHTML += ''})
+                }
 
                 // Create player node
                 if(y == this.player_node_y && x == this.player_node_x) {
@@ -236,14 +239,22 @@ const Grid = {
 
                     // Draw items
                     if(this.items_map != null) {
-                        this.nodeInLayerAction(node.position_x, node.position_y, 'objects_map',
+                        this.nodeInLayerAction(node.position_x, node.position_y, 'items_map',
                             () => {this.nodes[y][x].div.innerHTML += `<img src="${Texture_dict[(this.items_map[node.position_y][node.position_x] != null) ? Active_save.Item_list[this.items_map[node.position_y][node.position_x]].texture : 'n']}">`},
                             () => {this.nodes[y][x].div.innerHTML += ''})
                     }
 
-                    //TODO: Add creation of creatures
                     // Draw creatures
-
+                    if(this.creatures_map != null) {
+                        this.nodeInLayerAction(node.position_x, node.position_y, 'creatures_map',
+                            () => {
+                                this.nodes[y][x].div.innerHTML += `<img src="${Texture_dict[(this.creatures_map[node.position_y][node.position_x] != null) ? Active_save.Creature_list[this.creatures_map[node.position_y][node.position_x]].texture : 'n']}">`
+                                if(this.creatures_map[node.position_y][node.position_x] != null) {
+                                    node.addCollision('a')
+                                }
+                            },
+                            () => {this.nodes[y][x].div.innerHTML += ''})
+                    }
 
                 })
             })

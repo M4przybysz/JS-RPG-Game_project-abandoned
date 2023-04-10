@@ -78,10 +78,6 @@ class Tool extends Item {
     constructor(id, name, map_x, map_y, texture, usage = () => {console.log('Hello!!! I am a tool!')}) {
         super(id, name, map_x, map_y, texture, usage)
     }
-
-    showInfo() {
-        openMenuTab(4)
-    }
 }
 
 class Weapon extends Tool {
@@ -89,10 +85,6 @@ class Weapon extends Tool {
         super(id, name, map_x, map_y, texture, usage)
 
         this.attack_power_value = attack_power
-    }
-
-    showInfo() {
-        openMenuTab(4)
     }
 }
 
@@ -103,19 +95,11 @@ class Armor extends Item {
         this.armor_place = armor_place // head, torso, legs
         this.def_value = def_value // Numeric defense value
     }
-
-    // showInfo() {
-    //     openMenuTab(4)
-    // }
 }
 
 class Consumable extends Item {
     constructor(id, name, map_x, map_y, texture, ) {
         super(id, name, map_x, map_y, texture, () => {console.log('Hello!!! I am a consumable item!')})
-    }
-
-    showInfo() {
-        openMenuTab(4)
     }
 }
 
@@ -125,10 +109,6 @@ class Healing extends Consumable {
 
         this.healing_value = healing_value // How much item will heal the player
     }
-
-    showInfo() {
-        openMenuTab(4)
-    }
 }
 
 class Food extends Consumable {
@@ -136,10 +116,6 @@ class Food extends Consumable {
         super(id, name, map_x, map_y, texture, )
 
         this.healing_value = healing_value
-    }
-
-    showInfo() {
-        openMenuTab(4)
     }
 }
 
@@ -163,12 +139,16 @@ class MapObj {
 //================================================================================================================================
 //================================================================================================================================
 class Creature {
-    constructor(id, name, map_x, map_y, max_health, max_mana, ) {
+    constructor(id, name, map_x, map_y, texture, level, max_health, max_mana, attitude = 'neutral') {
         this.id = id
         this.name = name
+        this.level = level
+        this.attitude = attitude
 
         this.y = map_y
         this.x = map_x
+
+        this.texture = texture
 
         this.max_health = max_health
         this.health = this.max_health
@@ -178,21 +158,21 @@ class Creature {
     }
 }
 
-class NPC extends Creature {
-    constructor(id, name, map_x, map_y, max_health, max_mana, ) {
-        super(id, name, map_x, map_y, max_health, max_mana, )
+class Person extends Creature {
+    constructor(id, name, map_x, map_y, texture, level, max_health, max_mana, attitude = 'friendly') {
+        super(id, name, map_x, map_y, texture, level, max_health, max_mana, attitude)
     }
 }
 
 class Animal extends Creature {
-    constructor(id, name, map_x, map_y, max_health, ) {
-        super(id, name, map_x, map_y, max_health, 0, )
+    constructor(id, name, map_x, map_y, texture, level, max_health, attitude = 'neutral') {
+        super(id, name, map_x, map_y, texture, level, max_health, 0, attitude)
     }
 }
 
 class Monster extends Creature {
-    constructor(id, name, map_x, map_y, max_health, max_mana, ) {
-        super(id, name, map_x, map_y, max_health, max_mana, )
+    constructor(id, name, map_x, map_y, texture, level, max_health, max_mana, attitude = 'hostile') {
+        super(id, name, map_x, map_y, texture, level, max_health, max_mana, attitude)
     }
 }
 
