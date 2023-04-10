@@ -24,8 +24,8 @@ const Texture_dict = { // Dictionary containing texture corresponding to its id
     'healing_potion' : './assets/items/healing_potion.png',
     'mana_potion' : './assets/items/mana_potion.png',
     'iron_torso_armor' : './assets/items/iron_torso_armor',
-    'iron_legs_armor' : './assets/items/iron_legs_armor.png'
-    'iron_head_armor' : './assets/items/iron_head_armor.png'
+    'iron_legs_armor' : './assets/items/iron_legs_armor.png',
+    'iron_head_armor' : './assets/items/iron_head_armor.png',
 }
 
 const Start_save = {
