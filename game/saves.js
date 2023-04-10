@@ -23,7 +23,7 @@ const Texture_dict = { // Dictionary containing texture corresponding to its id
     'magic_short_sword' : './assets/items/magic_short_sword.png',
     'healing_potion' : './assets/items/healing_potion.png',
     'mana_potion' : './assets/items/mana_potion.png',
-    'iron_torso_armor' : './assets/items/iron_torso_armor',
+    'iron_torso_armor' : './assets/items/iron_torso_armor.png',
     'iron_legs_armor' : './assets/items/iron_legs_armor.png',
     'iron_head_armor' : './assets/items/iron_head_armor.png',
 }
@@ -62,7 +62,7 @@ const Start_save = {
        // Armor
         test_iron_head_armor : new Armor('test_iron_head_armor', 'test_iron_head_armor', 3, 4, 'iron_head_armor', 'head', 20),
         test_iron_torso_armor : new Armor('test_iron_torso_armor', 'test_iron_torso_armor', 5, 2, 'iron_torso_armor', 'torso', 20),
-        test_iron_legs_armor : new Armor('test_iron_legs_armor', 'test_iron_legs_armor', 5, 7, 'iron_legs_armor', 'legs', 20),
+        test_iron_legs_armor : new Armor('test_iron_legs_armor', 'test_iron_legs_armor', 5, 1, 'iron_legs_armor', 'legs', 20),
 
        // Food 
 
@@ -106,8 +106,8 @@ const Start_save = {
                                 ['a', 'x10/.', 'a'],
                                 ['.', 'x10/a', '.'],
             ],
-            items : ['test_stick', 'test_iron_head_armor'],
-            objects : ['test_map_object'],
+            items : ['test_stick',],
+            objects : ['test_map_object', 'test_iron_head_armor'],
             creatures : null,
         },
         Test2 : { // Big test room
@@ -176,7 +176,7 @@ const Start_save = {
                                 ['x2/a', 'x3/.', 'a', 'x4/.', 'a', '.', 'x2/a', 'x5/.', 'a'],
                                 ['x20/a'],
             ],
-            items : ['test_healing_potion', 'test_rich_longsword', 'test_magic_short_sword', 'test_mana_potion', 'test_iron_legs_armor'],
+            items : ['test_healing_potion', 'test_rich_longsword', 'test_magic_short_sword', 'test_mana_potion', 'test_iron_torso_armor', 'test_iron_legs_armor',],
             objects : null,
             creatures : null,
         },
