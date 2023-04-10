@@ -55,7 +55,7 @@ const Player = {
             item_containers[i].innerHTML = `<img src="${Texture_dict[item.texture]}">
                                             <div class="item_functions">
                                                 <input type="button" value="Equip" onclick="Player.equipItem('${(item.constructor.name == 'Armor' && item.armor_place == 'head') ? "head_armor" : 
-                                                                                                                (((item.constructor.name == 'Armor' && item.armor_place == 'torso') ? "troso_armor" : 
+                                                                                                                (((item.constructor.name == 'Armor' && item.armor_place == 'torso') ? "torso_armor" : 
                                                                                                                 ((item.constructor.name == 'Armor' && item.armor_place == 'legs') ? "legs_armor" : 
                                                                                                                 (item.constructor.name == 'Healing' || item.constructor.name == 'Food') ? "equiped_healing" : "equiped_item")))}', '${this.backpack[i]}')">
                                                 <input type="button" value="Use" onclick="Active_save.Item_list['${this.backpack[i]}'].use()">

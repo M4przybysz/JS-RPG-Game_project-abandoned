@@ -106,8 +106,8 @@ const Start_save = {
                                 ['a', 'x10/.', 'a'],
                                 ['.', 'x10/a', '.'],
             ],
-            items : ['test_stick',],
-            objects : ['test_map_object', 'test_iron_head_armor'],
+            items : ['test_stick', 'test_iron_head_armor'],
+            objects : ['test_map_object'],
             creatures : null,
         },
         Test2 : { // Big test room
