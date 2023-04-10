@@ -263,6 +263,7 @@ const DefaultMaps = {
         items : null,
         creatures : null,
     },
+    
         
 }
 
