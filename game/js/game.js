@@ -75,22 +75,21 @@ function startNewGame(event) {
 
 //TODO: Implement importing saves ===================================================================================
 function importSave() { 
-    let read = document.getElementById('reader')
+    read = document.getElementById('reader')
 
     function printFile(file) {
         const reader = new FileReader()
-            reader.onload = (evt) => {
+        reader.onload = (evt) => {
             let str = evt.target.result
             console.log(str)
         }
         reader.readAsText(file)
     }
 
-    // read.oninput = () => {
-    //     let File = read.files[0]
-    //     console.log(File)
-    //     printFile(File)
-    // }
+    read.addEventListener('change', (event) => {
+        const file = event.target.files[0]
+        printFile(file)
+    })
 }
 
 function exportSave() {

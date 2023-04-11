@@ -97,7 +97,8 @@
             <!-- shadow and menus that appear when the game is paused -->
             <div id="game_start_menu">
                 <input type="button" value="New Game" onclick="createPlayer()">         <br>
-                <input type="button" value="Import Save" onclick="importSave()">
+                <!-- <input type="button" value="Import Save" onclick="importSave()"> -->
+                <input type="file" id="reader" onclick="importSave()">
             </div>
 
             <div id="game_pause_menu">
