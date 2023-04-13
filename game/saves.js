@@ -26,6 +26,7 @@ const Texture_dict = { // Dictionary containing texture corresponding to its id
     'iron_torso_armor' : './assets/items/iron_torso_armor.png',
     'iron_legs_armor' : './assets/items/iron_legs_armor.png',
     'iron_head_armor' : './assets/items/iron_head_armor.png',
+    'bread' : './assets/items/bread.png',
 }
 
 const Start_save = {
@@ -65,6 +66,7 @@ const Start_save = {
         test_iron_legs_armor : new Armor('test_iron_legs_armor', 'test_iron_legs_armor', 5, 1, 'iron_legs_armor', 'legs', 20),
 
        // Food 
+       test_bread : new Food('test_bread', 'test_bread', 2, 4, 'bread', 20),
 
        // Healing  
         test_healing_potion : new Healing('test_healing_potion', 'test_healing_potion', 5, 5, 'healing_potion', 20),
@@ -106,7 +108,7 @@ const Start_save = {
                                 ['a', 'x10/.', 'a'],
                                 ['.', 'x10/a', '.'],
             ],
-            items : ['test_stick', 'test_iron_head_armor'],
+            items : ['test_stick', 'test_iron_head_armor', 'test_bread', ],
             objects : ['test_map_object'],
             creatures : null,
         },
