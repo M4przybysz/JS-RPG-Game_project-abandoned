@@ -27,12 +27,8 @@ const Grid = {
 
     // Layered maps of the game
     nodes : [],
-    background_map : [],
-    walls_map : [],
-    collision_map : [],
-    items_map : null,
-    objects_map : null,
-    creatures_map : null,
+    background_map : [], walls_map : [], collision_map : [],
+    items_map : null, objects_map : null, creatures_map : null,
 
     container : document.getElementById('game_grid_container'),
     grid : document.getElementById('game_grid'),
@@ -287,7 +283,5 @@ const Grid = {
         // Set player node image
         document.getElementById('player_node').innerHTML += `<img src="assets/test_textures/arrow_${KEY_DICT[key]}.png" alt="Sorry. There is no arrow.">`
         Player.direction = key
-
-        active_wsad_key = null // Clear last pressed key
     }
 }

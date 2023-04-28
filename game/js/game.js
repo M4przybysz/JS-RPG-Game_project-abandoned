@@ -1,11 +1,6 @@
 //* This file runs is a game loop
 //TODO: Define global game components ======================================================================================
 let isFirstRun = true
-var game_grid = Grid.grid
-var player_node = null
-if(game_grid.innerHTML != '') { 
-    player_node = document.getElementById('player_node')
-}
 
 //TODO: Put game actions to do when window loads ==========================================================================================
 window.onload = () => {
@@ -97,6 +92,14 @@ function openMenuTab(tab_number) {
     document.getElementById(`tab${tab_number}`).style.display = 'block'
 }
 
+function startDialogue(npc_id) {
+    
+}
+
+function endDialogue() {
+
+}
+
 // Grid ticks handler 
 var interval = 250; // Interval in milliseconds
 var expected_time_diff = Date.now() + interval // Expected time difference (in milliseconds) between ticks
@@ -123,6 +126,7 @@ function gameGridTicks() {
 
 //TODO: Put game loops and event listeners here =================================================================================
 document.addEventListener('keydown', keydownActions)
+document.addEventListener('keyup', keyupActions)
 
 
 document.onvisibilitychange = () => {
