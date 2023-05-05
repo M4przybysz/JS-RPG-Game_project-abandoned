@@ -98,12 +98,7 @@
             <div id="game_start_menu">
                 <input type="button" value="New Game" onclick="createPlayer()">         <br>
                 <!-- <input type="button" value="Import Save" onclick="importSave()"> -->
-                <input type="file" id="reader" onclick="importSave()">
-            </div>
-
-            <div id="game_pause_menu">
-                <input type="button" value="Export Save" onclick="exportSave()">        <br>
-                <input type="button" value="Import Save" onclick="importSave()">
+                <input type="button" value="Import Save" onclick="createImportSave()"> 
             </div>
 
             <div id="new_game_menu_container">
@@ -117,6 +112,14 @@
                     <br>
                     <input type="submit" value="Start new game" id="start_new_game_button">
                 </form>
+                <form id="import_save">
+                    <input type="file" id="reader" onclick="importSave()">
+                </form>
+            </div>
+
+            <div id="game_pause_menu">
+                <input type="button" value="Export Save" onclick="exportSave()">        <br>
+                <input type="button" value="Import Save" onclick="importSave()">
             </div>
         </div>
     </main>

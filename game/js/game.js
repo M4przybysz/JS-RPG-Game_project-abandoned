@@ -42,6 +42,11 @@ function createPlayer() {
     document.getElementById('player_creator').style.display = 'block'
 }
 
+function createImportSave() {
+    document.getElementById('game_start_menu').style.display = 'none'
+    document.getElementById('import_save').style.display = 'block'
+}
+
 function startNewGame(event) {
     event.preventDefault()
 
