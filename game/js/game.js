@@ -149,8 +149,12 @@ function gameGridTicks() {
     }
 
     //TODO: Put game events that need to run in intervals here ==================================================================
+    kay_switch = false
+
     Grid.moveGrid(active_wsad_key)
     timer()
+    
+    key_switch = true
 
     // Start next loop ==================================
     expected_time_diff += interval
@@ -160,7 +164,6 @@ function gameGridTicks() {
 //TODO: Put game loops and event listeners here =================================================================================
 document.addEventListener('keydown', keydownActions)
 document.addEventListener('keyup', keyupActions)
-
 
 document.onvisibilitychange = () => {
     if(document.visibilityState === 'visible') { // Restart gameGridTicks() every time user is back on the site

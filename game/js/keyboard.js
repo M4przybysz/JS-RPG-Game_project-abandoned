@@ -1,4 +1,5 @@
 var active_wsad_key = null
+var key_switch = false
 
 const KEY_DICT = {
     'A' : 'left',
@@ -19,6 +20,7 @@ function keydownActions(event) {
         // Pressed WSAD
         if((key == 'W' || key == 'S' || key == 'A' || key == 'D')) { 
             active_wsad_key = key
+
             return
         }
 
@@ -54,7 +56,7 @@ function keydownActions(event) {
 
         // Used abilities
         if(key == 'Q' || key == '1' || key == '2' || key == '3') {
-            // Q - normal attack
+            // Q(0) - normal attack
             // 1 - Ability 1
             // 2 - Ability 2
             // 3 - Ability 3
@@ -68,8 +70,11 @@ function keydownActions(event) {
 }
 
 function keyupActions(event) {
+    if(key_switch == false) return
+
     let key = event.key.toUpperCase()
 
+    // Stop player walk
     if((key == 'W' || key == 'S' || key == 'A' || key == 'D')) { 
         active_wsad_key = null
     }

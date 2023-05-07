@@ -2,7 +2,6 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <!--! CSS is defined with viewport values: vh and vw -->
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/grid_style.css">
     <link rel="stylesheet" href="style/menu_style.css">
@@ -22,14 +21,14 @@
         <!-- Game screen -->
         <div id="game_grid_container">
             <div id="game_grid">
-                <!-- Grid that will change based on ongoing game -->
+                <!-- Grid that will change based on player movement -->
             </div>
         </div>
         <div id="player_menu"> <!-- Menu on the right side of the screen with equipment, map, quests, etc. -->
             <div id="tabs_icons_container">
-                <div class="tab_icon" onclick="openMenuTab(1)"><img src="./assets/UI/menu_icons/map_icon.png"></div>
+                <div class="tab_icon" onclick="openMenuTab(1)"><img src="./assets/UI/menu_icons/map_icon.png"></div> <!--! map not done yet -->
                 <div class="tab_icon" onclick="openMenuTab(2)"><img src="./assets/UI/menu_icons/eq_icon.png"></div>
-                <div class="tab_icon" onclick="openMenuTab(3)"><img src="./assets/UI/menu_icons/quest_log_icon.png"></div>
+                <div class="tab_icon" onclick="openMenuTab(3)"><img src="./assets/UI/menu_icons/quest_log_icon.png"></div> <!--! quests not implemented yet -->
                 <div class="tab_icon" onclick="openMenuTab(4)"><img src="./assets/UI/menu_icons/detailed_stats_icon.png"></div>
             </div>
             <div id="tabs_container">
@@ -55,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div id="player_backpack_container">
+            <div id="player_backpack_container"> <!-- Item containers -->
                 <table id="player_backpack">
                     <tr>
                         <td class="item_container"></td>

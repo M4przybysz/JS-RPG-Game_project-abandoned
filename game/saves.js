@@ -35,7 +35,7 @@ const Texture_dict = { // Dictionary containing texture corresponding to its id
 }
 
 const Start_save = {
-    Player : {
+    Player : { //! Ignore (import and export of save is not done yet so "Player" is useless here)
         name : null,
         class : null,
         direction : 'S',
@@ -65,19 +65,19 @@ const Start_save = {
         backpack_max_capacity : 18,
     },
     Item_list : {  
-       // Armor
+        // Armor
         test_iron_head_armor : new Armor('test_iron_head_armor', 'test_iron_head_armor', 3, 4, 'iron_head_armor', 'head', 20),
         test_iron_torso_armor : new Armor('test_iron_torso_armor', 'test_iron_torso_armor', 5, 2, 'iron_torso_armor', 'torso', 20),
         test_iron_legs_armor : new Armor('test_iron_legs_armor', 'test_iron_legs_armor', 5, 1, 'iron_legs_armor', 'legs', 20),
 
-       // Food 
-       test_bread : new Food('test_bread', 'test_bread', 2, 4, 'bread', 20),
+        // Food 
+        test_bread : new Food('test_bread', 'test_bread', 2, 4, 'bread', 20),
 
-       // Healing  
+        // Healing  
         test_healing_potion : new Healing('test_healing_potion', 'test_healing_potion', 5, 5, 'healing_potion', 20),
         test_mana_potion : new Healing('test_mana_potion', 'test_mana_potion', 5, 3, 'mana_potion', 20),
         
-       //  Weapons
+        //  Weapons
         test_rich_longsword : new Weapon('test_rich_longsword','test_rich_longsword', 5, 4, 'rich_longsword', 20),
         test_magic_short_sword : new Weapon('test_magic_short_sword', 'test_magic_short_sword', 5, 6, 'magic_short_sword', 20),
         test_stick : new Weapon('test_stick', 'test_stick', 4, 4, 'stick', 10),
