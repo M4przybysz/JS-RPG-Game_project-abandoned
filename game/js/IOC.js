@@ -35,6 +35,44 @@ function itemDrop(item_id, drop_from_eq = false, eq_place = null) {
     }
 }
 
+function unsetAbilityEffect(effect_id, x, y) {
+    // Remove effect from location and grid
+    Active_save.Locations[Player.location].objects.splice(Active_save.Locations[Player.location].items.indexOf(Grid.objects_map[y][x], 1))
+    Grid.objects_map[y][x] = null
+
+    // Reload location
+    Grid.importLocation(Player.location)
+}
+
+function setAbilityEffect(effect_id, x, y, a_num = null, x_multiplier = 1, y_multiplier = 1, x_add = 0, y_add = 0) {
+    let d_mod = { // Direction modifier
+        'W' : [0, -1],
+        'S' : [0, 1],
+        'A' : [-1, 0],
+        'D' : [1, 0],
+    }
+
+    // Add effect to location
+    Grid.objects_map[y + d_mod[Player.direction][1] * y_multiplier + y_add][x + d_mod[Player.direction][0] * x_multiplier + x_add] = effect_id
+    if(Active_save.Locations[Player.location].objects == null) Active_save.Locations[Player.location].objects = []
+    Active_save.Locations[Player.location].objects.push(effect_id)
+
+    Active_save.MapObj_list[effect_id].x = x + d_mod[Player.direction][0] * x_multiplier + x_add
+    Active_save.MapObj_list[effect_id].y = y + d_mod[Player.direction][1] * y_multiplier + y_add
+
+    // Refresh location
+    Grid.importLocation(Player.location)
+
+    // Delete effect
+    setTimeout(() => {
+        unsetAbilityEffect(effect_id, x + d_mod[Player.direction][0] * x_multiplier + x_add, y + d_mod[Player.direction][1] * y_multiplier + y_add)
+    }, 250)
+
+    if(a_num != null) {
+        ability_lock[a_num] = false
+    }
+}
+
 function showItemInfo() {
     document.getElementById('info_container').style.display = 'block'
     document.getElementById('player_info_text').style.display = 'none'

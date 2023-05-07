@@ -150,7 +150,7 @@ const Grid = {
                 // Create player node
                 if(y == this.player_node_y && x == this.player_node_x) {
                     this.nodes[y][x].div.id = 'player_node'
-                    this.nodes[y][x].div.innerHTML += `<img src="./assets/test_textures/arrow_${KEY_DICT[Player.direction]}.png" alt="Sorry. There is no arrow."></img>`
+                    this.nodes[y][x].div.innerHTML += `<img src="assets/player/player_${KEY_DICT[Player.direction]}.png" alt="Sorry. There is no arrow."></img>`
                 }
             }
         }
@@ -279,9 +279,8 @@ const Grid = {
             }">`   
         }
 
-        //TODO: Change this to real player assets when they are done
         // Set player node image
-        document.getElementById('player_node').innerHTML += `<img src="assets/test_textures/arrow_${KEY_DICT[key]}.png" alt="Sorry. There is no arrow.">`
+        document.getElementById('player_node').innerHTML += `<img src="assets/player/player_${KEY_DICT[key]}.png" alt="Sorry. There is no arrow.">`
         Player.direction = key
     }
 }

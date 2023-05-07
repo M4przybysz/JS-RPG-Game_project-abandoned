@@ -86,6 +86,7 @@ function startNewGame(event) {
         console.log(`Starting new game with player name: ${playerName} and class: ${playerClass}`)
 
         Player.setClass(playerClass)
+        Player.name = playerName
 
         isFirstRun = false
 
@@ -127,10 +128,6 @@ function openMenuTab(tab_number) {
 
 function startDialogue(npc_id) {
     
-}
-
-function endDialogue() {
-
 }
 
 // Grid ticks handler 

@@ -1,5 +1,6 @@
 var active_wsad_key = null
 var key_switch = false
+var ability_lock = [false, false, false, false]
 
 const KEY_DICT = {
     'A' : 'left',
@@ -62,8 +63,12 @@ function keydownActions(event) {
             // 3 - Ability 3
 
             let ability_number = (key == 'Q') ? 0 : parseInt(key)
+            
+            if(ability_lock[ability_number] != true) {
+                ability_lock[ability_number] = true
+                Player.useAbility(ability_number)
+            }
 
-            Player.useAbility(ability_number)
             return
         }
     }
