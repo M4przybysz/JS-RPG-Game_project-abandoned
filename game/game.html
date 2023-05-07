@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <!--! CSS is defined with viewport values: vh and vw -->
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/grid-style.css">
-    <link rel="stylesheet" href="style/menu-style.css">
+    <link rel="stylesheet" href="style/grid_style.css">
+    <link rel="stylesheet" href="style/menu_style.css">
     <link rel="stylesheet" href="style/player_menu-style.css">
     <link rel="stylesheet" href="style/main_stats-style.css">
     <link rel="icon" href=""> <!--TODO: Add modified ZSE logo to add as site icon -->
@@ -111,9 +111,31 @@
             </div>
         </div>
         <div id="game_pause">
-            <!-- shadow and menu that appear when the game is paused -->
-            <div id="buttons_game_pause">
-                <input type="button" value="New Game" onclick="startNewGame()">
+            <!-- shadow and menus that appear when the game is paused -->
+            <div id="game_start_menu">
+                <input type="button" value="New Game" onclick="createPlayer()">         <br>
+                <!-- <input type="button" value="Import Save" onclick="importSave()"> -->
+                <input type="button" value="Import Save" onclick="createImportSave()"> 
+            </div>
+
+            <div id="new_game_menu_container">
+                <form id="player_creator">
+                    <label>Enter your name:</label>
+                    <input type="text" id="player_name_input" required>
+                    <br>
+                    <label>Chose your class</label>
+                    <input type="button" value="Warrior" id="warrior_button" onclick="this.classList.add('selected'); document.getElementById('mage_button').classList.remove('selected')">
+                    <input type="button" value="Mage" id="mage_button"  onclick="this.classList.add('selected'); document.getElementById('warrior_button').classList.remove('selected')">
+                    <br>
+                    <input type="submit" value="Start new game" id="start_new_game_button">
+                </form>
+                <form id="import_save">
+                    <input type="file" id="reader" onclick="importSave()">
+                </form>
+            </div>
+
+            <div id="game_pause_menu">
+                <input type="button" value="Export Save" onclick="exportSave()">        <br>
                 <input type="button" value="Import Save" onclick="importSave()">
             </div>
         </div>

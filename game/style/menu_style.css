@@ -1,0 +1,104 @@
+#menu {
+    box-sizing: border-box;
+    width: 100vw;
+    height: 4vh;
+    background-color: #313045;
+}
+
+#clock {
+    margin: auto;
+    width: 100px;
+    text-align: center;
+    line-height: 4vh;
+    padding-top: 2px;
+    font-size: calc(4vh - 4px);
+    color: #81a598;
+}
+
+#game_pause {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: #251d22;
+}
+
+#game_start_menu, #game_pause_menu, #player_creator, #import_save  {
+    display: block;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    background-color: #294034;
+    text-align: center;
+    padding: 20px;
+    border-radius: 2vh;
+}
+
+#game_pause_menu, #player_creator, #import_save {
+    display: none;
+}
+
+/* Testing */
+#game_pause input[type="button"], #start_new_game_button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #dfcdb7;
+    background-color: #9a7d4a;
+    cursor: pointer;
+}
+
+#game_pause input[type="button"]:hover {
+    background-color: #c5a47b;
+}
+
+#game_pause label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #dfcdb7;
+}
+  
+#player_creator {
+    padding: 20px;
+    width: 400px;
+    height: 350px;
+}
+
+#import_save {
+    padding: 10px;
+    width: 200px;
+    height: 25px;
+}
+
+#player_creator  input[type="button"].selected {
+    background-color: #63654a;
+}
+  
+#player_name_input {
+    display: inline-block;
+    width: 90%;
+    padding: 5px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    font-family: Alagard;
+}
+  
+#start_new_game_button {
+    margin-top: 30%;
+    background-color: #456b75;
+}
+  
+#start_new_game_button:hover {
+    background-color: #81a598;
+}

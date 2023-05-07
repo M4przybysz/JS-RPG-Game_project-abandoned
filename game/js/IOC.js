@@ -81,10 +81,24 @@ class Tool extends Item {
 }
 
 class Weapon extends Tool {
-    constructor(id, name, map_x, map_y, texture, attack_power = 0, usage = () => {console.log('Hello!!! I am a weapon!')}) {
+    constructor(id, name, map_x, map_y, texture, attack_power = 0, usage = () => {console.log('Hello!!! I am a weapon!')}, atack_type = 'melee', spell_cast_range = 0) {
         super(id, name, map_x, map_y, texture, usage)
 
         this.attack_power_value = attack_power
+        this.atack_type = atack_type
+        this.spell_cast_range = spell_cast_range
+    }
+}
+
+class MeleeWeapon extends Weapon {
+    constructor(id, name, map_x, map_y, texture, attack_power = 0, usage = () => {console.log('Hello!!! I am a melee weapon!')}) {
+        super(id, name, map_x, map_y, texture, attack_power, usage, 'melee', 0)
+    }
+}
+
+class MagicStaff extends Weapon {
+    constructor(id, name, map_x, map_y, texture, attack_power = 0, usage = () => {console.log('Hello!!! AVADA KEDAVRAAA!!!')}, spell_cast_range = 3) {
+        super(id, name, map_x, map_y, texture, attack_power, usage, 'magic', spell_cast_range)
     }
 }
 
