@@ -1,4 +1,5 @@
 var active_wsad_key = null
+var key_switch = false
 
 const KEY_DICT = {
     'A' : 'left',
@@ -19,7 +20,6 @@ function keydownActions(event) {
         // Pressed WSAD
         if((key == 'W' || key == 'S' || key == 'A' || key == 'D')) { 
             active_wsad_key = key
-            return
         }
 
         // Pressed E (action key)
@@ -68,6 +68,8 @@ function keydownActions(event) {
 }
 
 function keyupActions(event) {
+    if(key_switch == false) return
+    
     let key = event.key.toUpperCase()
 
     if((key == 'W' || key == 'S' || key == 'A' || key == 'D')) { 

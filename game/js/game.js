@@ -147,8 +147,12 @@ function gameGridTicks() {
     }
 
     //TODO: Put game events that need to run in intervals here ==================================================================
+    kay_switch = false
+
     Grid.moveGrid(active_wsad_key)
     timer()
+    
+    key_switch = true
 
     // Start next loop ==================================
     expected_time_diff += interval
