@@ -93,6 +93,13 @@ function startNewGame(event) {
         document.addEventListener('keydown', keydownActions)
     }
 }
+function pathIsBlocked() {
+    blocked_path = document.getElementById('blocked_path')
+    blocked_path.style.display = 'block'
+      setTimeout(function() {
+        blocked_path.style.display = 'none'
+      }, 2000)
+  }
 
 //TODO: Implement importing saves ===================================================================================
 function importSave() { 
@@ -124,12 +131,9 @@ function openMenuTab(tab_number) {
 }
 
 function startDialogue(npc_id) {
-    
+    //This function is not yet implemented
 }
 
-function endDialogue() {
-
-}
 
 // Grid ticks handler 
 var interval = 250; // Interval in milliseconds

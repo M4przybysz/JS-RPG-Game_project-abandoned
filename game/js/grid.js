@@ -195,7 +195,7 @@ const Grid = {
             (key == 'A' && this.nodes[this.player_node_y][this.player_node_x-1].collision.includes('r')) ||
             (key == 'D' && this.nodes[this.player_node_y][this.player_node_x+1].collision.includes('l')))
         {
-            console.log('path is blocked')
+            pathIsBlocked()
         }
         else {
             // Udate position of nodes in grid

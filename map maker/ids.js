@@ -35,6 +35,9 @@ const IDs = {
         "pavement_bot_right" : "./textures/map_textures/pavement_bottom_right.png",
         "pavement_top_left" : "./textures/map_textures/pavement_top_left.png",
         "pavement_top_right" : "./textures/map_textures/pavement_top_right.png",
+
+        "doors" : "./textures/map_textures/Doors.png",
+        "stairs" : "./textures/map_textures/Stairs.png",
     },
     item_textures : {
 

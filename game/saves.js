@@ -12,7 +12,29 @@ const Texture_dict = { // Dictionary containing texture corresponding to its id
     'ls' :      './assets/test_textures/location_switch.png',
 
     // Map textures
+    "sch_floor" : "./assets/maps/school_floor.png",
+    "sch_in_corner1" : "./assets/maps/school_inside_corner1.png",
+    "sch_in_corner2" : "./assets/maps/school_inside_corner2.png",
+    "sch_in_corner3" : "./assets/maps/school_inside_corner3.png",
+    "sch_in_corner4" : "./assets/maps/school_inside_corner4.png",
+    "sch_in_lwall" : "./assets/maps/school_inside_left_wall.png",
+    "sch_in_rwall" : "./assets/maps/school_inside_right_wall.png",
+    "sch_in_uwall" : "./assets/maps/school_inside_up_wall.png",
+    "sch_out_wall1" : "./assets/maps/school_out_wall1.png",
+    "sch_out_wall2" : "./assets/maps/school_out_wall2.png",
+    "sch_out_wall3" : "./assets/maps/school_out_wall3.png",
+    "sch_out_win" : "./assets/maps/school_out_window.png",
 
+    "grass" : "./assets/maps/grass.png",
+    "pavement_horizontal" : "./assets/maps/pavement_horizontal.png",
+    "pavement_vertical" : "./assets/maps/pavement_vertical.png",
+    "pavement_bot_left" : "./assets/maps/pavement_bottom_left.png",
+    "pavement_bot_right" : "./assets/maps/pavement_bottom_right.png",
+    "pavement_top_left" : "./assets/maps/pavement_top_left.png",
+    "pavement_top_right" : "./assets/maps/pavement_top_right.png",
+
+    "doors" : "./assets/maps/Doors.png",
+    "stairs" : "./assets/maps/Stairs.png",
     // Map objects
     'fire' :    './assets/objects/fire.png',
 
