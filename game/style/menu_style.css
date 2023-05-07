@@ -22,26 +22,28 @@
     width: 100vw;
     height: 100vh;
     z-index: 9999;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #251d22;
 }
 
-#buttons_game_pause {
+#game_start_menu, #game_pause_menu, #player_creator, #import_save  {
     display: block;
     position: absolute;
     top: 50vh;
     left: 50vw;
-    width: 70vw;
-    height: 60vh;
     z-index: 10000;
     transform: translate(-50%, -50%);
-    background-color: orange;
+    background-color: #294034;
+    text-align: center;
     padding: 20px;
-    border: 3px solid black;
+    border-radius: 2vh;
 }
 
+#game_pause_menu, #player_creator, #import_save {
+    display: none;
+}
 
 /* Testing */
-button {
+#game_pause input[type="button"], #start_new_game_button {
     display: inline-block;
     margin: 5px;
     padding: 10px 20px;
@@ -52,47 +54,51 @@ button {
     color: #dfcdb7;
     background-color: #9a7d4a;
     cursor: pointer;
-  }
+}
 
-button:hover {
+#game_pause input[type="button"]:hover {
     background-color: #c5a47b;
-  }
-  
-button.selected {
-    background-color: #63654a;
-  }
-  
-form {
-    display: inline-block;
-    margin: 0 auto;
-    padding: 20px;
-    width: 400px;
-    height: 350px;
-    border-radius: 10px;
-    background-color: #294034;
-  }
-  
-label {
+}
+
+#game_pause label {
     display: block;
     margin-bottom: 10px;
     font-size: 18px;
     color: #dfcdb7;
-  }
+}
   
-input[type="text"] {
-    display: block;
-    width: 100%;
+#player_creator {
+    padding: 20px;
+    width: 400px;
+    height: 350px;
+}
+
+#import_save {
     padding: 10px;
+    width: 200px;
+    height: 25px;
+}
+
+#player_creator  input[type="button"].selected {
+    background-color: #63654a;
+}
+  
+#player_name_input {
+    display: inline-block;
+    width: 90%;
+    padding: 5px;
     margin-bottom: 20px;
     font-size: 18px;
     border: none;
     border-radius: 5px;
-  }
+    font-family: Alagard;
+}
   
-button[type="submit"] {
-    background-color: #81a598;
-  }
-  
-button[type="submit"]:hover {
+#start_new_game_button {
+    margin-top: 30%;
     background-color: #456b75;
-  }
+}
+  
+#start_new_game_button:hover {
+    background-color: #81a598;
+}

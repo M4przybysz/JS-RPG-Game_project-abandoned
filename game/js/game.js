@@ -1,4 +1,5 @@
 //* This file runs is a game loop
+
 //TODO: Define global game components ======================================================================================
 let isFirstRun = true
 var game_grid = Grid.grid
@@ -21,7 +22,7 @@ window.onload = () => {
 //TODO: Put game functions during playthrough ===================================================================================
 function pauseOrUnpauseGame(hardpause) {
     let game_pause = document.getElementById('game_pause')
-    let buttons_game_pause = document.getElementById('buttons_game_pause')
+    let pause_menu = document.getElementById('game_pause_menu')
 
     if (isFirstRun == true) {
         buttons_game_pause.innerHTML = ""
@@ -66,7 +67,7 @@ function pauseOrUnpauseGame(hardpause) {
     }
     else {
         game_pause.style.display = 'none'
-        buttons_game_pause.style.display = 'none'
+        pause_menu.style.display = 'none'
     }
 }
 
@@ -83,8 +84,59 @@ function startNewGame() {
     Active_save = Start_save
 }
 
-function importSave() {
+function createImportSave() {
+    document.getElementById('game_start_menu').style.display = 'none'
+    document.getElementById('import_save').style.display = 'block'
+}
 
+function startNewGame(event) {
+    event.preventDefault()
+
+    let warrior_button = document.getElementById('warrior_button')
+    let mage_button = document.getElementById('mage_button')
+
+    let playerName = document.getElementById('player_name_input').value
+    let playerClass = ""
+    
+    if(warrior_button.classList.contains("selected")) {
+        playerClass = "warrior"
+    } 
+    else if(mage_button.classList.contains("selected")) {
+        playerClass = "mage"
+    }
+
+    if(playerClass === "") {
+        console.log("Please select a class.")
+    } 
+    else {
+        console.log(`Starting new game with player name: ${playerName} and class: ${playerClass}`)
+
+        isFirstRun = false
+
+        document.getElementById('player_creator').style.display = 'none'
+        document.getElementById('game_pause').style.display = 'none'
+
+        document.addEventListener('keydown', keydownActions)
+    }
+}
+
+//TODO: Implement importing saves ===================================================================================
+function importSave() { 
+    read = document.getElementById('reader')
+
+    function printFile(file) {
+        const reader = new FileReader()
+        reader.onload = (evt) => {
+            let str = evt.target.result
+            console.log(str)
+        }
+        reader.readAsText(file)
+    }
+
+    read.addEventListener('change', (event) => {
+        const file = event.target.files[0]
+        printFile(file)
+    })
 }
 
 function exportSave() {
@@ -121,16 +173,12 @@ function gameGridTicks() {
     setTimeout(gameGridTicks, interval - time_diff)
 }
 
-//TODO: Put game loops and event listeners here =================================================================================
-document.addEventListener('keydown', keydownActions)
-
-
 document.onvisibilitychange = () => {
     if(document.visibilityState === 'visible') { // Restart gameGridTicks() every time user is back on the site
         expected_time_diff = Date.now() + interval 
         gameGridTicks()
     }
-    if(document.visibilityState === 'hidden') { // Pause game when user is not on the site
+    if(document.visibilityState === 'hidden' && isFirstRun == false) { // Pause game when user is not on the site
         pauseOrUnpauseGame(true)
     }
 }
