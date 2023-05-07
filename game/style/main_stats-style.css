@@ -106,9 +106,9 @@
 .ability_container {
     position: absolute;
     margin-left: 50px;
-    margin-top: 25px;
+    margin-top: 15px;
     text-align: center;
-    height: 6vw;
+    height: calc(6vw + 5px);
     width: 5vw;
 }
 
@@ -131,7 +131,7 @@
     left: 0px;
     height: 5vw;
     width: 5vw;
-    border: 5px solid #251d22;
+    border: 3px solid #251d22;
     text-align: center;
     line-height: 70px;
     background-color: #dfcdb7;
@@ -144,7 +144,6 @@
 
 .ability_name {
     position: absolute;
-    overflow: hidden;
     bottom: 0px;
     left: 0px;
     width: 5vw;

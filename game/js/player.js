@@ -166,7 +166,7 @@ const Player = {
             abilities_names[0].innerHTML = 'Punch'
 
             abilities_icons[1].innerHTML = '<img src="./assets/UI/abilities/Fist.png">'
-            abilities_names[1].innerHTML = ''
+            abilities_names[1].innerHTML = 'Fire punch'
 
             abilities_icons[2].innerHTML = '<img src="./assets/UI/abilities/">'
             abilities_names[2].innerHTML = ''
@@ -188,6 +188,17 @@ const Player = {
             abilities_names[3].innerHTML = 'Wave range'
         }
         else { console.log('undefined player class') }
+    },
+
+    abilities : {
+        '0' : function(){console.log('used ability 0')},
+        '1' : function(){console.log('used ability 1')},
+        '2' : function(){console.log('used ability 2')},
+        '3' : function(){console.log('used ability 3')},
+    },
+
+    useAbility(ability_number) {
+        this.abilities[ability_number.toString()]()
     },
 }
 
