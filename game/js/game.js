@@ -1,7 +1,7 @@
 //* This file runs is a game loop
 
 //TODO: Define global game components ======================================================================================
-let isFirstRun = true
+var isFirstRun = true
 var game_grid = Grid.grid
 var player_node = null
 if(game_grid.innerHTML != '') { 
@@ -12,8 +12,7 @@ if(game_grid.innerHTML != '') {
 window.onload = () => {
     Active_save = Start_save
     
-    showPlayerInfo()
-    openMenuTab(1)
+    document.addEventListener('submit', startNewGame)
 
     Grid.importLocation(Player.location)
     gameGridTicks() // First game ticks loop start
@@ -89,6 +88,11 @@ function createImportSave() {
     document.getElementById('import_save').style.display = 'block'
 }
 
+function createPlayer() {
+    document.getElementById('game_start_menu').style.display = 'none'
+    document.getElementById('player_creator').style.display = 'block'
+}
+
 function startNewGame(event) {
     event.preventDefault()
 
@@ -97,7 +101,7 @@ function startNewGame(event) {
 
     let playerName = document.getElementById('player_name_input').value
     let playerClass = ""
-    
+
     if(warrior_button.classList.contains("selected")) {
         playerClass = "warrior"
     } 
