@@ -20,6 +20,8 @@ function keydownActions(event) {
         // Pressed WSAD
         if((key == 'W' || key == 'S' || key == 'A' || key == 'D')) { 
             active_wsad_key = key
+
+            return
         }
 
         // Pressed E (action key)
@@ -54,7 +56,7 @@ function keydownActions(event) {
 
         // Used abilities
         if(key == 'Q' || key == '1' || key == '2' || key == '3') {
-            // Q - normal attack
+            // Q(0) - normal attack
             // 1 - Ability 1
             // 2 - Ability 2
             // 3 - Ability 3
@@ -69,9 +71,10 @@ function keydownActions(event) {
 
 function keyupActions(event) {
     if(key_switch == false) return
-    
+
     let key = event.key.toUpperCase()
 
+    // Stop player walk
     if((key == 'W' || key == 'S' || key == 'A' || key == 'D')) { 
         active_wsad_key = null
     }
