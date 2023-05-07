@@ -85,6 +85,9 @@ function startNewGame(event) {
     else {
         console.log(`Starting new game with player name: ${playerName} and class: ${playerClass}`)
 
+        Player.setClass(playerClass)
+        Player.name = playerName
+
         isFirstRun = false
 
         document.getElementById('player_creator').style.display = 'none'
@@ -134,7 +137,6 @@ function startDialogue(npc_id) {
     //This function is not yet implemented
 }
 
-
 // Grid ticks handler 
 var interval = 250; // Interval in milliseconds
 var expected_time_diff = Date.now() + interval // Expected time difference (in milliseconds) between ticks
@@ -151,8 +153,12 @@ function gameGridTicks() {
     }
 
     //TODO: Put game events that need to run in intervals here ==================================================================
+    kay_switch = false
+
     Grid.moveGrid(active_wsad_key)
     timer()
+    
+    key_switch = true
 
     // Start next loop ==================================
     expected_time_diff += interval
@@ -162,7 +168,6 @@ function gameGridTicks() {
 //TODO: Put game loops and event listeners here =================================================================================
 document.addEventListener('keydown', keydownActions)
 document.addEventListener('keyup', keyupActions)
-
 
 document.onvisibilitychange = () => {
     if(document.visibilityState === 'visible') { // Restart gameGridTicks() every time user is back on the site

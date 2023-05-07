@@ -154,6 +154,102 @@ const Player = {
             console.log(`backpack max capacity (${this.backpack_max_capacity}) reached. Can't unequip this item`)
         }
     },
+
+    setClass(class_name) {
+        this.class = class_name
+
+        let abilities_icons = document.getElementsByClassName('ability_icon')
+        let abilities_names = document.getElementsByClassName('ability_name')
+
+        if(this.class == 'warrior') {
+            abilities_icons[0].innerHTML = '<img src="./assets/UI/abilities/FistNormal.png">'
+            abilities_names[0].innerHTML = 'Punch'
+
+            abilities_icons[1].innerHTML = '<img src="./assets/UI/abilities/Fist.png">'
+            abilities_names[1].innerHTML = 'Fire punch'
+
+            abilities_icons[2].innerHTML = '<img src="./assets/UI/abilities/Chair.png">'
+            abilities_names[2].innerHTML = 'Chair throw'
+
+            abilities_icons[3].innerHTML = '<img src="./assets/UI/abilities/4Kick.png">'
+            abilities_names[3].innerHTML = '4 sides punch'
+        }
+        else if(this.class == 'mage') {
+            abilities_icons[0].innerHTML = '<img src="./assets/UI/abilities/FireBall.png">'
+            abilities_names[0].innerHTML = 'FIre ball'
+
+            abilities_icons[1].innerHTML = '<img src="./assets/UI/abilities/MegaFireBall.png">'
+            abilities_names[1].innerHTML = 'Big fire ball'
+
+            abilities_icons[2].innerHTML = '<img src="./assets/UI/abilities/Hack.png">'
+            abilities_names[2].innerHTML = 'Hack'
+
+            abilities_icons[3].innerHTML = '<img src="./assets/UI/abilities/Range.png">'
+            abilities_names[3].innerHTML = 'Wave range'
+        }
+        else { console.log('undefined player class') }
+
+        abilities_icons[0].innerHTML += '<div class="ability_button">Q</div>'
+        abilities_icons[1].innerHTML += '<div class="ability_button">1</div>'
+        abilities_icons[2].innerHTML += '<div class="ability_button">2</div>'
+        abilities_icons[3].innerHTML += '<div class="ability_button">3</div>'
+    },
+
+    abilities : {
+        '0' : function(){
+            if(Player.class == 'warrior') {
+                setAbilityEffect('w_ability_0', Player.position_x, Player.position_y, 0)
+            }
+            if(Player.class == 'mage') {
+                setAbilityEffect('m_ability_0', Player.position_x, Player.position_y, 0, 2, 2)
+            }
+        },
+        '1' : function(){
+            if(Player.class == 'warrior') {
+                setAbilityEffect('w_ability_1', Player.position_x, Player.position_y, 1)
+            }
+            if(Player.class == 'mage') {
+                setAbilityEffect('m_ability_1_1', Player.position_x, Player.position_y, null)
+                setAbilityEffect('m_ability_1_2', Player.position_x, Player.position_y, null, 2, 2)
+                setAbilityEffect('m_ability_1_3', Player.position_x, Player.position_y, null, 3, 3)
+                setAbilityEffect('m_ability_1_4', Player.position_x, Player.position_y, null, 3, 3, (Player.direction == 'W' || Player.direction =='A') ? 1 : -1, (Player.direction == 'W' || Player.direction =='A') ? 1 : -1)
+                setAbilityEffect('m_ability_1_5', Player.position_x, Player.position_y, 1, 1, 1, (Player.direction == 'W' || Player.direction =='A') ? -1 : 1, (Player.direction == 'W' || Player.direction =='A') ? -1 : 1)
+            }
+        },
+        '2' : function(){
+            if(Player.class == 'warrior') {
+                setAbilityEffect('w_ability_2', Player.position_x, Player.position_y, 2, 2, 2)
+            }
+            if(Player.class == 'mage') {
+                setAbilityEffect('m_ability_2_1', Player.position_x, Player.position_y)
+                setAbilityEffect('m_ability_2_2', Player.position_x, Player.position_y, null, 2, 2)
+                setAbilityEffect('m_ability_2_3', Player.position_x, Player.position_y, 2, 3, 3)
+            }
+        },
+        '3' : function(){
+            if(Player.class == 'warrior') {
+                setAbilityEffect('w_ability_3_1', Player.position_x, Player.position_y, null, 0, 0, 1)
+                setAbilityEffect('w_ability_3_2', Player.position_x, Player.position_y, null, 0, 0, -1)
+                setAbilityEffect('w_ability_3_3', Player.position_x, Player.position_y, null, 0, 0, 0, 1)
+                setAbilityEffect('w_ability_3_4', Player.position_x, Player.position_y, 3, 0, 0, 0, -1)
+            }
+            if(Player.class == 'mage') {
+                setAbilityEffect('m_ability_3_1', Player.position_x, Player.position_y, null, 3, 3)
+                x = (Player.direction == 'W' || Player.direction == 'S') ? -1 : 0 
+                xx = (Player.direction == 'W' || Player.direction == 'S') ? 1 : 0 
+                y = (Player.direction == 'W' || Player.direction == 'S') ? 0 : -1
+                yy = (Player.direction == 'W' || Player.direction == 'S') ? 0 : 1
+                setAbilityEffect('m_ability_3_2', Player.position_x, Player.position_y, null, 3, 3, x, y)
+                setAbilityEffect('m_ability_3_3', Player.position_x, Player.position_y, null, 3, 3, xx, yy)
+                setAbilityEffect('m_ability_3_4', Player.position_x, Player.position_y, null, 2, 2, x*2, y*2)
+                setAbilityEffect('m_ability_3_5', Player.position_x, Player.position_y, 3, 2, 2, xx*2, yy*2)
+            }
+        },
+    },
+
+    useAbility(ability_number) {
+        this.abilities[ability_number.toString()]()
+    },
 }
 
 function showItemFunctions(item_number) {
