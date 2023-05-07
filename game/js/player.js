@@ -191,10 +191,18 @@ const Player = {
     },
 
     abilities : {
-        '0' : function(){console.log('used ability 0')},
-        '1' : function(){console.log('used ability 1')},
-        '2' : function(){console.log('used ability 2')},
-        '3' : function(){console.log('used ability 3')},
+        '0' : function(){
+            console.log('used ability 0')
+        },
+        '1' : function(){
+            console.log('used ability 1')
+        },
+        '2' : function(){
+            console.log('used ability 2')
+        },
+        '3' : function(){
+            console.log('used ability 3')
+        },
     },
 
     useAbility(ability_number) {
