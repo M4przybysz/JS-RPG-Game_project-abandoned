@@ -68,7 +68,7 @@ window.onload = () => {
 
     let texture_select = document.getElementById('select_texture')
     for(let i = 0; i < Object.entries(IDs.textures).length; i++) {
-        texture_select.innerHTML += `<option value="${Object.keys(IDs.textures)[i]}">${Object.entries(IDs.textures)[i].toString().split('/')[3].split('.')[0]}</option>`
+        texture_select.innerHTML += `<option value="${Object.keys(IDs.textures)[i]}">${Object.entries(IDs.textures)[i].toString().split('/')[Object.entries(IDs.textures)[i].toString().split('/').length - 1].split('.')[0]}</option>`
     }
 
     let import_map_select = document.getElementById('import_map_from_defaults')
@@ -328,7 +328,7 @@ function addIOC(checkbox) {
 function mapToString(map_object) {
     let map_str = ''
 
-    map_str = `${map_object.name} : {<br>&emsp;name : '${map_object.name}',<br>&emsp;background_map : [<br>&emsp;&emsp;`
+    map_str = `${map_object.name.trim().replaceAll(' ', '_')} : {<br>&emsp;name : '${map_object.name.trim().replaceAll(' ', '_')}',<br>&emsp;background_map : [<br>&emsp;&emsp;`
     map_object.background.map(row => {
         map_str += '['
         row.map(node => { map_str += `'${node}',` })
@@ -377,7 +377,7 @@ function exportMap() {
 }
 
 function importMap() {
-    let msg = 'Are you sure you want to import new map?<br>Current edited map will be overwriten!<br><br>YOU CAN NOT UNDO THIS ACTION!!!'
+    let msg = 'Are you sure you want to import new map?\nCurrent edited map will be overwriten!\n\nYOU CAN NOT UNDO THIS ACTION!!!'
 
     let addIOC = document.getElementById('add_ioc_checkbox')
     let del_r = document.getElementById('delete_row_checkbox')

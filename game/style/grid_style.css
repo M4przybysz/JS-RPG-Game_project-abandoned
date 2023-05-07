@@ -17,6 +17,7 @@
 }
 
 .node {
+    position: relative;
     box-sizing: border-box;
     display: inline-block;
     width: var(--node_width);
@@ -25,6 +26,9 @@
 }
 
 .node img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: var(--node_width);
     height: var(--node_height);
 }

@@ -217,6 +217,8 @@ label {
     position: relative;
     width: var(--node_width);
     height: var(--node_height);
+    background-repeat: no-repeat;
+    background-size: cover;
     text-align: center;
 }
 
