@@ -82,6 +82,8 @@ const Texture_dict = { // Dictionary containing texture corresponding to its id
     'c_neutral' : './assets/creatures/yellow.png',  //-> test textures
     'c_hostile' : './assets/creatures/red.png',     //---^
 
+    'bzdax' : './assets/creatures/Bzdax.png',
+
     // Abilities 
     'w_ability_0' : './assets/UI/abilities/FistNormal.png',
     'w_ability_1' : './assets/UI/abilities/Fist.png',
@@ -183,6 +185,8 @@ const Start_save = {
         test_friendly : new Person('test_friendly', 'test_friendly', 1, 13, 'c_friendly', 1, 100, 100),
         test_neutral : new Animal('test_neutral', 'test_neutral', 2, 13, 'c_neutral', 1, 20),
         test_hostile : new Monster('test_hostile', 'test_hostile', 3, 13, 'c_hostile', 1, 20, 50),
+
+        bzdax : new Creature('bzdax', 'bzdax', 30, 25, 'bzdax', 1, 1, 1),
     },
     Locations : {
         Test1 : { // Simple room
@@ -383,7 +387,7 @@ const Start_save = {
             ],
             objects : ['fire1', 'fire2', 'fire3', 'fire4'],
             items : ['test_healing_potion', 'test_rich_longsword', 'test_magic_short_sword', 'test_mana_potion', 'test_iron_torso_armor', 'test_iron_legs_armor','test_stick', 'test_iron_head_armor', 'test_bread'],
-            creatures : null,
+            creatures : ['bzdax'],
         },
     }
 }
