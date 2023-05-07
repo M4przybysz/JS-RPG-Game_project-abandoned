@@ -32,6 +32,17 @@ const Texture_dict = { // Dictionary containing texture corresponding to its id
     'c_friendly' : './assets/creatures/green.png',  //---v
     'c_neutral' : './assets/creatures/yellow.png',  //-> test textures
     'c_hostile' : './assets/creatures/red.png',     //---^
+
+    // Abilities 
+    'w_ability_0' : './assets/UI/abilities/FistNormal.png',
+    'w_ability_1' : './assets/UI/abilities/Fist.png',
+    'w_ability_2' : './assets/UI/abilities/Chair.png',
+    'w_ability_3' : './assets/UI/abilities/4Kick.png',
+
+    'm_ability_0' : './assets/UI/abilities/FireBall.png',
+    'm_ability_1' : './assets/UI/abilities/MegaFireBall.png',
+    'm_ability_2' : './assets/UI/abilities/Hack.png',
+    'm_ability_3' : './assets/UI/abilities/Range.png',
 }
 
 const Start_save = {
@@ -84,6 +95,35 @@ const Start_save = {
     },  
     MapObj_list : {
         test_map_object : new MapObj('test_map_object', 2, 2, 'fire'),
+
+        // Warrior abilities
+        w_ability_0 : new MapObj('w_ability_0', 0, 0, 'w_ability_0'),
+        w_ability_1 : new MapObj('w_ability_1', 0, 0, 'w_ability_1'),
+        w_ability_2 : new MapObj('w_ability_2', 0, 0, 'w_ability_2'),
+
+        w_ability_3_1 : new MapObj('w_ability_3_1', 0, 0, 'w_ability_3'),
+        w_ability_3_2 : new MapObj('w_ability_3_2', 0, 0, 'w_ability_3'),
+        w_ability_3_3 : new MapObj('w_ability_3_3', 0, 0, 'w_ability_3'),
+        w_ability_3_4 : new MapObj('w_ability_3_4', 0, 0, 'w_ability_3'),
+
+        // Mage abilities
+        m_ability_0 : new MapObj('m_ability_0', 0, 0, 'm_ability_0'),
+
+        m_ability_1_1 : new MapObj('m_ability_1_1', 0, 0, 'm_ability_1'),
+        m_ability_1_2 : new MapObj('m_ability_1_2', 0, 0, 'm_ability_1'),
+        m_ability_1_3 : new MapObj('m_ability_1_3', 0, 0, 'm_ability_1'),
+        m_ability_1_4 : new MapObj('m_ability_1_4', 0, 0, 'm_ability_1'),
+        m_ability_1_5 : new MapObj('m_ability_1_5', 0, 0, 'm_ability_1'),
+
+        m_ability_2_1 : new MapObj('m_ability_2_1', 0, 0, 'm_ability_2'),
+        m_ability_2_2 : new MapObj('m_ability_2_2', 0, 0, 'm_ability_2'),
+        m_ability_2_3 : new MapObj('m_ability_2_3', 0, 0, 'm_ability_2'),
+
+        m_ability_3_1 : new MapObj('m_ability_3_1', 0, 0, 'm_ability_3'),
+        m_ability_3_2 : new MapObj('m_ability_3_2', 0, 0, 'm_ability_3'),
+        m_ability_3_3 : new MapObj('m_ability_3_3', 0, 0, 'm_ability_3'),
+        m_ability_3_4 : new MapObj('m_ability_3_4', 0, 0, 'm_ability_3'),
+        m_ability_3_5 : new MapObj('m_ability_3_5', 0, 0, 'm_ability_3'),
     },
     Creature_list : {
         test_friendly : new Person('test_friendly', 'test_friendly', 1, 13, 'c_friendly', 1, 100, 100),
