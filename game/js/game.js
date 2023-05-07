@@ -123,6 +123,14 @@ function openMenuTab(tab_number) {
     document.getElementById(`tab${tab_number}`).style.display = 'block'
 }
 
+function startDialogue(npc_id) {
+    
+}
+
+function endDialogue() {
+
+}
+
 // Grid ticks handler 
 var interval = 250; // Interval in milliseconds
 var expected_time_diff = Date.now() + interval // Expected time difference (in milliseconds) between ticks
@@ -147,6 +155,14 @@ function gameGridTicks() {
     setTimeout(gameGridTicks, interval - time_diff)
 }
 
+<<<<<<< HEAD
+=======
+//TODO: Put game loops and event listeners here =================================================================================
+document.addEventListener('keydown', keydownActions)
+document.addEventListener('keyup', keyupActions)
+
+
+>>>>>>> add-creatures-and-abilities
 document.onvisibilitychange = () => {
     if(document.visibilityState === 'visible') { // Restart gameGridTicks() every time user is back on the site
         expected_time_diff = Date.now() + interval 

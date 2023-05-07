@@ -27,6 +27,11 @@ const Texture_dict = { // Dictionary containing texture corresponding to its id
     'iron_legs_armor' : './assets/items/iron_legs_armor.png',
     'iron_head_armor' : './assets/items/iron_head_armor.png',
     'bread' : './assets/items/bread.png',
+
+    // Creature textures
+    'c_friendly' : './assets/creatures/green.png',  //---v
+    'c_neutral' : './assets/creatures/yellow.png',  //-> test textures
+    'c_hostile' : './assets/creatures/red.png',     //---^
 }
 
 const Start_save = {
@@ -81,7 +86,9 @@ const Start_save = {
         test_map_object : new MapObj('test_map_object', 2, 2, 'fire'),
     },
     Creature_list : {
-
+        test_friendly : new Person('test_friendly', 'test_friendly', 1, 13, 'c_friendly', 1, 100, 100),
+        test_neutral : new Animal('test_neutral', 'test_neutral', 2, 13, 'c_neutral', 1, 20),
+        test_hostile : new Monster('test_hostile', 'test_hostile', 3, 13, 'c_hostile', 1, 20, 50),
     },
     Locations : {
         Test1 : { // Simple room
@@ -180,7 +187,7 @@ const Start_save = {
             ],
             items : ['test_healing_potion', 'test_rich_longsword', 'test_magic_short_sword', 'test_mana_potion', 'test_iron_torso_armor', 'test_iron_legs_armor',],
             objects : null,
-            creatures : null,
+            creatures : ['test_friendly', 'test_neutral', 'test_hostile'],
         },
     }
 }

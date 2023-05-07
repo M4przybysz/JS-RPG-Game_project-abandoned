@@ -12,25 +12,65 @@ function keydownActions(event) {
 
     if(key == 'ESCAPE' && isFirstRun != true) { // pressed Escape
         pauseOrUnpauseGame()
+        return
     }
 
-    // pressed WSAD
-    if((key == 'W' || key == 'S' || key == 'A' || key == 'D') && document.getElementById('game_pause').style.display == 'none') { 
+    if(game_pause.style.display == 'none') {
+        // Pressed WSAD
+        if((key == 'W' || key == 'S' || key == 'A' || key == 'D')) { 
+            active_wsad_key = key
+            return
+        }
 
-        active_wsad_key = key
+        // Pressed E (action key)
+        if(key == 'E') {
+            // Interaction with NPC
+            if(Player.direction == 'W' && Grid.creatures_map[Player.position_y - 1][Player.position_x] != null && Grid.creatures_map[Player.position_y - 1][Player.position_x].attitude == 'friendly') {
+                startDialogue(Grid.creatures_map[Player.position_y - 1][Player.position_x])
+                return
+            }
+            else if(Player.direction == 'S' && Grid.creatures_map[Player.position_y + 1][Player.position_x] != null && Grid.creatures_map[Player.position_y + 1][Player.position_x].attitude == 'friendly') {
+                startDialogue(Grid.creatures_map[Player.position_y + 1][Player.position_x])
+                return
+            }
+            else if(Player.direction == 'A' && Grid.creatures_map[Player.position_y][Player.position_x - 1] != null && Grid.creatures_map[Player.position_y][Player.position_x - 1].attitude == 'friendly') {
+                startDialogue(Grid.creatures_map[Player.position_y][Player.position_x - 1])
+                return
+            }
+            else if(Player.direction == 'D' && Grid.creatures_map[Player.position_y][Player.position_x + 1] != null && Grid.creatures_map[Player.position_y][Player.position_x + 1].attitude == 'friendly') {
+                startDialogue(Grid.creatures_map[Player.position_y][Player.position_x + 1])
+                return
+            }
+            
+            // Pick up an item
+            if(Grid.items_map[Player.position_y][Player.position_x] != null) { itemPickUp(0, 0) }
+            else if(Grid.items_map[Player.position_y - 1][Player.position_x] != null && Player.direction == 'W') { itemPickUp(0, -1) }
+            else if(Grid.items_map[Player.position_y + 1][Player.position_x] != null && Player.direction == 'S') { itemPickUp(0, 1) }
+            else if(Grid.items_map[Player.position_y][Player.position_x - 1] != null && Player.direction == 'A') { itemPickUp(-1, 0) }
+            else if(Grid.items_map[Player.position_y][Player.position_x + 1] != null && Player.direction == 'D') { itemPickUp(1, 0) }
+
+            return
+        }
+
+        // Used abilities
+        if(key == 'Q' || key == '1' || key == '2' || key == '3') {
+            // Q - normal attack
+            // 1 - Ability 1
+            // 2 - Ability 2
+            // 3 - Ability 3
+
+            let ability_number = (key == 'Q') ? 0 : parseInt(key)
+
+            Player.useAbility(ability_number)
+            return
+        }
     }
+}
 
-    // Pressed E (action key)
-    if(key == 'E' && game_pause.style.display == 'none') {
-        // Pick up an item
-        if(Grid.items_map[Player.position_y][Player.position_x] != null) { itemPickUp(0, 0) }
-        else if(Grid.items_map[Player.position_y - 1][Player.position_x] != null && Player.direction == 'W') { itemPickUp(0, -1) }
-        else if(Grid.items_map[Player.position_y + 1][Player.position_x] != null && Player.direction == 'S') { itemPickUp(0, 1) }
-        else if(Grid.items_map[Player.position_y][Player.position_x - 1] != null && Player.direction == 'A') { itemPickUp(-1, 0) }
-        else if(Grid.items_map[Player.position_y][Player.position_x + 1] != null && Player.direction == 'D') { itemPickUp(1, 0) }
+function keyupActions(event) {
+    let key = event.key.toUpperCase()
 
-        //TODO: Add other 'E' functions
+    if((key == 'W' || key == 'S' || key == 'A' || key == 'D')) { 
+        active_wsad_key = null
     }
-
-    
 }
