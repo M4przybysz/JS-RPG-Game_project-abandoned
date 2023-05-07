@@ -154,6 +154,41 @@ const Player = {
             console.log(`backpack max capacity (${this.backpack_max_capacity}) reached. Can't unequip this item`)
         }
     },
+
+    setClass(class_name) {
+        this.class = class_name
+
+        let abilities_icons = document.getElementsByClassName('ability_icon')
+        let abilities_names = document.getElementsByClassName('ability_name')
+
+        if(this.class == 'warrior') {
+            abilities_icons[0].innerHTML = '<img src="./assets/UI/abilities/">'
+            abilities_names[0].innerHTML = 'Punch'
+
+            abilities_icons[1].innerHTML = '<img src="./assets/UI/abilities/Fist.png">'
+            abilities_names[1].innerHTML = ''
+
+            abilities_icons[2].innerHTML = '<img src="./assets/UI/abilities/">'
+            abilities_names[2].innerHTML = ''
+
+            abilities_icons[3].innerHTML = '<img src="./assets/UI/abilities/">'
+            abilities_names[3].innerHTML = ''
+        }
+        else if(this.class == 'mage') {
+            abilities_icons[0].innerHTML = '<img src="./assets/UI/abilities/">'
+            abilities_names[0].innerHTML = 'FIre ball'
+
+            abilities_icons[1].innerHTML = '<img src="./assets/UI/abilities/">'
+            abilities_names[1].innerHTML = ''
+
+            abilities_icons[2].innerHTML = '<img src="./assets/UI/abilities/Hack.png">'
+            abilities_names[2].innerHTML = 'Hack'
+
+            abilities_icons[3].innerHTML = '<img src="./assets/UI/abilities/Range.png">'
+            abilities_names[3].innerHTML = 'Wave range'
+        }
+        else { console.log('undefined player class') }
+    },
 }
 
 function showItemFunctions(item_number) {

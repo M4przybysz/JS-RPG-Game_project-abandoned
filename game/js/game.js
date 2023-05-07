@@ -85,6 +85,8 @@ function startNewGame(event) {
     else {
         console.log(`Starting new game with player name: ${playerName} and class: ${playerClass}`)
 
+        Player.setClass(playerClass)
+
         isFirstRun = false
 
         document.getElementById('player_creator').style.display = 'none'
